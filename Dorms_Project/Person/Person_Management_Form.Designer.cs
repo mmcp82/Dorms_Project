@@ -1,4 +1,4 @@
-﻿namespace Dorms_Project
+﻿namespace Dorms_Project.Person
 {
     partial class Person_Management_Form
     {

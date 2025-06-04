@@ -1,4 +1,4 @@
-﻿namespace Dorms_Project
+﻿namespace Dorms_Project.Report
 {
     partial class Report_Form
     {

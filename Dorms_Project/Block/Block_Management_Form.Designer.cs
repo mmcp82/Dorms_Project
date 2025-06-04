@@ -1,4 +1,4 @@
-﻿namespace Dorms_Project
+﻿namespace Dorms_Project.Block
 {
     partial class Block_Management_Form
     {

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dorms_Project
+namespace Dorms_Project.Person
 {
-    public partial class Dorm_Management_Form : Form
+    public partial class Person_Management_Form : Form
     {
-        public Dorm_Management_Form()
+        public Person_Management_Form()
         {
             InitializeComponent();
         }

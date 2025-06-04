@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dorms_Project
+namespace Dorms_Project.Report
 {
-    public partial class Block_Management_Form : Form
+    public partial class Report_Form : Form
     {
-        public Block_Management_Form()
+        public Report_Form()
         {
             InitializeComponent();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

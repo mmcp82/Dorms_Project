@@ -1,4 +1,4 @@
-﻿namespace Dorms_Project
+﻿namespace Dorms_Project.Item
 {
     partial class Item_Management_Form
     {

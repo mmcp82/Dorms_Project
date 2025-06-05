@@ -76,6 +76,12 @@
     <Compile Include="Item\Item_Management_Form.Designer.cs">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.Designer.cs">
+      <DependentUpon>Dorm_Manager_Management_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person\Person_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,10 +96,15 @@
     <Compile Include="Report\Report_Form.Designer.cs">
       <DependentUpon>Report_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\IF_Dorm_Manager_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Repository.cs" />
+    <Compile Include="Services\Dorm_Manager_Repository.cs" />
     <Compile Include="Services\Dorm_Repository.cs" />
     <EmbeddedResource Include="Block\Block_Management_Form.resx">
       <DependentUpon>Block_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dorm\AddOrEdit_Dorm.resx">
+      <DependentUpon>AddOrEdit_Dorm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dorm\Dorm_Management_Form.resx">
       <DependentUpon>Dorm_Management_Form.cs</DependentUpon>
@@ -103,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\Item_Management_Form.resx">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\DormManager\Dorm_Manager_Management_Form.resx">
+      <DependentUpon>Dorm_Manager_Management_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\Person_Management_Form.resx">
       <DependentUpon>Person_Management_Form.cs</DependentUpon>
@@ -129,6 +143,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Person\BlockManager\" />
+    <Folder Include="Person\Collegian\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

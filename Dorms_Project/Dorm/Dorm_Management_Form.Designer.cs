@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Dorm_Manager_Details = new System.Windows.Forms.Button();
+            this.Dorm_Refresh_btn = new System.Windows.Forms.Button();
             this.Delete_Dorm_btn = new System.Windows.Forms.Button();
             this.Edit_Dorm_btn = new System.Windows.Forms.Button();
             this.Add_Dorm_btn = new System.Windows.Forms.Button();
@@ -37,7 +39,8 @@
             this.DormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormCapacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DormManager = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -46,6 +49,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Dorm_Manager_Details);
+            this.groupBox1.Controls.Add(this.Dorm_Refresh_btn);
             this.groupBox1.Controls.Add(this.Delete_Dorm_btn);
             this.groupBox1.Controls.Add(this.Edit_Dorm_btn);
             this.groupBox1.Controls.Add(this.Add_Dorm_btn);
@@ -57,6 +62,29 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات";
+            // 
+            // Dorm_Manager_Details
+            // 
+            this.Dorm_Manager_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dorm_Manager_Details.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.Dorm_Manager_Details.Location = new System.Drawing.Point(190, 19);
+            this.Dorm_Manager_Details.Name = "Dorm_Manager_Details";
+            this.Dorm_Manager_Details.Size = new System.Drawing.Size(152, 27);
+            this.Dorm_Manager_Details.TabIndex = 4;
+            this.Dorm_Manager_Details.Text = "جزئیات مسئول خوابگاه";
+            this.Dorm_Manager_Details.UseVisualStyleBackColor = true;
+            // 
+            // Dorm_Refresh_btn
+            // 
+            this.Dorm_Refresh_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dorm_Refresh_btn.ForeColor = System.Drawing.Color.DimGray;
+            this.Dorm_Refresh_btn.Location = new System.Drawing.Point(348, 19);
+            this.Dorm_Refresh_btn.Name = "Dorm_Refresh_btn";
+            this.Dorm_Refresh_btn.Size = new System.Drawing.Size(101, 27);
+            this.Dorm_Refresh_btn.TabIndex = 3;
+            this.Dorm_Refresh_btn.Text = "بروز رسانی";
+            this.Dorm_Refresh_btn.UseVisualStyleBackColor = true;
+            this.Dorm_Refresh_btn.Click += new System.EventHandler(this.Dorm_Refresh_btn_Click);
             // 
             // Delete_Dorm_btn
             // 
@@ -79,6 +107,7 @@
             this.Edit_Dorm_btn.TabIndex = 1;
             this.Edit_Dorm_btn.Text = "ویرایش خوابگاه";
             this.Edit_Dorm_btn.UseVisualStyleBackColor = true;
+            this.Edit_Dorm_btn.Click += new System.EventHandler(this.Edit_Dorm_btn_Click);
             // 
             // Add_Dorm_btn
             // 
@@ -90,6 +119,7 @@
             this.Add_Dorm_btn.TabIndex = 0;
             this.Add_Dorm_btn.Text = "افزودن خوابگاه";
             this.Add_Dorm_btn.UseVisualStyleBackColor = true;
+            this.Add_Dorm_btn.Click += new System.EventHandler(this.Add_Dorm_btn_Click);
             // 
             // groupBox2
             // 
@@ -113,7 +143,8 @@
             this.DormID,
             this.DormName,
             this.DormCapacity,
-            this.DormManager,
+            this.DormManagerID,
+            this.DormManagerName,
             this.DormAddress});
             this.DG_Dorms.Location = new System.Drawing.Point(6, 22);
             this.DG_Dorms.Name = "DG_Dorms";
@@ -125,9 +156,10 @@
             // 
             this.DormID.DataPropertyName = "DormID";
             this.DormID.FillWeight = 25.99545F;
-            this.DormID.HeaderText = "ردیف";
+            this.DormID.HeaderText = "DormID";
             this.DormID.Name = "DormID";
             this.DormID.ReadOnly = true;
+            this.DormID.Visible = false;
             // 
             // DormName
             // 
@@ -145,13 +177,21 @@
             this.DormCapacity.Name = "DormCapacity";
             this.DormCapacity.ReadOnly = true;
             // 
-            // DormManager
+            // DormManagerID
             // 
-            this.DormManager.DataPropertyName = "DormManager";
-            this.DormManager.FillWeight = 84.1068F;
-            this.DormManager.HeaderText = "مسئول خوابگاه";
-            this.DormManager.Name = "DormManager";
-            this.DormManager.ReadOnly = true;
+            this.DormManagerID.DataPropertyName = "DormManagerID";
+            this.DormManagerID.FillWeight = 84.1068F;
+            this.DormManagerID.HeaderText = "DormManagerID";
+            this.DormManagerID.Name = "DormManagerID";
+            this.DormManagerID.ReadOnly = true;
+            this.DormManagerID.Visible = false;
+            // 
+            // DormManagerName
+            // 
+            this.DormManagerName.DataPropertyName = "DormManagerName";
+            this.DormManagerName.HeaderText = "مسئول خوابگاه";
+            this.DormManagerName.Name = "DormManagerName";
+            this.DormManagerName.ReadOnly = true;
             // 
             // DormAddress
             // 
@@ -186,10 +226,13 @@
         private System.Windows.Forms.Button Edit_Dorm_btn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView DG_Dorms;
+        private System.Windows.Forms.Button Dorm_Refresh_btn;
+        private System.Windows.Forms.Button Dorm_Manager_Details;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormCapacity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DormManager;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormAddress;
     }
 }

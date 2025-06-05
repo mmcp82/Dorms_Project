@@ -70,6 +70,7 @@
             this.Dmanager_btn.TabIndex = 6;
             this.Dmanager_btn.Text = "مدیریت مسئولان خوابگاه";
             this.Dmanager_btn.UseVisualStyleBackColor = true;
+            this.Dmanager_btn.Click += new System.EventHandler(this.Dmanager_btn_Click);
             // 
             // Person_Management_Form
             // 

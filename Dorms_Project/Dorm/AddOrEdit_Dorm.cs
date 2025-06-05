@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dorms_Project.Repository;
+using Dorms_Project.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,92 @@ namespace Dorms_Project.Dorm
 {
     public partial class AddOrEdit_Dorm : Form
     {
+
+        IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
+        IF_Dorm_Repository _Dorm_Repository;
         public AddOrEdit_Dorm()
         {
             InitializeComponent();
+            _Dorm_Manager_Repository = new Dorm_Manager_Repository();
+            _Dorm_Repository = new Dorm_Repository();
+        }
+
+        private void AddOrEdit_Dorm_Load(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            DG_dormManager.AutoGenerateColumns = false;
+            DG_dormManager.DataSource = _Dorm_Manager_Repository.GetAvailableDormManagerTable();
+        }
+
+        private void Dorm_Name_txt_TextChanged(object sender, EventArgs e)
+        {
+            if (Dorm_Name_txt.Text == "")
+            {
+                label1.Text = "نام نمی تواند خالی باشد";
+            }
+            else
+            {
+                label1.Text = "";
+            }
+        }
+
+        private void Dorm_Capacity_num_ValueChanged(object sender, EventArgs e)
+        {
+            if (Dorm_Capacity_num.Value <= 0)
+            {
+                label2.Text = "ظرفیت نمی تواند صفر یا کمتر باشد";
+            }
+            else
+            {
+                label2.Text = "";
+            }
+        }
+
+        private bool CheckValidation()
+        {
+            return label1.Text == "" && label2.Text == "" && label3.Text == "";
+        }
+
+        private void Dorm_Submit_btn_Click(object sender, EventArgs e)
+        {
+            if (CheckValidation())
+            {
+                bool DormInsertSuccess = _Dorm_Repository.Insert_Success(Dorm_Name_txt.Text, (int)(Dorm_Capacity_num.Value), int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString(), Dorm_Address_txt.Text);
+                
+                if (DormInsertSuccess)
+                {
+                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString(), int.Parse(DG_dormManager.CurrentRow.Cells[2].Value.ToString()), DG_dormManager.CurrentRow.Cells[3].Value.ToString(), DG_dormManager.CurrentRow.Cells[4].Value.ToString(), DG_dormManager.CurrentRow.Cells[5].Value.ToString(), int.Parse(DG_Dorms.CurrentRow.Cells[6].Value.ToString()));
+                    if (DormManagerUpdateSuccess)
+                    {
+                        MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("عملیات با شکست مواجه شد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("عملیات با شکست مواجه شد","خطا",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void DG_dormManager_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DG_dormManager.CurrentRow == null)
+            {
+                label3.Text = "لطفا یک مسئول را انتخاب کنید";
+            }
+            else
+            {
+                label3.Text = "";
+            }
         }
     }
 }

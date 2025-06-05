@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dorms_Project.Person.DormManager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace Dorms_Project.Person
         public Person_Management_Form()
         {
             InitializeComponent();
+        }
+
+        private void Dmanager_btn_Click(object sender, EventArgs e)
+        {
+            Dorm_Manager_Management_Form dorm_Manager_Management_Form = new Dorm_Manager_Management_Form();
+            dorm_Manager_Management_Form.ShowDialog();
         }
     }
 }

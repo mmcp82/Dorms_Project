@@ -10,10 +10,12 @@ namespace Dorms_Project.Repository
     interface IF_Dorm_Repository
     {
         DataTable GetDormTable();
-        DataTable GetDormTable(int DormID);
-        bool Insert_Success(string DormName, int DormCapacity, string DormManager, string DormAddress);
-        bool Update_Success(int DormID, string DormName, int DormCapacity, string DormManager, string DormAddress);
-        bool Delete_Success(int DormID);
+        DataRow GetDormRow(int DormID);
+        DataRow GetDormRowByManagerID(int DormManagerID);
+        DataColumn GetDormColumn(string ColumnName);
+        bool Insert_Success(string DormName, int DormCapacity, int DormManagerID, string DormManagerName, string DormAddress);
+        bool Update_Success(int DormID, string DormName, int DormCapacity, string DormManagerID, string DormAddress);
+        bool Delete_Success(int DormID ,int DormManagerID);
 
     }
 }

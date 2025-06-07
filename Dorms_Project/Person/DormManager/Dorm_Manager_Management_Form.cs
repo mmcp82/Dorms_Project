@@ -68,11 +68,11 @@ namespace Dorms_Project.Person.DormManager
         {
             if (DG_dormManager.CurrentRow == null)
             {
-                MessageBox.Show("لطفا یک خوابگاه را انتخاب کنید", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("لطفا یک مسئول را انتخاب کنید", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                string NameTemp = DG_dormManager.CurrentRow.Cells[1].Value.ToString();
+                string NameTemp = DG_dormManager.CurrentRow.Cells[1].Value.ToString() +" "+ DG_dormManager.CurrentRow.Cells[2].Value.ToString();
 
                 DataTable dt = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
 

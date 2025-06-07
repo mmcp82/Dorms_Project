@@ -1,4 +1,5 @@
-﻿using Dorms_Project.Person.DormManager;
+﻿using Dorms_Project.Person.Collegian;
+using Dorms_Project.Person.DormManager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,17 @@ namespace Dorms_Project.Person
         {
             Dorm_Manager_Management_Form dorm_Manager_Management_Form = new Dorm_Manager_Management_Form();
             dorm_Manager_Management_Form.ShowDialog();
+        }
+
+        private void Bmanager_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Pmanager_btn_Click(object sender, EventArgs e)
+        {
+            Collegian_Management_Form collegian_Management_Form = new Collegian_Management_Form();
+            collegian_Management_Form.ShowDialog();
         }
     }
 }

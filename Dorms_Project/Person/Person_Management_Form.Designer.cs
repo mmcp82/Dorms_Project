@@ -52,6 +52,7 @@
             this.Pmanager_btn.TabIndex = 8;
             this.Pmanager_btn.Text = "مدیریت دانشجویان";
             this.Pmanager_btn.UseVisualStyleBackColor = true;
+            this.Pmanager_btn.Click += new System.EventHandler(this.Pmanager_btn_Click);
             // 
             // Bmanager_btn
             // 
@@ -61,6 +62,7 @@
             this.Bmanager_btn.TabIndex = 7;
             this.Bmanager_btn.Text = "مدیریت مسئولان بلوک";
             this.Bmanager_btn.UseVisualStyleBackColor = true;
+            this.Bmanager_btn.Click += new System.EventHandler(this.Bmanager_btn_Click);
             // 
             // Dmanager_btn
             // 

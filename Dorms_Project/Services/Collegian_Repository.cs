@@ -22,7 +22,6 @@ namespace Dorms_Project.Services
             adapter.Fill(dataTable);
             return dataTable;
         }
-
         public DataTable GetCollegianRow(int CollegianID)
         {
             string query = "select * from CollegianTable where CollegianID=" + CollegianID;
@@ -60,13 +59,33 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public bool Insert_Success(string CollegianFirstName, string CollegianLastName, string CollegianCode, string CollegianNationalCode, string CollegianPhoneNumber, string CollegianAddress, int CollegianAssignedRoomID = 0, int ManagingBlockID = 0, string ManagingBlockName = "")
+        public DataTable GetBlockManagerTable()
+        {
+            string query = "select * from CollegianTable where IsBlockManager=" + true;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+
+        public DataTable GetAvailableBlockManagerTable()
+        {
+            string query = $"select * from CollegianTable where IsBlockManager={true} and ManagingBlockID={0}" ;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+
+        public bool Insert_Success(string CollegianFirstName, string CollegianLastName, string CollegianCode, string CollegianNationalCode, string CollegianPhoneNumber, string CollegianAddress, int CollegianAssignedRoomID = 0,bool IsBlockManager=false, int ManagingBlockID = 0, string ManagingBlockName = "")
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "insert into CollegianTable (CollegianFirstName,CollegianLastName,CollegianCode,CollegianNationalCode,CollegianPhoneNumber,CollegianAssignedRoomID,ManagingBlockID,ManagingBlockName,CollegianAddress) " +
-                                                      "values(@CollegianFirstName,@CollegianLastName,@CollegianCode,@CollegianNationalCode,@CollegianPhoneNumber,@CollegianAssignedRoomID,@ManagingBlockID,@ManagingBlockName,@CollegianAddress)";
+                string query = "insert into CollegianTable (CollegianFirstName,CollegianLastName,CollegianCode,CollegianNationalCode,CollegianPhoneNumber,CollegianAssignedRoomID,IsBlockManager,ManagingBlockID,ManagingBlockName,CollegianAddress) " +
+                                                      "values(@CollegianFirstName,@CollegianLastName,@CollegianCode,@CollegianNationalCode,@CollegianPhoneNumber,@CollegianAssignedRoomID,@IsBlockManager,@ManagingBlockID,@ManagingBlockName,@CollegianAddress)";
                 SqlCommand cmd = new SqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@CollegianFirstName", CollegianFirstName);
                 cmd.Parameters.AddWithValue("@CollegianLastName", CollegianLastName);
@@ -74,6 +93,7 @@ namespace Dorms_Project.Services
                 cmd.Parameters.AddWithValue("@CollegianNationalCode", CollegianNationalCode);
                 cmd.Parameters.AddWithValue("@CollegianPhoneNumber", CollegianPhoneNumber);
                 cmd.Parameters.AddWithValue("@CollegianAssignedRoomID", CollegianAssignedRoomID);
+                cmd.Parameters.AddWithValue("@IsBlockManager", IsBlockManager);
                 cmd.Parameters.AddWithValue("@ManagingBlockID", ManagingBlockID);
                 cmd.Parameters.AddWithValue("@ManagingBlockName", ManagingBlockName);
                 cmd.Parameters.AddWithValue("@CollegianAddress", CollegianAddress);
@@ -92,8 +112,7 @@ namespace Dorms_Project.Services
                 Connection.Close();
             }
         }
-
-        public bool Update_Success(int CollegianID, string CollegianFirstName, string CollegianLastName, string CollegianCode, string CollegianNationalCode, string CollegianPhoneNumber, string CollegianAddress, int CollegianAssignedRoomID = 0, int ManagingBlockID = 0, string ManagingBlockName = "")
+        public bool Update_Success(int CollegianID, string CollegianFirstName, string CollegianLastName, string CollegianCode, string CollegianNationalCode, string CollegianPhoneNumber, string CollegianAddress, int CollegianAssignedRoomID = 0,bool IsBlockManager=false, int ManagingBlockID = 0, string ManagingBlockName = "")
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
@@ -106,6 +125,7 @@ namespace Dorms_Project.Services
                     "CollegianPhoneNumber=@CollegianPhoneNumber, " +
                     "CollegianAddress=@CollegianAddress, " +
                     "CollegianAssignedRoomID=@CollegianAssignedRoomID, " +
+                    "IsBlockManager=@IsBlockManager, " +
                     "ManagingBlockID=@ManagingBlockID, " +
                     "ManagingBlockName=@ManagingBlockName " +
                     "where CollegianID=@CollegianID;";
@@ -119,6 +139,7 @@ namespace Dorms_Project.Services
                 cmd.Parameters.AddWithValue("@CollegianPhoneNumber", CollegianPhoneNumber);
                 cmd.Parameters.AddWithValue("@CollegianAddress", CollegianAddress);
                 cmd.Parameters.AddWithValue("@CollegianAssignedRoomID", CollegianAssignedRoomID);
+                cmd.Parameters.AddWithValue("@IsBlockManager", IsBlockManager);
                 cmd.Parameters.AddWithValue("@ManagingBlockID", ManagingBlockID);
                 cmd.Parameters.AddWithValue("@ManagingBlockName", ManagingBlockName);
 
@@ -136,7 +157,6 @@ namespace Dorms_Project.Services
                 Connection.Close();
             }
         }
-
         public bool Delete_Success(int CollegianID)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
@@ -160,5 +180,6 @@ namespace Dorms_Project.Services
                 Connection.Close();
             }
         }
+
     }
 }

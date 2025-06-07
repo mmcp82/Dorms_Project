@@ -10,24 +10,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dorms_Project.Person.DormManager
+namespace Dorms_Project.Person.Collegian
 {
-    public partial class AddOrEdit_Dorm_Manager : Form
+    public partial class AddOrEdit_Collegian_Form : Form
     {
-        IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
-        IF_Dorm_Repository _Dorm_Repository;
+        IF_Collegian_Repository _collegian_repository;
+        IF_Block_Repository _block_repository;
         public int SelectedID = 0;
-        DataTable DormManagerTable;
+
+        DataTable CollegianTable;
+        DataColumn CollegianCodeColumn;
         DataColumn NationalCodeColumn;
         DataColumn PhoneColumn;
         DataTable dt;
 
-        public AddOrEdit_Dorm_Manager()
+
+        public AddOrEdit_Collegian_Form()
         {
             InitializeComponent();
-            _Dorm_Manager_Repository = new Dorm_Manager_Repository();
-            _Dorm_Repository = new Dorm_Repository();
+            _collegian_repository = new Collegian_Repository();
+            _block_repository = new Block_Repository();
         }
+
 
         public bool IsUnique(DataColumn column, object inputValue)
         {
@@ -52,41 +56,6 @@ namespace Dorms_Project.Person.DormManager
             return true; // No matches found
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Trim(' ') == "")
-            {
-                label1.Text = "نام نمی تواند خالی باشد";
-            }
-            else
-            {
-                label1.Text = "";
-            }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox2.Text.Trim(' ') == "")
-            {
-                label2.Text = "نام خانوادگی نمی تواند خالی باشد";
-            }
-            else
-            {
-                label2.Text = "";
-            }
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox3.Text.Trim(' ') == "")
-            {
-                label3.Text = "شغل نمی تواند خالی باشد";
-            }
-            else
-            {
-                label3.Text = "";
-            }
-        }
         private static bool IsAllDigits(string input)
         {
             if (string.IsNullOrEmpty(input))
@@ -100,15 +69,67 @@ namespace Dorms_Project.Person.DormManager
             return true;
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Trim(' ') == "")
+            {
+                label1.Text = "نام نمی تواند خالی باشد";
+            }
+            else
+            {
+                label1.Text = "";
+            }
+        }
+
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+            if (textBox2.Text.Trim(' ') == "")
+            {
+                label2.Text = "نام خانوادگی نمی تواند خالی باشد";
+            }
+            else
+            {
+                label2.Text = "";
+            }
+        }
+
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+            if (textBox3.Text.Trim(' ').Length == 9 && IsAllDigits(textBox3.Text.Trim(' ')))
+            {
+                if (IsUnique(CollegianCodeColumn, textBox3.Text.Trim(' ')))
+                {
+                    label3.Text = "";
+                }
+                else if (SelectedID != 0 && textBox3.Text.Trim(' ') == dt.Rows[0]["CollegianCode"].ToString())
+                {
+                    label3.Text = "";
+                }
+                else
+                {
+                    label3.Text = "کد دانشجویی تکراری";
+                }
+            }
+            else
+            {
+                label3.Text = "کد دانشجویی نادرست";
+            }
+        }
+
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
+
             if (textBox4.Text.Trim(' ').Length == 10 && IsAllDigits(textBox4.Text.Trim(' ')))
             {
                 if (IsUnique(NationalCodeColumn, textBox4.Text.Trim(' ')))
                 {
                     label4.Text = "";
                 }
-                else if (SelectedID!=0 && textBox4.Text.Trim(' ') == dt.Rows[0]["DormManagerNationalCode"].ToString())
+                else if (SelectedID != 0 && textBox4.Text.Trim(' ') == dt.Rows[0]["CollegianNationalCode"].ToString())
                 {
                     label4.Text = "";
                 }
@@ -125,13 +146,14 @@ namespace Dorms_Project.Person.DormManager
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            if (textBox5.Text.Trim(' ').Length == 10 && IsAllDigits(textBox5.Text.Trim(' ')))
+
+            if (textBox5.Text.Trim(' ').Length == 10 && IsAllDigits(textBox5.Text.Trim(' ')) && textBox5.Text.Trim()[0]=='9')
             {
                 if (IsUnique(PhoneColumn, textBox5.Text.Trim(' ')))
                 {
                     label5.Text = "";
                 }
-                else if (SelectedID != 0 && textBox5.Text.Trim(' ') == dt.Rows[0]["DormManagerPhoneNumber"].ToString())
+                else if (SelectedID != 0 && textBox5.Text.Trim(' ') == dt.Rows[0]["CollegianPhoneNumber"].ToString())
                 {
                     label5.Text = "";
                 }
@@ -146,21 +168,46 @@ namespace Dorms_Project.Person.DormManager
             }
         }
 
+
         private bool ValidateInputs()
         {
             return label1.Text == "" && label2.Text == "" && label3.Text == "" && label4.Text == "" && label5.Text == "";
         }
 
+        private void AddOrEdit_Collegian_Form_Load(object sender, EventArgs e)
+        {
+            CollegianTable = _collegian_repository.GetCollegianTable();
+            CollegianCodeColumn = CollegianTable.Columns["CollegianCode"];
+            NationalCodeColumn = CollegianTable.Columns["CollegianNationalCode"];
+            PhoneColumn = CollegianTable.Columns["CollegianPhoneNumber"];
+            dt = _collegian_repository.GetCollegianRow(SelectedID);
+
+            if (SelectedID == 0)
+            {
+                this.Text = "افزودن دانشجو جدید";
+            }
+            else
+            {
+                this.Text = "ویرایش دانشجو";
+                textBox1.Text = dt.Rows[0]["CollegianFirstName"].ToString();
+                textBox2.Text = dt.Rows[0]["CollegianLastName"].ToString();
+                textBox3.Text = dt.Rows[0]["CollegianCode"].ToString();
+                textBox4.Text = dt.Rows[0]["CollegianNationalCode"].ToString();
+                textBox5.Text = dt.Rows[0]["CollegianPhoneNumber"].ToString();
+                Address_txt.Text = dt.Rows[0]["CollegianAddress"].ToString();
+            }
+        }
 
         private void Dorm_Submit_btn_Click(object sender, EventArgs e)
         {
+
             if (ValidateInputs())
             {
                 if (SelectedID == 0)
                 {
-                    bool DormManagerInsertSuccess = _Dorm_Manager_Repository.Insert_Success(textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '));
+                    bool CollegianInserSuccess = _collegian_repository.Insert_Success(textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '));
 
-                    if (DormManagerInsertSuccess)
+                    if (CollegianInserSuccess)
                     {
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = DialogResult.OK;
@@ -174,16 +221,17 @@ namespace Dorms_Project.Person.DormManager
                 }
                 else
                 {
-                    bool DormUpdateSuccess = true;
-                    if (int.Parse(dt.Rows[0]["ManagingDormID"].ToString()) != 0)
+
+                    bool BlockUpdateSuccess = true;
+                    if (int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()) != 0)
                     {
-                        DataTable Dormdt = _Dorm_Repository.GetDormRow(int.Parse(dt.Rows[0]["ManagingDormID"].ToString()));
-                        DormUpdateSuccess = _Dorm_Repository.Update_Success(int.Parse(Dormdt.Rows[0]["DormID"].ToString()), (Dormdt.Rows[0]["DormName"].ToString()), int.Parse(Dormdt.Rows[0]["DormCapacity"].ToString()), int.Parse(Dormdt.Rows[0]["DormManagerID"].ToString()), textBox1.Text.Trim() + " " + textBox2.Text.Trim(), (Dormdt.Rows[0]["DormAddress"].ToString()));
+                        DataTable blockdt = _block_repository.GetBlockRow(int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()));
+                        BlockUpdateSuccess = _block_repository.Update_Success(int.Parse(blockdt.Rows[0]["BlockID"].ToString()), (blockdt.Rows[0]["BlockName"].ToString()), int.Parse(blockdt.Rows[0]["BlockCapacity"].ToString()), int.Parse(blockdt.Rows[0]["BlockFloors"].ToString()), int.Parse(blockdt.Rows[0]["BlockRooms"].ToString()), int.Parse(blockdt.Rows[0]["BlockManagerID"].ToString()), textBox1.Text.Trim() + " " + textBox2.Text.Trim(), int.Parse(blockdt.Rows[0]["LinkedDormID"].ToString()));
                     }
 
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["ManagingDormID"].ToString()), dt.Rows[0]["ManagingDormName"].ToString());
-                    
-                    if (DormManagerUpdateSuccess && DormUpdateSuccess)
+                    bool CollegianupdateSuccess = _collegian_repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()), bool.Parse(dt.Rows[0]["IsBlockManager"].ToString()), int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()), dt.Rows[0]["ManagingBlockName"].ToString());                                   
+
+                    if (CollegianupdateSuccess && BlockUpdateSuccess)
                     {
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = DialogResult.OK;
@@ -195,28 +243,8 @@ namespace Dorms_Project.Person.DormManager
                 }
             }
         }
-
-        private void AddOrEdit_Dorm_Manager_Load(object sender, EventArgs e)
-        {
-            DormManagerTable = _Dorm_Manager_Repository.GetDormManagerTable();
-            NationalCodeColumn = DormManagerTable.Columns["DormManagerNationalCode"];
-            PhoneColumn = DormManagerTable.Columns["DormManagerPhoneNumber"];
-            dt = _Dorm_Manager_Repository.GetDormManagerRow(SelectedID);
-
-            if (SelectedID == 0)
-            {
-                this.Text = "افزودن مسئول جدید";
-            }
-            else
-            {
-                this.Text = "ویرایش مسئول";
-                textBox1.Text = dt.Rows[0]["DormManagerFirstName"].ToString();
-                textBox2.Text = dt.Rows[0]["DormManagerLastName"].ToString();
-                textBox3.Text = dt.Rows[0]["DormManagerJob"].ToString();
-                textBox4.Text = dt.Rows[0]["DormManagerNationalCode"].ToString();
-                textBox5.Text = dt.Rows[0]["DormManagerPhoneNumber"].ToString();
-                Address_txt.Text = dt.Rows[0]["DormManagerAddress"].ToString();
-            }
-        }
     }
 }
+       
+    
+

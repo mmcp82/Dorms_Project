@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Collegian_Details_btn = new System.Windows.Forms.Button();
+            this.Move_btn = new System.Windows.Forms.Button();
+            this.SignUp_btn = new System.Windows.Forms.Button();
             this.Collegian_Refresh_btn = new System.Windows.Forms.Button();
             this.Delete_Collegian_btn = new System.Windows.Forms.Button();
             this.Edit_Collegian_btn = new System.Windows.Forms.Button();
             this.Add_Collegian_btn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DG_Collegian = new System.Windows.Forms.DataGridView();
-            this.Move_btn = new System.Windows.Forms.Button();
-            this.Collegian_Details_btn = new System.Windows.Forms.Button();
-            this.SignUp_btn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.CollegianID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +46,7 @@
             this.CollegianNationalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianAssignedRoomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsBlockManager = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingBlockID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingBlockName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +74,50 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 57);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(456, 23);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // Collegian_Details_btn
+            // 
+            this.Collegian_Details_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Collegian_Details_btn.ForeColor = System.Drawing.Color.Blue;
+            this.Collegian_Details_btn.Location = new System.Drawing.Point(154, 19);
+            this.Collegian_Details_btn.Name = "Collegian_Details_btn";
+            this.Collegian_Details_btn.Size = new System.Drawing.Size(151, 27);
+            this.Collegian_Details_btn.TabIndex = 5;
+            this.Collegian_Details_btn.Text = "اطلاعات دانشجو";
+            this.Collegian_Details_btn.UseVisualStyleBackColor = true;
+            this.Collegian_Details_btn.Click += new System.EventHandler(this.Collegian_Details_btn_Click);
+            // 
+            // Move_btn
+            // 
+            this.Move_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Move_btn.ForeColor = System.Drawing.Color.DimGray;
+            this.Move_btn.Location = new System.Drawing.Point(468, 52);
+            this.Move_btn.Name = "Move_btn";
+            this.Move_btn.Size = new System.Drawing.Size(151, 27);
+            this.Move_btn.TabIndex = 7;
+            this.Move_btn.Text = "جابه جایی دانشجو";
+            this.Move_btn.UseVisualStyleBackColor = true;
+            this.Move_btn.Click += new System.EventHandler(this.Move_btn_Click);
+            // 
+            // SignUp_btn
+            // 
+            this.SignUp_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SignUp_btn.ForeColor = System.Drawing.Color.Green;
+            this.SignUp_btn.Location = new System.Drawing.Point(625, 52);
+            this.SignUp_btn.Name = "SignUp_btn";
+            this.SignUp_btn.Size = new System.Drawing.Size(145, 27);
+            this.SignUp_btn.TabIndex = 4;
+            this.SignUp_btn.Text = "ثبت نام دانشجو";
+            this.SignUp_btn.UseVisualStyleBackColor = true;
+            this.SignUp_btn.Click += new System.EventHandler(this.SignUp_btn_Click);
+            // 
             // Collegian_Refresh_btn
             // 
             this.Collegian_Refresh_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -95,6 +140,7 @@
             this.Delete_Collegian_btn.TabIndex = 2;
             this.Delete_Collegian_btn.Text = "حذف دانشجو";
             this.Delete_Collegian_btn.UseVisualStyleBackColor = true;
+            this.Delete_Collegian_btn.Click += new System.EventHandler(this.Delete_Collegian_btn_Click);
             // 
             // Edit_Collegian_btn
             // 
@@ -106,6 +152,7 @@
             this.Edit_Collegian_btn.TabIndex = 1;
             this.Edit_Collegian_btn.Text = "ویرایش دانشجو";
             this.Edit_Collegian_btn.UseVisualStyleBackColor = true;
+            this.Edit_Collegian_btn.Click += new System.EventHandler(this.Edit_Collegian_btn_Click);
             // 
             // Add_Collegian_btn
             // 
@@ -117,6 +164,7 @@
             this.Add_Collegian_btn.TabIndex = 0;
             this.Add_Collegian_btn.Text = "افزودن دانشجو";
             this.Add_Collegian_btn.UseVisualStyleBackColor = true;
+            this.Add_Collegian_btn.Click += new System.EventHandler(this.Add_Collegian_btn_Click);
             // 
             // groupBox2
             // 
@@ -144,6 +192,7 @@
             this.CollegianNationalCode,
             this.CollegianPhoneNumber,
             this.CollegianAssignedRoomID,
+            this.IsBlockManager,
             this.ManagingBlockID,
             this.ManagingBlockName,
             this.CollegianAddress});
@@ -152,46 +201,6 @@
             this.DG_Collegian.ReadOnly = true;
             this.DG_Collegian.Size = new System.Drawing.Size(764, 302);
             this.DG_Collegian.TabIndex = 8;
-            // 
-            // Move_btn
-            // 
-            this.Move_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Move_btn.ForeColor = System.Drawing.Color.DimGray;
-            this.Move_btn.Location = new System.Drawing.Point(468, 52);
-            this.Move_btn.Name = "Move_btn";
-            this.Move_btn.Size = new System.Drawing.Size(151, 27);
-            this.Move_btn.TabIndex = 7;
-            this.Move_btn.Text = "جابه جایی دانشجو";
-            this.Move_btn.UseVisualStyleBackColor = true;
-            // 
-            // Collegian_Details_btn
-            // 
-            this.Collegian_Details_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Collegian_Details_btn.ForeColor = System.Drawing.Color.Blue;
-            this.Collegian_Details_btn.Location = new System.Drawing.Point(154, 19);
-            this.Collegian_Details_btn.Name = "Collegian_Details_btn";
-            this.Collegian_Details_btn.Size = new System.Drawing.Size(151, 27);
-            this.Collegian_Details_btn.TabIndex = 5;
-            this.Collegian_Details_btn.Text = "اطلاعات دانشجو";
-            this.Collegian_Details_btn.UseVisualStyleBackColor = true;
-            // 
-            // SignUp_btn
-            // 
-            this.SignUp_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SignUp_btn.ForeColor = System.Drawing.Color.Green;
-            this.SignUp_btn.Location = new System.Drawing.Point(625, 52);
-            this.SignUp_btn.Name = "SignUp_btn";
-            this.SignUp_btn.Size = new System.Drawing.Size(145, 27);
-            this.SignUp_btn.TabIndex = 4;
-            this.SignUp_btn.Text = "ثبت نام دانشجو";
-            this.SignUp_btn.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(456, 23);
-            this.textBox1.TabIndex = 8;
             // 
             // CollegianID
             // 
@@ -244,6 +253,14 @@
             this.CollegianAssignedRoomID.ReadOnly = true;
             this.CollegianAssignedRoomID.Visible = false;
             // 
+            // IsBlockManager
+            // 
+            this.IsBlockManager.DataPropertyName = "IsBlockManager";
+            this.IsBlockManager.HeaderText = "IsBlockManager";
+            this.IsBlockManager.Name = "IsBlockManager";
+            this.IsBlockManager.ReadOnly = true;
+            this.IsBlockManager.Visible = false;
+            // 
             // ManagingBlockID
             // 
             this.ManagingBlockID.DataPropertyName = "ManagingBlockID";
@@ -276,6 +293,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "Collegian_Management_Form";
             this.Text = "Collegian_Management_Form";
+            this.Load += new System.EventHandler(this.Collegian_Management_Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -304,6 +322,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CollegianNationalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollegianPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollegianAssignedRoomID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsBlockManager;
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagingBlockID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagingBlockName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CollegianAddress;

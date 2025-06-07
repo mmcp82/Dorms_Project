@@ -126,10 +126,12 @@ namespace Dorms_Project.Dorm
             if (Dorm_Capacity_num.Value <= 0)
             {
                 label2.Text = "ظرفیت نمی تواند صفر یا کمتر باشد";
+                Dorm_Capacity_num.Value = 6;
             }
             else
             {
                 label2.Text = "";
+                Dorm_Capacity_num.Value = Dorm_Capacity_num.Value - Dorm_Capacity_num.Value % 6;
             }
         }
 

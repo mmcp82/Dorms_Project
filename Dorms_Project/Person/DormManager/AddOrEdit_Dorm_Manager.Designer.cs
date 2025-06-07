@@ -199,6 +199,7 @@
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "کد ملی نادرست";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // groupBox6
             // 

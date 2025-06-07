@@ -76,6 +76,12 @@
     <Compile Include="Item\Item_Management_Form.Designer.cs">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\Collegian\AddOrEdit_Collegian_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Collegian\AddOrEdit_Collegian_Form.Designer.cs">
+      <DependentUpon>AddOrEdit_Collegian_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person\Collegian\Collegian_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +114,11 @@
     <Compile Include="Report\Report_Form.Designer.cs">
       <DependentUpon>Report_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\IF_Block_Repository.cs" />
     <Compile Include="Repository\IF_Collegian_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Manager_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Repository.cs" />
+    <Compile Include="Services\Block_Repository.cs" />
     <Compile Include="Services\Collegian_Repository.cs" />
     <Compile Include="Services\Dorm_Manager_Repository.cs" />
     <Compile Include="Services\Dorm_Repository.cs" />
@@ -128,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\Item_Management_Form.resx">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Collegian\AddOrEdit_Collegian_Form.resx">
+      <DependentUpon>AddOrEdit_Collegian_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\Collegian\Collegian_Management_Form.resx">
       <DependentUpon>Collegian_Management_Form.cs</DependentUpon>

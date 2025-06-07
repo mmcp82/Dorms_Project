@@ -39,7 +39,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DG_dormManager = new System.Windows.Forms.DataGridView();
-            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
             this.DormManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +47,7 @@
             this.DormManagerPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingDormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dorm_Capacity_num)).BeginInit();
@@ -98,10 +98,30 @@
             // 
             // Dorm_Capacity_num
             // 
+            this.Dorm_Capacity_num.Increment = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
             this.Dorm_Capacity_num.Location = new System.Drawing.Point(6, 19);
+            this.Dorm_Capacity_num.Maximum = new decimal(new int[] {
+            0,
+            1,
+            0,
+            0});
+            this.Dorm_Capacity_num.Minimum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
             this.Dorm_Capacity_num.Name = "Dorm_Capacity_num";
             this.Dorm_Capacity_num.Size = new System.Drawing.Size(222, 20);
             this.Dorm_Capacity_num.TabIndex = 7;
+            this.Dorm_Capacity_num.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
             this.Dorm_Capacity_num.ValueChanged += new System.EventHandler(this.Dorm_Capacity_num_ValueChanged);
             // 
             // label2
@@ -173,17 +193,6 @@
             this.DG_dormManager.TabIndex = 7;
             this.DG_dormManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_dormManager_CellContentClick);
             // 
-            // Dorm_Submit_btn
-            // 
-            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
-            this.Dorm_Submit_btn.Location = new System.Drawing.Point(101, 446);
-            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
-            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
-            this.Dorm_Submit_btn.TabIndex = 9;
-            this.Dorm_Submit_btn.Text = "ثبت";
-            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
-            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
-            // 
             // DormManagerID
             // 
             this.DormManagerID.DataPropertyName = "DormManagerID";
@@ -241,6 +250,17 @@
             this.ManagingDormID.Name = "ManagingDormID";
             this.ManagingDormID.ReadOnly = true;
             this.ManagingDormID.Visible = false;
+            // 
+            // Dorm_Submit_btn
+            // 
+            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
+            this.Dorm_Submit_btn.Location = new System.Drawing.Point(101, 446);
+            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
+            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
+            this.Dorm_Submit_btn.TabIndex = 9;
+            this.Dorm_Submit_btn.Text = "ثبت";
+            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
+            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
             // 
             // AddOrEdit_Dorm
             // 

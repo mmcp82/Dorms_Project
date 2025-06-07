@@ -6,9 +6,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Dorms_Project.Dorm
 {
@@ -19,9 +21,11 @@ namespace Dorms_Project.Dorm
         IF_Dorm_Repository _Dorm_Repository;
         public int SelectedID = 0;
         bool Edited = false;
+        DataTable dataManagerRow;
+        DataTable dt;
 
-        DataTable dataRow;
-
+        DataTable DormTable;
+        DataColumn DormNameColumn;
 
         public AddOrEdit_Dorm()
         {
@@ -32,6 +36,10 @@ namespace Dorms_Project.Dorm
 
         private void AddOrEdit_Dorm_Load(object sender, EventArgs e)
         {
+            DormTable = _Dorm_Repository.GetDormTable();
+            DormNameColumn = DormTable.Columns["DormName"];
+            dt = _Dorm_Repository.GetDormRow(SelectedID);
+
             if (SelectedID == 0)
             {
                 this.Text = "افزودن خوابگاه جدید";
@@ -40,15 +48,14 @@ namespace Dorms_Project.Dorm
             else
             {
                 this.Text = "ویرایش خوابگاه";
-                DataTable dt = _Dorm_Repository.GetDormRow(SelectedID);
                 Dorm_Name_txt.Text = dt.Rows[0]["DormName"].ToString();
                 Dorm_Capacity_num.Value = int.Parse(dt.Rows[0]["DormCapacity"].ToString());
                 Dorm_Address_txt.Text = dt.Rows[0]["DormAddress"].ToString();
 
 
-                dataRow = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(dt.Rows[0]["DormManagerID"].ToString()));
+                dataManagerRow = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(dt.Rows[0]["DormManagerID"].ToString()));
 
-                bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dataRow.Rows[0]["DormManagerID"].ToString()), (dataRow.Rows[0]["DormManagerFirstName"].ToString()), (dataRow.Rows[0]["DormManagerLastName"].ToString()), (dataRow.Rows[0]["DormManagerJob"].ToString()), (dataRow.Rows[0]["DormManagerNationalCode"].ToString()), (dataRow.Rows[0]["DormManagerPhoneNumber"].ToString()), (dataRow.Rows[0]["DormManagerAddress"].ToString()), 0, "");
+                bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dataManagerRow.Rows[0]["DormManagerID"].ToString()), (dataManagerRow.Rows[0]["DormManagerFirstName"].ToString()), (dataManagerRow.Rows[0]["DormManagerLastName"].ToString()), (dataManagerRow.Rows[0]["DormManagerJob"].ToString()), (dataManagerRow.Rows[0]["DormManagerNationalCode"].ToString()), (dataManagerRow.Rows[0]["DormManagerPhoneNumber"].ToString()), (dataManagerRow.Rows[0]["DormManagerAddress"].ToString()), 0, "");
 
                 if (DormManagerUpdateSuccess)
                 {
@@ -61,17 +68,56 @@ namespace Dorms_Project.Dorm
         {
             DG_dormManager.AutoGenerateColumns = false;
             DG_dormManager.DataSource = _Dorm_Manager_Repository.GetAvailableDormManagerTable();
+            if (SelectedID != 0)
+            {
+                for (int i = 0; i < DG_dormManager.Rows.Count; i++)
+                {
+                    if (int.Parse(DG_dormManager.Rows[i].Cells[0].Value.ToString()) == int.Parse(dt.Rows[0]["DormManagerID"].ToString()))
+                    {
+                        DG_dormManager.CurrentCell = DG_dormManager.Rows[i].Cells[1];
+                        break;
+                    }
+                }
+            }
         }
+
+        public bool IsUnique(DataColumn column, object inputValue)
+        {
+
+            foreach (DataRow row in column.Table.Rows)
+            {
+                object cellValue = row[column];
+
+                // Handle DBNull cases
+                if (cellValue == DBNull.Value)
+                {
+                    return true; // No data in column therefore it's unique 
+                }
+
+                // Compare values
+                if (cellValue.Equals(inputValue))
+                {
+                    return false; // Found match
+                }
+            }
+
+            return true; // No matches found
+        }
+
 
         private void Dorm_Name_txt_TextChanged(object sender, EventArgs e)
         {
-            if (Dorm_Name_txt.Text == "")
+            if (IsUnique(DormNameColumn, Dorm_Name_txt.Text.Trim(' ')))
             {
-                label1.Text = "نام نمی تواند خالی باشد";
+                label1.Text = "";
+            }
+            else if (SelectedID != 0 && Dorm_Name_txt.Text.Trim(' ') == dt.Rows[0]["DormName"].ToString())
+            {
+                label1.Text = "";
             }
             else
             {
-                label1.Text = "";
+                label1.Text = "نام خوابگاه تکراری";
             }
         }
 
@@ -112,7 +158,7 @@ namespace Dorms_Project.Dorm
                 if (SelectedID == 0)
                 {
 
-                    bool DormInsertSuccess = _Dorm_Repository.Insert_Success(Dorm_Name_txt.Text, (int)(Dorm_Capacity_num.Value), int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString(), Dorm_Address_txt.Text);
+                    bool DormInsertSuccess = _Dorm_Repository.Insert_Success(Dorm_Name_txt.Text.Trim(' '), (int)(Dorm_Capacity_num.Value), int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_dormManager.CurrentRow.Cells[2].Value.ToString(), Dorm_Address_txt.Text.Trim(' '));
 
                     DataTable dataRowtemp = _Dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
                     int ManagingDormID = int.Parse(dataRowtemp.Rows[0]["DormID"].ToString());
@@ -134,7 +180,7 @@ namespace Dorms_Project.Dorm
                 else
                 {
 
-                    bool DormUpdateSuccess = _Dorm_Repository.Update_Success(SelectedID, Dorm_Name_txt.Text, (int)(Dorm_Capacity_num.Value), int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString(), Dorm_Address_txt.Text);
+                    bool DormUpdateSuccess = _Dorm_Repository.Update_Success(SelectedID, Dorm_Name_txt.Text.Trim(' '), (int)(Dorm_Capacity_num.Value), int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_dormManager.CurrentRow.Cells[2].Value.ToString(), Dorm_Address_txt.Text.Trim(' '));
 
                     DataTable dataRowtemp = _Dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
                     int ManagingDormID = int.Parse(dataRowtemp.Rows[0]["DormID"].ToString());
@@ -163,7 +209,7 @@ namespace Dorms_Project.Dorm
             {
                 if (Edited == false)
                 {
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dataRow.Rows[0]["DormManagerID"].ToString()), (dataRow.Rows[0]["DormManagerFirstName"].ToString()), (dataRow.Rows[0]["DormManagerLastName"].ToString()), (dataRow.Rows[0]["DormManagerJob"].ToString()), (dataRow.Rows[0]["DormManagerNationalCode"].ToString()), (dataRow.Rows[0]["DormManagerPhoneNumber"].ToString()), (dataRow.Rows[0]["DormManagerAddress"].ToString()), int.Parse(dataRow.Rows[0]["ManagingDormID"].ToString()), (dataRow.Rows[0]["ManagingDormName"].ToString()));
+                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dataManagerRow.Rows[0]["DormManagerID"].ToString()), (dataManagerRow.Rows[0]["DormManagerFirstName"].ToString()), (dataManagerRow.Rows[0]["DormManagerLastName"].ToString()), (dataManagerRow.Rows[0]["DormManagerJob"].ToString()), (dataManagerRow.Rows[0]["DormManagerNationalCode"].ToString()), (dataManagerRow.Rows[0]["DormManagerPhoneNumber"].ToString()), (dataManagerRow.Rows[0]["DormManagerAddress"].ToString()), int.Parse(dataManagerRow.Rows[0]["ManagingDormID"].ToString()), (dataManagerRow.Rows[0]["ManagingDormName"].ToString()));
                 }
             }
         }

@@ -76,6 +76,12 @@
     <Compile Include="Item\Item_Management_Form.Designer.cs">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\Collegian\Collegian_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Collegian\Collegian_Management_Form.Designer.cs">
+      <DependentUpon>Collegian_Management_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,8 +108,10 @@
     <Compile Include="Report\Report_Form.Designer.cs">
       <DependentUpon>Report_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\IF_Collegian_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Manager_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Repository.cs" />
+    <Compile Include="Services\Collegian_Repository.cs" />
     <Compile Include="Services\Dorm_Manager_Repository.cs" />
     <Compile Include="Services\Dorm_Repository.cs" />
     <EmbeddedResource Include="Block\Block_Management_Form.resx">
@@ -120,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\Item_Management_Form.resx">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Collegian\Collegian_Management_Form.resx">
+      <DependentUpon>Collegian_Management_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\DormManager\AddOrEdit_Dorm_Manager.resx">
       <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>
@@ -154,7 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Person\BlockManager\" />
-    <Folder Include="Person\Collegian\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

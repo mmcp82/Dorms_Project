@@ -16,6 +16,10 @@ namespace Dorms_Project.Person.DormManager
     {
         IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
         public int SelectedID = 0;
+        DataTable DormManagerTable;
+        DataColumn NationalCodeColumn;
+        DataColumn PhoneColumn;
+        DataTable dt;
 
         public AddOrEdit_Dorm_Manager()
         {
@@ -23,9 +27,32 @@ namespace Dorms_Project.Person.DormManager
             _Dorm_Manager_Repository = new Dorm_Manager_Repository();
         }
 
+        public bool IsUnique(DataColumn column, object inputValue)
+        {
+
+            foreach (DataRow row in column.Table.Rows)
+            {
+                object cellValue = row[column];
+
+                // Handle DBNull cases
+                if (cellValue == DBNull.Value)
+                {
+                    return true; // No data in column therefore it's unique 
+                }
+
+                // Compare values
+                if (cellValue.Equals(inputValue))
+                {
+                    return false; // Found match
+                }
+            }
+
+            return true; // No matches found
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            if (textBox1.Text.Trim(' ') == "")
             {
                 label1.Text = "نام نمی تواند خالی باشد";
             }
@@ -37,7 +64,7 @@ namespace Dorms_Project.Person.DormManager
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text == "")
+            if (textBox2.Text.Trim(' ') == "")
             {
                 label2.Text = "نام خانوادگی نمی تواند خالی باشد";
             }
@@ -49,7 +76,7 @@ namespace Dorms_Project.Person.DormManager
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (textBox3.Text == "")
+            if (textBox3.Text.Trim(' ') == "")
             {
                 label3.Text = "شغل نمی تواند خالی باشد";
             }
@@ -73,9 +100,20 @@ namespace Dorms_Project.Person.DormManager
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (textBox4.Text.Length == 10 && IsAllDigits(textBox4.Text))
+            if (textBox4.Text.Trim(' ').Length == 10 && IsAllDigits(textBox4.Text.Trim(' ')))
             {
-                label4.Text = "";
+                if (IsUnique(NationalCodeColumn, textBox4.Text.Trim(' ')))
+                {
+                    label4.Text = "";
+                }
+                else if (SelectedID!=0 && textBox4.Text.Trim(' ') == dt.Rows[0]["DormManagerNationalCode"].ToString())
+                {
+                    label4.Text = "";
+                }
+                else
+                {
+                    label4.Text = "کد ملی تکراری";
+                }
             }
             else
             {
@@ -85,9 +123,20 @@ namespace Dorms_Project.Person.DormManager
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            if (textBox5.Text.Length == 10 && IsAllDigits(textBox5.Text) && textBox5.Text[0] == '9')
+            if (textBox5.Text.Trim(' ').Length == 10 && IsAllDigits(textBox5.Text.Trim(' ')))
             {
-                label5.Text = "";
+                if (IsUnique(PhoneColumn, textBox5.Text.Trim(' ')))
+                {
+                    label5.Text = "";
+                }
+                else if (SelectedID != 0 && textBox5.Text.Trim(' ') == dt.Rows[0]["DormManagerPhoneNumber"].ToString())
+                {
+                    label5.Text = "";
+                }
+                else
+                {
+                    label5.Text = "شماره تلفن تکراری";
+                }
             }
             else
             {
@@ -107,7 +156,7 @@ namespace Dorms_Project.Person.DormManager
             {
                 if (SelectedID == 0)
                 {
-                    bool DormManagerInsertSuccess = _Dorm_Manager_Repository.Insert_Success(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, Address_txt.Text);
+                    bool DormManagerInsertSuccess = _Dorm_Manager_Repository.Insert_Success(textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '));
 
                     if (DormManagerInsertSuccess)
                     {
@@ -123,16 +172,12 @@ namespace Dorms_Project.Person.DormManager
                 }
                 else
                 {
-
-                    DataTable dt = _Dorm_Manager_Repository.GetDormManagerRow(SelectedID);
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(SelectedID, textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, Address_txt.Text, int.Parse(dt.Rows[0]["ManagingDormID"].ToString()), dt.Rows[0]["ManagingDormName"].ToString());
+                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["ManagingDormID"].ToString()), dt.Rows[0]["ManagingDormName"].ToString());
 
                     if (DormManagerUpdateSuccess)
                     {
-
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = DialogResult.OK;
-
                     }
                     else
                     {
@@ -144,6 +189,10 @@ namespace Dorms_Project.Person.DormManager
 
         private void AddOrEdit_Dorm_Manager_Load(object sender, EventArgs e)
         {
+            DormManagerTable = _Dorm_Manager_Repository.GetDormManagerTable();
+            NationalCodeColumn = DormManagerTable.Columns["DormManagerNationalCode"];
+            PhoneColumn = DormManagerTable.Columns["DormManagerPhoneNumber"];
+            dt = _Dorm_Manager_Repository.GetDormManagerRow(SelectedID);
 
             if (SelectedID == 0)
             {
@@ -152,7 +201,6 @@ namespace Dorms_Project.Person.DormManager
             else
             {
                 this.Text = "ویرایش مسئول";
-                DataTable dt = _Dorm_Manager_Repository.GetDormManagerRow(SelectedID);
                 textBox1.Text = dt.Rows[0]["DormManagerFirstName"].ToString();
                 textBox2.Text = dt.Rows[0]["DormManagerLastName"].ToString();
                 textBox3.Text = dt.Rows[0]["DormManagerJob"].ToString();

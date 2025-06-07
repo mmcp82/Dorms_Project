@@ -76,6 +76,12 @@
     <Compile Include="Item\Item_Management_Form.Designer.cs">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.Designer.cs">
+      <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Item\Item_Management_Form.resx">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\DormManager\AddOrEdit_Dorm_Manager.resx">
+      <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\DormManager\Dorm_Manager_Management_Form.resx">
       <DependentUpon>Dorm_Manager_Management_Form.cs</DependentUpon>

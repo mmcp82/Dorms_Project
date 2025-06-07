@@ -11,11 +11,11 @@ namespace Dorms_Project.Repository
     {
         DataTable GetDormManagerTable();
         DataTable GetAvailableDormManagerTable();
-        DataRow GetDormManagerRow(int DormManagerID);
-        DataColumn GetManagerColumn(string ColumnName);
-        bool Insert_Success(string DormManagerFullName, int DormManagerAge, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress);
-        bool Update_Success(int DormManagerID, string DormManagerFullName, int DormManagerAge, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress, int? ManagingDormID=null);
-        bool Delete_Success(int DormManagerID, int? ManagingDormID);
+        DataTable GetDormManagerRow(int DormManagerID);
+
+        bool Insert_Success(string DormManagerFirstName, string DormManagerLastName, string DormManagerJob, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress, int ManagingDormID = 0, string ManagingDormName = "");
+        bool Update_Success(int DormManagerID, string DormManagerFirstName, string DormManagerLastName, string DormManagerJob, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress, int ManagingDormID = 0, string ManagingDormName = "");
+        bool Delete_Success(int DormManagerID);
 
     }
 }

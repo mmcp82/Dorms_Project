@@ -22,10 +22,18 @@ namespace Dorms_Project.Services
             adapter.Fill(dataTable);
             return dataTable;
         }
-
         public DataTable GetAvailableDormManagerTable()
         {
-            string query = $"select * from DormManagerTable where ManagingDormID is null";
+            string query = $"select * from DormManagerTable where ManagingDormID=" + 0;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+        public DataTable GetDormManagerRow(int DormManagerID)
+        {
+            string query = $"select * from DormManagerTable where DormManagerID=" + DormManagerID;
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();
@@ -33,68 +41,25 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public DataRow GetDormManagerRow(int DormID)
+        public bool Insert_Success(string DormManagerFirstName, string DormManagerLastName, string DormManagerJob, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress, int ManagingDormID = 0, string ManagingDormName = "")
         {
-            throw new NotImplementedException();
-        }
-
-        public DataColumn GetManagerColumn(string ColumnName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Insert_Success(string DormManagerFullName, int DormManagerAge, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress)
-        {
+            SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "insert into DormManagerTable (DormManagerFullName,DormManagerAge,DormManagerNationalCode,DormManagerPhoneNumber,DormManagerAddress) " +
-                    "values(@DormManagerFullName,@DormManagerAge,@DormManagerNationalCode,@DormManagerPhoneNumber,@DormManagerAddress)";
-                SqlConnection Connection = new SqlConnection(_connection_string);
+                string query = "insert into DormManagerTable (DormManagerFirstName,DormManagerLastName,DormManagerJob,DormManagerNationalCode,DormManagerPhoneNumber,ManagingDormID,ManagingDormName,DormManagerAddress) " +
+                    "values(@DormManagerFirstName,@DormManagerLastName,@DormManagerJob,@DormManagerNationalCode,@DormManagerPhoneNumber,@ManagingDormID,@ManagingDormName,@DormManagerAddress)";
                 SqlCommand cmd = new SqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@DormManagerFullName", DormManagerFullName);
-                cmd.Parameters.AddWithValue("@DormManagerAge", DormManagerAge);
-                cmd.Parameters.AddWithValue("@DormManagerNationalCode", DormManagerNationalCode);
-                cmd.Parameters.AddWithValue("@DormManagerPhoneNumber", DormManagerPhoneNumber);
-                cmd.Parameters.AddWithValue("@DormManagerAddress", DormManagerAddress);
-
-                Connection.Open();
-                cmd.ExecuteNonQuery();
-                Connection.Close();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Update_Success(int DormManagerID, string DormManagerFullName, int DormManagerAge, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress, int? ManagingDormID=null)
-        {
-            try
-            {
-                string query = "update DormManagerTable " +
-                    "set DormManagerFullName=@DormManagerFullName " +
-                    "set DormManagerAge=@DormManagerAge " +
-                    "set DormManagerNationalCode=@DormManagerNationalCode " +
-                    "set DormManagerPhoneNumber=@DormManagerPhoneNumber " +
-                    "set DormManagerAddress=@DormManagerAddress " +
-                    "set ManagingDormID=@ManagingDormID " +
-                    "where DormManagerID=@DormManagerID ";
-
-                SqlConnection Connection = new SqlConnection(_connection_string);
-                SqlCommand cmd = new SqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@DormManagerID", DormManagerID);
-                cmd.Parameters.AddWithValue("@DormManagerFullName", DormManagerFullName);
-                cmd.Parameters.AddWithValue("@DormManagerAge", DormManagerAge);
+                cmd.Parameters.AddWithValue("@DormManagerFirstName", DormManagerFirstName);
+                cmd.Parameters.AddWithValue("@DormManagerLastName", DormManagerLastName);
+                cmd.Parameters.AddWithValue("@DormManagerJob", DormManagerJob);
                 cmd.Parameters.AddWithValue("@DormManagerNationalCode", DormManagerNationalCode);
                 cmd.Parameters.AddWithValue("@DormManagerPhoneNumber", DormManagerPhoneNumber);
                 cmd.Parameters.AddWithValue("@DormManagerAddress", DormManagerAddress);
                 cmd.Parameters.AddWithValue("@ManagingDormID", ManagingDormID);
+                cmd.Parameters.AddWithValue("@ManagingDormName", ManagingDormName);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
-                Connection.Close();
 
                 return true;
             }
@@ -102,11 +67,74 @@ namespace Dorms_Project.Services
             {
                 return false;
             }
+            finally
+            {
+                Connection.Close();
+            }
         }
-
-        public bool Delete_Success(int DormManagerID, int? ManagingDormID)
+        public bool Update_Success(int DormManagerID, string DormManagerFirstName, string DormManagerLastName, string DormManagerJob, string DormManagerNationalCode, string DormManagerPhoneNumber, string DormManagerAddress, int ManagingDormID = 0, string ManagingDormName = "")
         {
-            throw new NotImplementedException();
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            try
+            {
+                string query = "update DormManagerTable set " +
+                    "DormManagerFirstName=@DormManagerFirstName, " +
+                    "DormManagerLastName=@DormManagerLastName, " +
+                    "DormManagerJob=@DormManagerJob, " +
+                    "DormManagerNationalCode=@DormManagerNationalCode, " +
+                    "DormManagerPhoneNumber=@DormManagerPhoneNumber, " +
+                    "DormManagerAddress=@DormManagerAddress, " +
+                    "ManagingDormID=@ManagingDormID, " +
+                    "ManagingDormName=@ManagingDormName " +
+                    "where DormManagerID=@DormManagerID;";
+
+                SqlCommand cmd = new SqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@DormManagerID", DormManagerID);
+                cmd.Parameters.AddWithValue("@DormManagerFirstName", DormManagerFirstName);
+                cmd.Parameters.AddWithValue("@DormManagerLastName", DormManagerLastName);
+                cmd.Parameters.AddWithValue("@DormManagerJob", DormManagerJob);
+                cmd.Parameters.AddWithValue("@DormManagerNationalCode", DormManagerNationalCode);
+                cmd.Parameters.AddWithValue("@DormManagerPhoneNumber", DormManagerPhoneNumber);
+                cmd.Parameters.AddWithValue("@DormManagerAddress", DormManagerAddress);
+                cmd.Parameters.AddWithValue("@ManagingDormID", ManagingDormID);
+                cmd.Parameters.AddWithValue("@ManagingDormName", ManagingDormName);
+
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+        public bool Delete_Success(int DormManagerID)
+        {
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            try
+            {
+                string query = "delete from DormManagerTable where DormManagerID=@DormManagerID;";
+                SqlCommand cmd = new SqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@DormManagerID", DormManagerID);
+
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
         }
     }
 }

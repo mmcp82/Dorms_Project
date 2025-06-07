@@ -22,29 +22,33 @@ namespace Dorms_Project.Services
             adapter.Fill(dataTable);
             return dataTable;
         }
-
-        public DataRow GetDormRow(int DormID)
+        public DataTable GetDormRow(int DormID)
         {
-            throw new NotImplementedException();
+            string query = "select * from DormsTable where DormID=" + DormID;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+
         }
-
-        public DataRow GetDormRowByManagerID(int DormManagerID)
+        public DataTable GetDormRowByManagerID(int DormManagerID)
         {
-            throw new NotImplementedException();
-        }
-
-        public DataColumn GetDormColumn(string ColumnName)
-        {
-            throw new NotImplementedException();
+            string query = "select * from DormsTable where DormManagerID="+ DormManagerID;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
         }
 
         public bool Insert_Success(string DormName, int DormCapacity, int DormManagerID, string DormManagerName, string DormAddress)
         {
+            SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
                 string query = "insert into DormsTable (DormName,DormCapacity,DormManagerID,DormManagerName,DormAddress) " +
                     "values(@DormName,@DormCapacity,@DormManagerID,@DormManagerName,@DormAddress)";
-                SqlConnection Connection = new SqlConnection(_connection_string);
                 SqlCommand cmd = new SqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@DormName", DormName);
                 cmd.Parameters.AddWithValue("@DormCapacity", DormCapacity);
@@ -53,7 +57,7 @@ namespace Dorms_Project.Services
                 cmd.Parameters.AddWithValue("@DormAddress", DormAddress);
                 Connection.Open();
                 cmd.ExecuteNonQuery();
-                Connection.Close();
+               
 
                 return true;
             }
@@ -61,29 +65,34 @@ namespace Dorms_Project.Services
             {
                 return false;
             }
+            finally
+            {
+                Connection.Close();
+            }
         }
-        public bool Update_Success(int DormID, string DormName, int DormCapacity, string DormManager, string DormAddress)
+        public bool Update_Success(int DormID, string DormName, int DormCapacity,int DormManagerID, string DormManagerName, string DormAddress)
         {
+            SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "update DormsTable " +
-                    "set DormName=@DormName " +
-                    "set DormCapacity=@DormCapacity " +
-                    "set DormManager=@DormManager " +
-                    "set DormAddress=@DormAddress " +
-                    "where DormID=@DormID";
+                string query = "update DormsTable set " +
+                    "DormName=@DormName, " +
+                    "DormCapacity=@DormCapacity, " +
+                    "DormManagerID=@DormManagerID, " +
+                    "DormManagerName=@DormManagerName, " +
+                    "DormAddress=@DormAddress " +
+                    "where DormID=@DormID;";
 
-                SqlConnection Connection = new SqlConnection(_connection_string);
-                SqlCommand cmd = new SqlCommand(query, Connection);
+                 SqlCommand cmd = new SqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@DormID", DormID);
                 cmd.Parameters.AddWithValue("@DormName", DormName);
                 cmd.Parameters.AddWithValue("@DormCapacity", DormCapacity);
-                cmd.Parameters.AddWithValue("@DormManager", DormManager);
+                cmd.Parameters.AddWithValue("@DormManagerID", DormManagerID);
+                cmd.Parameters.AddWithValue("@DormManagerName", DormManagerName);
                 cmd.Parameters.AddWithValue("@DormAddress", DormAddress);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
-                Connection.Close();
 
                 return true;
             }
@@ -91,11 +100,33 @@ namespace Dorms_Project.Services
             {
                 return false;
             }
+            finally
+            {
+                Connection.Close();
+            }
         }
-
-        public bool Delete_Success(int DormID, int DormManagerID)
+        public bool Delete_Success(int DormID)
         {
-            throw new NotImplementedException();
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            try
+            {
+                string query = "delete from DormsTable where DormID=@DormID;";
+                SqlCommand cmd =new SqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@DormID", DormID);
+
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
         }
     }
 }

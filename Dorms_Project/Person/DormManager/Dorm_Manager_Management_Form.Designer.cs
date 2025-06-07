@@ -34,15 +34,16 @@
             this.Edit_Dorm_Manager_btn = new System.Windows.Forms.Button();
             this.Add_Dorm_Manager_btn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Managing_Dorm_Details = new System.Windows.Forms.Button();
             this.DG_dormManager = new System.Windows.Forms.DataGridView();
             this.DormManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DormManagerFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DormManagerAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerNationalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingDormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ManagingDormName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DG_dormManager)).BeginInit();
@@ -50,7 +51,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.Managing_Dorm_Details);
             this.groupBox1.Controls.Add(this.Dorm_Manager_Refresh_btn);
             this.groupBox1.Controls.Add(this.Delete_Dorm_Manager_btn);
             this.groupBox1.Controls.Add(this.Edit_Dorm_Manager_btn);
@@ -124,18 +124,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "لیست خوابگاه ها";
             // 
-            // Managing_Dorm_Details
-            // 
-            this.Managing_Dorm_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Managing_Dorm_Details.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.Managing_Dorm_Details.Location = new System.Drawing.Point(241, 19);
-            this.Managing_Dorm_Details.Name = "Managing_Dorm_Details";
-            this.Managing_Dorm_Details.Size = new System.Drawing.Size(101, 27);
-            this.Managing_Dorm_Details.TabIndex = 4;
-            this.Managing_Dorm_Details.Text = "جزئیات خوابگاه";
-            this.Managing_Dorm_Details.UseVisualStyleBackColor = true;
-            this.Managing_Dorm_Details.Click += new System.EventHandler(this.Managing_Dorm_Details_Click);
-            // 
             // DG_dormManager
             // 
             this.DG_dormManager.AllowUserToAddRows = false;
@@ -144,12 +132,14 @@
             this.DG_dormManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DG_dormManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DormManagerID,
-            this.DormManagerFullName,
-            this.DormManagerAge,
+            this.DormManagerFirstName,
+            this.DormManagerLastName,
+            this.DormManagerJob,
             this.DormManagerNationalCode,
             this.DormManagerPhoneNumber,
-            this.DormManagerAddress,
-            this.ManagingDormID});
+            this.ManagingDormID,
+            this.ManagingDormName,
+            this.DormManagerAddress});
             this.DG_dormManager.Location = new System.Drawing.Point(6, 22);
             this.DG_dormManager.Name = "DG_dormManager";
             this.DG_dormManager.ReadOnly = true;
@@ -164,19 +154,26 @@
             this.DormManagerID.ReadOnly = true;
             this.DormManagerID.Visible = false;
             // 
-            // DormManagerFullName
+            // DormManagerFirstName
             // 
-            this.DormManagerFullName.DataPropertyName = "DormManagerFullName";
-            this.DormManagerFullName.HeaderText = "نام و نام خانوادگی";
-            this.DormManagerFullName.Name = "DormManagerFullName";
-            this.DormManagerFullName.ReadOnly = true;
+            this.DormManagerFirstName.DataPropertyName = "DormManagerFirstName";
+            this.DormManagerFirstName.HeaderText = "نام";
+            this.DormManagerFirstName.Name = "DormManagerFirstName";
+            this.DormManagerFirstName.ReadOnly = true;
             // 
-            // DormManagerAge
+            // DormManagerLastName
             // 
-            this.DormManagerAge.DataPropertyName = "DormManagerAge";
-            this.DormManagerAge.HeaderText = "سن";
-            this.DormManagerAge.Name = "DormManagerAge";
-            this.DormManagerAge.ReadOnly = true;
+            this.DormManagerLastName.DataPropertyName = "DormManagerLastName";
+            this.DormManagerLastName.HeaderText = "نام خانوادگی";
+            this.DormManagerLastName.Name = "DormManagerLastName";
+            this.DormManagerLastName.ReadOnly = true;
+            // 
+            // DormManagerJob
+            // 
+            this.DormManagerJob.DataPropertyName = "DormManagerJob";
+            this.DormManagerJob.HeaderText = "شغل";
+            this.DormManagerJob.Name = "DormManagerJob";
+            this.DormManagerJob.ReadOnly = true;
             // 
             // DormManagerNationalCode
             // 
@@ -192,13 +189,6 @@
             this.DormManagerPhoneNumber.Name = "DormManagerPhoneNumber";
             this.DormManagerPhoneNumber.ReadOnly = true;
             // 
-            // DormManagerAddress
-            // 
-            this.DormManagerAddress.DataPropertyName = "DormManagerAddress";
-            this.DormManagerAddress.HeaderText = "آدرس";
-            this.DormManagerAddress.Name = "DormManagerAddress";
-            this.DormManagerAddress.ReadOnly = true;
-            // 
             // ManagingDormID
             // 
             this.ManagingDormID.DataPropertyName = "ManagingDormID";
@@ -206,6 +196,20 @@
             this.ManagingDormID.Name = "ManagingDormID";
             this.ManagingDormID.ReadOnly = true;
             this.ManagingDormID.Visible = false;
+            // 
+            // ManagingDormName
+            // 
+            this.ManagingDormName.DataPropertyName = "ManagingDormName";
+            this.ManagingDormName.HeaderText = "خوابگاه مدیریت شده";
+            this.ManagingDormName.Name = "ManagingDormName";
+            this.ManagingDormName.ReadOnly = true;
+            // 
+            // DormManagerAddress
+            // 
+            this.DormManagerAddress.DataPropertyName = "DormManagerAddress";
+            this.DormManagerAddress.HeaderText = "آدرس";
+            this.DormManagerAddress.Name = "DormManagerAddress";
+            this.DormManagerAddress.ReadOnly = true;
             // 
             // Dorm_Manager_Management_Form
             // 
@@ -232,14 +236,15 @@
         private System.Windows.Forms.Button Edit_Dorm_Manager_btn;
         private System.Windows.Forms.Button Add_Dorm_Manager_btn;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button Managing_Dorm_Details;
         private System.Windows.Forms.DataGridView DG_dormManager;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerJob;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerNationalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerPhoneNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagingDormID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ManagingDormName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerAddress;
     }
 }

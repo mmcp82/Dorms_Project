@@ -36,13 +36,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Dorm_Address_txt = new System.Windows.Forms.TextBox();
-            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DG_dormManager = new System.Windows.Forms.DataGridView();
+            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
             this.DormManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DormManagerFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DormManagerAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DormManagerJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerNationalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,18 +131,6 @@
             this.Dorm_Address_txt.Size = new System.Drawing.Size(222, 20);
             this.Dorm_Address_txt.TabIndex = 7;
             // 
-            // Dorm_Submit_btn
-            // 
-            this.Dorm_Submit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
-            this.Dorm_Submit_btn.Location = new System.Drawing.Point(101, 442);
-            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
-            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 30);
-            this.Dorm_Submit_btn.TabIndex = 9;
-            this.Dorm_Submit_btn.Text = "ثبت";
-            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
-            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label3);
@@ -159,9 +148,8 @@
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(254, 194);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 13);
+            this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "لطفا یک مسئول را انتخاب کنید";
             // 
             // DG_dormManager
             // 
@@ -171,8 +159,9 @@
             this.DG_dormManager.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DG_dormManager.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DormManagerID,
-            this.DormManagerFullName,
-            this.DormManagerAge,
+            this.DormManagerFirstName,
+            this.DormManagerLastName,
+            this.DormManagerJob,
             this.DormManagerNationalCode,
             this.DormManagerPhoneNumber,
             this.DormManagerAddress,
@@ -184,6 +173,17 @@
             this.DG_dormManager.TabIndex = 7;
             this.DG_dormManager.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_dormManager_CellContentClick);
             // 
+            // Dorm_Submit_btn
+            // 
+            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
+            this.Dorm_Submit_btn.Location = new System.Drawing.Point(101, 446);
+            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
+            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
+            this.Dorm_Submit_btn.TabIndex = 9;
+            this.Dorm_Submit_btn.Text = "ثبت";
+            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
+            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
+            // 
             // DormManagerID
             // 
             this.DormManagerID.DataPropertyName = "DormManagerID";
@@ -192,19 +192,26 @@
             this.DormManagerID.ReadOnly = true;
             this.DormManagerID.Visible = false;
             // 
-            // DormManagerFullName
+            // DormManagerFirstName
             // 
-            this.DormManagerFullName.DataPropertyName = "DormManagerFullName";
-            this.DormManagerFullName.HeaderText = "نام و نام خانوادگی";
-            this.DormManagerFullName.Name = "DormManagerFullName";
-            this.DormManagerFullName.ReadOnly = true;
+            this.DormManagerFirstName.DataPropertyName = "DormManagerFirstName";
+            this.DormManagerFirstName.HeaderText = "نام";
+            this.DormManagerFirstName.Name = "DormManagerFirstName";
+            this.DormManagerFirstName.ReadOnly = true;
             // 
-            // DormManagerAge
+            // DormManagerLastName
             // 
-            this.DormManagerAge.DataPropertyName = "DormManagerAge";
-            this.DormManagerAge.HeaderText = "سن";
-            this.DormManagerAge.Name = "DormManagerAge";
-            this.DormManagerAge.ReadOnly = true;
+            this.DormManagerLastName.DataPropertyName = "DormManagerLastName";
+            this.DormManagerLastName.HeaderText = "نام خانوادگی";
+            this.DormManagerLastName.Name = "DormManagerLastName";
+            this.DormManagerLastName.ReadOnly = true;
+            // 
+            // DormManagerJob
+            // 
+            this.DormManagerJob.DataPropertyName = "DormManagerJob";
+            this.DormManagerJob.HeaderText = "شغل";
+            this.DormManagerJob.Name = "DormManagerJob";
+            this.DormManagerJob.ReadOnly = true;
             // 
             // DormManagerNationalCode
             // 
@@ -248,6 +255,7 @@
             this.Name = "AddOrEdit_Dorm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "AddOrEdit_Dorm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddOrEdit_Dorm_FormClosing);
             this.Load += new System.EventHandler(this.AddOrEdit_Dorm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -272,14 +280,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox Dorm_Address_txt;
-        private System.Windows.Forms.Button Dorm_Submit_btn;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.NumericUpDown Dorm_Capacity_num;
         private System.Windows.Forms.DataGridView DG_dormManager;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button Dorm_Submit_btn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerJob;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerNationalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerAddress;

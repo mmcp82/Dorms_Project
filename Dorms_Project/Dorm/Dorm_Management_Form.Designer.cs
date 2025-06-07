@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Dorm_Manager_Details = new System.Windows.Forms.Button();
             this.Dorm_Refresh_btn = new System.Windows.Forms.Button();
             this.Delete_Dorm_btn = new System.Windows.Forms.Button();
             this.Edit_Dorm_btn = new System.Windows.Forms.Button();
@@ -49,7 +48,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.Dorm_Manager_Details);
             this.groupBox1.Controls.Add(this.Dorm_Refresh_btn);
             this.groupBox1.Controls.Add(this.Delete_Dorm_btn);
             this.groupBox1.Controls.Add(this.Edit_Dorm_btn);
@@ -62,17 +60,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات";
-            // 
-            // Dorm_Manager_Details
-            // 
-            this.Dorm_Manager_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dorm_Manager_Details.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.Dorm_Manager_Details.Location = new System.Drawing.Point(190, 19);
-            this.Dorm_Manager_Details.Name = "Dorm_Manager_Details";
-            this.Dorm_Manager_Details.Size = new System.Drawing.Size(152, 27);
-            this.Dorm_Manager_Details.TabIndex = 4;
-            this.Dorm_Manager_Details.Text = "جزئیات مسئول خوابگاه";
-            this.Dorm_Manager_Details.UseVisualStyleBackColor = true;
             // 
             // Dorm_Refresh_btn
             // 
@@ -96,6 +83,7 @@
             this.Delete_Dorm_btn.TabIndex = 2;
             this.Delete_Dorm_btn.Text = "حذف خوابگاه";
             this.Delete_Dorm_btn.UseVisualStyleBackColor = true;
+            this.Delete_Dorm_btn.Click += new System.EventHandler(this.Delete_Dorm_btn_Click);
             // 
             // Edit_Dorm_btn
             // 
@@ -227,7 +215,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView DG_Dorms;
         private System.Windows.Forms.Button Dorm_Refresh_btn;
-        private System.Windows.Forms.Button Dorm_Manager_Details;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormCapacity;

@@ -22,6 +22,7 @@ namespace Dorms_Project.Person.DormManager
             _Dorm_Manager_Repository = new Dorm_Manager_Repository();
         }
 
+
         private void Dorm_Manager_Management_Form_Load(object sender, EventArgs e)
         {
             Refresh();
@@ -33,29 +34,71 @@ namespace Dorms_Project.Person.DormManager
             DG_dormManager.DataSource = _Dorm_Manager_Repository.GetDormManagerTable();
         }
 
+        private void Dorm_Manager_Refresh_btn_Click(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
         private void Add_Dorm_Manager_btn_Click(object sender, EventArgs e)
         {
-
+            AddOrEdit_Dorm_Manager addOrEdit_Dorm_Manager = new AddOrEdit_Dorm_Manager();
+            addOrEdit_Dorm_Manager.ShowDialog();
+            if (addOrEdit_Dorm_Manager.DialogResult == DialogResult.OK)
+            {
+                Refresh();
+            }
         }
 
         private void Edit_Dorm_Manager_btn_Click(object sender, EventArgs e)
         {
+            if (DG_dormManager.CurrentRow != null)
+            {
+                AddOrEdit_Dorm_Manager addOrEdit_Dorm_Manager = new AddOrEdit_Dorm_Manager();
+                addOrEdit_Dorm_Manager.SelectedID = int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString());
+                addOrEdit_Dorm_Manager.ShowDialog();
+                if (addOrEdit_Dorm_Manager.DialogResult == DialogResult.OK)
+                {
+                    Refresh();
+                }
+            }
 
         }
 
         private void Delete_Dorm_Manager_btn_Click(object sender, EventArgs e)
         {
+            if (DG_dormManager.CurrentRow == null)
+            {
+                MessageBox.Show("لطفا یک خوابگاه را انتخاب کنید", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                string NameTemp = DG_dormManager.CurrentRow.Cells[1].Value.ToString();
 
-        }
+                DataTable dt = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
 
-        private void Dorm_Manager_Refresh_btn_Click(object sender, EventArgs e)
-        {
+                if (int.Parse(DG_dormManager.CurrentRow.Cells["ManagingDormID"].Value.ToString()) == 0)
+                {
+                    if (MessageBox.Show($"ایا از حذف {NameTemp}مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
 
-        }
+                        bool DormManagerDeleteSuccess = _Dorm_Manager_Repository.Delete_Success(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
 
-        private void Managing_Dorm_Details_Click(object sender, EventArgs e)
-        {
+                        if (DormManagerDeleteSuccess)
+                        {
+                            Refresh();
+                        }
+                        else
+                        {
+                            MessageBox.Show("عملیات با شکست مواجه شد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"این مسئول,مسئولیت خابگاه {dt.Rows[0]["ManagingDormName"].ToString()} را به عهده دارد", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
+            }
         }
 
     }

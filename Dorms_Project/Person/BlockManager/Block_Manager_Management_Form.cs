@@ -1,4 +1,5 @@
-﻿using Dorms_Project.Person.Collegian;
+﻿using Dorms_Project.Block;
+using Dorms_Project.Person.Collegian;
 using Dorms_Project.Person.DormManager;
 using Dorms_Project.Repository;
 using Dorms_Project.Services;
@@ -17,10 +18,13 @@ namespace Dorms_Project.Person.BlockManager
     public partial class Block_Manager_Management_Form : Form
     {
         IF_Collegian_Repository _collegian_repository;
+        IF_Block_Repository _block_repository;
+
         public Block_Manager_Management_Form()
         {
             InitializeComponent();
             _collegian_repository = new Collegian_Repository();
+            _block_repository = new Block_Repository();
         }
 
 
@@ -99,6 +103,20 @@ namespace Dorms_Project.Person.BlockManager
         private void Block_Manager_Refresh_btn_Click(object sender, EventArgs e)
         {
             Refresh();
+        }
+
+        private void Block_Details_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(DG_Block_Manager.CurrentRow.Cells["ManagingBlockID"].Value.ToString()) != 0)
+            {
+                DataTable dt = _block_repository.GetBlockRow(int.Parse(DG_Block_Manager.CurrentRow.Cells["ManagingBlockID"].Value.ToString()));
+
+
+                Block_Management_Form block_Management_Form = new Block_Management_Form();
+                block_Management_Form.SelectedBlockID = int.Parse(dt.Rows[0]["BlockID"].ToString());
+                block_Management_Form.SelectedDormID = int.Parse(dt.Rows[0]["LinkedDormID"].ToString());
+                block_Management_Form.ShowDialog();
+            }
         }
     }
 }

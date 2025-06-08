@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Block_Details = new System.Windows.Forms.Button();
             this.Block_Manager_Refresh_btn = new System.Windows.Forms.Button();
             this.Delete_Block_Manager_btn = new System.Windows.Forms.Button();
             this.Edit_Block_Manager_btn = new System.Windows.Forms.Button();
             this.Add_Block_Manager_btn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DG_Block_Manager = new System.Windows.Forms.DataGridView();
-            this.Block_Details = new System.Windows.Forms.Button();
             this.CollegianID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CollegianLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +67,18 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات";
+            // 
+            // Block_Details
+            // 
+            this.Block_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Block_Details.ForeColor = System.Drawing.Color.Black;
+            this.Block_Details.Location = new System.Drawing.Point(348, 19);
+            this.Block_Details.Name = "Block_Details";
+            this.Block_Details.Size = new System.Drawing.Size(101, 27);
+            this.Block_Details.TabIndex = 4;
+            this.Block_Details.Text = "جزئیات بلوک";
+            this.Block_Details.UseVisualStyleBackColor = true;
+            this.Block_Details.Click += new System.EventHandler(this.Block_Details_Click);
             // 
             // Block_Manager_Refresh_btn
             // 
@@ -151,17 +163,6 @@
             this.DG_Block_Manager.ReadOnly = true;
             this.DG_Block_Manager.Size = new System.Drawing.Size(764, 340);
             this.DG_Block_Manager.TabIndex = 9;
-            // 
-            // Block_Details
-            // 
-            this.Block_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Block_Details.ForeColor = System.Drawing.Color.Black;
-            this.Block_Details.Location = new System.Drawing.Point(348, 19);
-            this.Block_Details.Name = "Block_Details";
-            this.Block_Details.Size = new System.Drawing.Size(101, 27);
-            this.Block_Details.TabIndex = 4;
-            this.Block_Details.Text = "جزئیات بلوک";
-            this.Block_Details.UseVisualStyleBackColor = true;
             // 
             // CollegianID
             // 

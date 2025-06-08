@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Dorm_Details = new System.Windows.Forms.Button();
             this.Dorm_Manager_Refresh_btn = new System.Windows.Forms.Button();
             this.Delete_Dorm_Manager_btn = new System.Windows.Forms.Button();
             this.Edit_Dorm_Manager_btn = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.ManagingDormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingDormName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dorm_Details = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DG_dormManager)).BeginInit();
@@ -65,6 +65,18 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات";
+            // 
+            // Dorm_Details
+            // 
+            this.Dorm_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dorm_Details.ForeColor = System.Drawing.Color.Black;
+            this.Dorm_Details.Location = new System.Drawing.Point(348, 19);
+            this.Dorm_Details.Name = "Dorm_Details";
+            this.Dorm_Details.Size = new System.Drawing.Size(101, 27);
+            this.Dorm_Details.TabIndex = 5;
+            this.Dorm_Details.Text = "جزئیات خوابگاه";
+            this.Dorm_Details.UseVisualStyleBackColor = true;
+            this.Dorm_Details.Click += new System.EventHandler(this.Dorm_Details_Click);
             // 
             // Dorm_Manager_Refresh_btn
             // 
@@ -212,17 +224,6 @@
             this.DormManagerAddress.HeaderText = "آدرس";
             this.DormManagerAddress.Name = "DormManagerAddress";
             this.DormManagerAddress.ReadOnly = true;
-            // 
-            // Dorm_Details
-            // 
-            this.Dorm_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dorm_Details.ForeColor = System.Drawing.Color.Black;
-            this.Dorm_Details.Location = new System.Drawing.Point(348, 19);
-            this.Dorm_Details.Name = "Dorm_Details";
-            this.Dorm_Details.Size = new System.Drawing.Size(101, 27);
-            this.Dorm_Details.TabIndex = 5;
-            this.Dorm_Details.Text = "جزئیات خوابگاه";
-            this.Dorm_Details.UseVisualStyleBackColor = true;
             // 
             // Dorm_Manager_Management_Form
             // 

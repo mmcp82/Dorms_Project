@@ -16,6 +16,8 @@ namespace Dorms_Project.Dorm
     {
         IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
         IF_Dorm_Repository _Dorm_Repository;
+
+        public int SelectedDormID = 0;
         public Dorm_Management_Form()
         {
             InitializeComponent();
@@ -26,6 +28,18 @@ namespace Dorms_Project.Dorm
         private void Dorm_Management_Form_Load(object sender, EventArgs e)
         {
             Refresh();
+
+            if (SelectedDormID != 0)
+            {
+                for (int i = 0; i < DG_Dorms.Rows.Count; i++)
+                {
+                    if (int.Parse(DG_Dorms.Rows[i].Cells[0].Value.ToString()) == SelectedDormID)
+                    {
+                        DG_Dorms.CurrentCell = DG_Dorms.Rows[i].Cells[1];
+                        break;
+                    }
+                }
+            }
         }
 
         private void Refresh()

@@ -21,7 +21,9 @@ namespace Dorms_Project.Block
 
         DataTable DormTable;
         DataTable LinkedDormBlockTable;
-        int SelectedDormID;
+        public int SelectedDormID = 0;
+        public int SelectedBlockID = 0;
+
         public Block_Management_Form()
         {
             InitializeComponent();
@@ -43,8 +45,34 @@ namespace Dorms_Project.Block
 
         private void Block_Management_Form_Load(object sender, EventArgs e)
         {
+            DG_Dorms.AutoGenerateColumns = false;
             DormTable = _dorm_Repository.GetDormTable();
             DG_Dorms.DataSource = DormTable;
+            if (SelectedDormID != 0)
+            {
+                for (int i = 0; i < DG_Dorms.Rows.Count; i++)
+                {
+                    if (int.Parse(DG_Dorms.Rows[i].Cells[0].Value.ToString()) == SelectedDormID)
+                    {
+                        DG_Dorms.CurrentCell = DG_Dorms.Rows[i].Cells[1];
+                        break;
+                    }
+                }
+            }
+
+            Refresh();
+            
+            if (SelectedBlockID != 0)
+            {
+                for (int i = 0; i < DG_Blocks.Rows.Count; i++)
+                {
+                    if (int.Parse(DG_Blocks.Rows[i].Cells[0].Value.ToString()) == SelectedBlockID)
+                    {
+                        DG_Dorms.CurrentCell = DG_Dorms.Rows[i].Cells[1];
+                        break;
+                    }
+                }
+            }
         }
 
         private void DG_Dorms_CellContentClick(object sender, DataGridViewCellEventArgs e)

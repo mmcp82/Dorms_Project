@@ -36,6 +36,7 @@ namespace Dorms_Project.Dorm
 
         private void AddOrEdit_Dorm_Load(object sender, EventArgs e)
         {
+
             DormTable = _Dorm_Repository.GetDormTable();
             DormNameColumn = DormTable.Columns["DormName"];
             dt = _Dorm_Repository.GetDormRow(SelectedID);
@@ -61,6 +62,16 @@ namespace Dorms_Project.Dorm
                 {
                     Refresh();
                 }
+            }
+
+
+            if (DG_dormManager.CurrentRow == null)
+            {
+                label3.Text = "لطفا یک مسئول را انتخاب کنید";
+            }
+            else
+            {
+                label3.Text = "";
             }
         }
 

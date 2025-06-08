@@ -1,4 +1,5 @@
-﻿using Dorms_Project.Repository;
+﻿using Dorms_Project.Dorm;
+using Dorms_Project.Repository;
 using Dorms_Project.Services;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,12 @@ namespace Dorms_Project.Person.DormManager
     public partial class Dorm_Manager_Management_Form : Form
     {
         IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
-
+        IF_Dorm_Repository _Dorm_Repository;
         public Dorm_Manager_Management_Form()
         {
             InitializeComponent();
             _Dorm_Manager_Repository = new Dorm_Manager_Repository();
+            _Dorm_Repository = new Dorm_Repository();
         }
 
 
@@ -72,7 +74,7 @@ namespace Dorms_Project.Person.DormManager
             }
             else
             {
-                string NameTemp = DG_dormManager.CurrentRow.Cells[1].Value.ToString() +" "+ DG_dormManager.CurrentRow.Cells[2].Value.ToString();
+                string NameTemp = DG_dormManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_dormManager.CurrentRow.Cells[2].Value.ToString();
 
                 DataTable dt = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
 
@@ -101,5 +103,16 @@ namespace Dorms_Project.Person.DormManager
             }
         }
 
+        private void Dorm_Details_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(DG_dormManager.CurrentRow.Cells["ManagingDormID"].Value.ToString()) != 0)
+            {
+                DataTable dt = _Dorm_Repository.GetDormRow(int.Parse(DG_dormManager.CurrentRow.Cells["ManagingDormID"].Value.ToString()));
+
+                Dorm_Management_Form dorm_Management_Form = new Dorm_Management_Form();
+                dorm_Management_Form.SelectedDormID = int.Parse(dt.Rows[0]["DormID"].ToString());
+                dorm_Management_Form.ShowDialog();
+            }
+        }
     }
 }

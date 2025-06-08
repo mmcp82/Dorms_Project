@@ -55,6 +55,15 @@ namespace Dorms_Project.Person.BlockManager
         private void Add_Block_Manager_Form_Load(object sender, EventArgs e)
         {
             DG_Available_Collegian.DataSource = _collegian_repository.GetAvailableCollegianTable();
+
+            if (DG_Available_Collegian.CurrentRow != null)
+            {
+                label1.Text = "";
+            }
+            else
+            {
+                label1.Text = "لطفا یک دانشجو را انتخاب کنید";
+            }
         }
     }
 }

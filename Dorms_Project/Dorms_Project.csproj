@@ -76,6 +76,18 @@
     <Compile Include="Item\Item_Management_Form.Designer.cs">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\BlockManager\Add_Block_Manager_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\BlockManager\Add_Block_Manager_Form.Designer.cs">
+      <DependentUpon>Add_Block_Manager_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\BlockManager\Block_Manager_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\BlockManager\Block_Manager_Management_Form.Designer.cs">
+      <DependentUpon>Block_Manager_Management_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person\Collegian\AddOrEdit_Collegian_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +149,12 @@
     <EmbeddedResource Include="Item\Item_Management_Form.resx">
       <DependentUpon>Item_Management_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Person\BlockManager\Add_Block_Manager_Form.resx">
+      <DependentUpon>Add_Block_Manager_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\BlockManager\Block_Manager_Management_Form.resx">
+      <DependentUpon>Block_Manager_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Person\Collegian\AddOrEdit_Collegian_Form.resx">
       <DependentUpon>AddOrEdit_Collegian_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,8 +192,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Person\BlockManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

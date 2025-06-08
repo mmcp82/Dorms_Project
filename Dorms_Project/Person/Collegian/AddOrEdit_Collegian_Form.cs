@@ -198,9 +198,8 @@ namespace Dorms_Project.Person.Collegian
             }
         }
 
-        private void Dorm_Submit_btn_Click(object sender, EventArgs e)
+        private void Collegian_Submit_btn_Click(object sender, EventArgs e)
         {
-
             if (ValidateInputs())
             {
                 if (SelectedID == 0)
@@ -229,7 +228,7 @@ namespace Dorms_Project.Person.Collegian
                         BlockUpdateSuccess = _block_repository.Update_Success(int.Parse(blockdt.Rows[0]["BlockID"].ToString()), (blockdt.Rows[0]["BlockName"].ToString()), int.Parse(blockdt.Rows[0]["BlockCapacity"].ToString()), int.Parse(blockdt.Rows[0]["BlockFloors"].ToString()), int.Parse(blockdt.Rows[0]["BlockRooms"].ToString()), int.Parse(blockdt.Rows[0]["BlockManagerID"].ToString()), textBox1.Text.Trim() + " " + textBox2.Text.Trim(), int.Parse(blockdt.Rows[0]["LinkedDormID"].ToString()));
                     }
 
-                    bool CollegianupdateSuccess = _collegian_repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()), bool.Parse(dt.Rows[0]["IsBlockManager"].ToString()), int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()), dt.Rows[0]["ManagingBlockName"].ToString());                                   
+                    bool CollegianupdateSuccess = _collegian_repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()), bool.Parse(dt.Rows[0]["IsBlockManager"].ToString()), int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()), dt.Rows[0]["ManagingBlockName"].ToString());
 
                     if (CollegianupdateSuccess && BlockUpdateSuccess)
                     {

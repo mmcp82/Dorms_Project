@@ -9,8 +9,8 @@ namespace Dorms_Project.Repository
 {
     internal interface IF_Block_Repository
     {
-
         DataTable GetBlockTable();
+        DataTable GetLinkedDormBlockTable(int LinkedDormID);
         DataTable GetBlockRow(int BlockID);
         DataTable GetBlockRowByManagerID(int BlockManagerID);
 

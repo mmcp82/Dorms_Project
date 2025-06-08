@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
+            this.Dorm_Manager_Submit_btn = new System.Windows.Forms.Button();
             this.Address_txt = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,16 +55,16 @@
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Dorm_Submit_btn
+            // Dorm_Manager_Submit_btn
             // 
-            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
-            this.Dorm_Submit_btn.Location = new System.Drawing.Point(36, 450);
-            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
-            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
-            this.Dorm_Submit_btn.TabIndex = 14;
-            this.Dorm_Submit_btn.Text = "ثبت";
-            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
-            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
+            this.Dorm_Manager_Submit_btn.ForeColor = System.Drawing.Color.Green;
+            this.Dorm_Manager_Submit_btn.Location = new System.Drawing.Point(36, 450);
+            this.Dorm_Manager_Submit_btn.Name = "Dorm_Manager_Submit_btn";
+            this.Dorm_Manager_Submit_btn.Size = new System.Drawing.Size(234, 23);
+            this.Dorm_Manager_Submit_btn.TabIndex = 14;
+            this.Dorm_Manager_Submit_btn.Text = "ثبت";
+            this.Dorm_Manager_Submit_btn.UseVisualStyleBackColor = true;
+            this.Dorm_Manager_Submit_btn.Click += new System.EventHandler(this.Dorm_Manager_Submit_btn_Click);
             // 
             // Address_txt
             // 
@@ -250,7 +250,7 @@
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.Dorm_Submit_btn);
+            this.Controls.Add(this.Dorm_Manager_Submit_btn);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -276,7 +276,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Dorm_Submit_btn;
+        private System.Windows.Forms.Button Dorm_Manager_Submit_btn;
         private System.Windows.Forms.TextBox Address_txt;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label2;

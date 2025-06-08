@@ -44,6 +44,7 @@
             this.ManagingDormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingDormName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dorm_Details = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DG_dormManager)).BeginInit();
@@ -51,6 +52,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Dorm_Details);
             this.groupBox1.Controls.Add(this.Dorm_Manager_Refresh_btn);
             this.groupBox1.Controls.Add(this.Delete_Dorm_Manager_btn);
             this.groupBox1.Controls.Add(this.Edit_Dorm_Manager_btn);
@@ -68,7 +70,7 @@
             // 
             this.Dorm_Manager_Refresh_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dorm_Manager_Refresh_btn.ForeColor = System.Drawing.Color.DimGray;
-            this.Dorm_Manager_Refresh_btn.Location = new System.Drawing.Point(348, 19);
+            this.Dorm_Manager_Refresh_btn.Location = new System.Drawing.Point(241, 19);
             this.Dorm_Manager_Refresh_btn.Name = "Dorm_Manager_Refresh_btn";
             this.Dorm_Manager_Refresh_btn.Size = new System.Drawing.Size(101, 27);
             this.Dorm_Manager_Refresh_btn.TabIndex = 3;
@@ -122,7 +124,7 @@
             this.groupBox2.Size = new System.Drawing.Size(776, 368);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "لیست خوابگاه ها";
+            this.groupBox2.Text = "لیست مسئول خوابگاه ها";
             // 
             // DG_dormManager
             // 
@@ -211,6 +213,17 @@
             this.DormManagerAddress.Name = "DormManagerAddress";
             this.DormManagerAddress.ReadOnly = true;
             // 
+            // Dorm_Details
+            // 
+            this.Dorm_Details.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dorm_Details.ForeColor = System.Drawing.Color.Black;
+            this.Dorm_Details.Location = new System.Drawing.Point(348, 19);
+            this.Dorm_Details.Name = "Dorm_Details";
+            this.Dorm_Details.Size = new System.Drawing.Size(101, 27);
+            this.Dorm_Details.TabIndex = 5;
+            this.Dorm_Details.Text = "جزئیات خوابگاه";
+            this.Dorm_Details.UseVisualStyleBackColor = true;
+            // 
             // Dorm_Manager_Management_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,5 +259,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagingDormID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagingDormName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DormManagerAddress;
+        private System.Windows.Forms.Button Dorm_Details;
     }
 }

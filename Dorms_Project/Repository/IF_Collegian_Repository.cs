@@ -15,6 +15,7 @@ namespace Dorms_Project.Repository
 
         DataTable GetBlockManagerTable();
         DataTable GetAvailableBlockManagerTable();
+        DataTable GetAvailableCollegianTable();
 
         bool Insert_Success(string CollegianFirstName, string CollegianLastName, string CollegianCode, string CollegianNationalCode, string CollegianPhoneNumber, string CollegianAddress, int CollegianAssignedRoomID = 0, bool IsBlockManager = false, int ManagingBlockID = 0, string ManagingBlockName = "");
         bool Update_Success(int CollegianID, string CollegianFirstName, string CollegianLastName, string CollegianCode, string CollegianNationalCode, string CollegianPhoneNumber, string CollegianAddress, int CollegianAssignedRoomID = 0, bool IsBlockManager = false, int ManagingBlockID = 0, string ManagingBlockName = "");

@@ -23,6 +23,16 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
+        public DataTable GetLinkedDormBlockTable(int LinkedDormID)
+        {
+            string query = $"select * from BlocksTable where LinkedDormID=" + LinkedDormID;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+
         public DataTable GetBlockRow(int BlockID)
         {
             string query = "select * from BlocksTable where BlockID=" + BlockID;
@@ -137,5 +147,6 @@ namespace Dorms_Project.Services
                 Connection.Close();
             }
         }
+
     }
 }

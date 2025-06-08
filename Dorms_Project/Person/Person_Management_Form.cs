@@ -1,4 +1,5 @@
-﻿using Dorms_Project.Person.Collegian;
+﻿using Dorms_Project.Person.BlockManager;
+using Dorms_Project.Person.Collegian;
 using Dorms_Project.Person.DormManager;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,8 @@ namespace Dorms_Project.Person
 
         private void Bmanager_btn_Click(object sender, EventArgs e)
         {
-
+            Block_Manager_Management_Form block_Manager_Management_Form = new Block_Manager_Management_Form();
+            block_Manager_Management_Form.ShowDialog();
         }
 
         private void Pmanager_btn_Click(object sender, EventArgs e)

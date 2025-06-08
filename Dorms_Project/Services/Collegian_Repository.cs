@@ -61,17 +61,25 @@ namespace Dorms_Project.Services
 
         public DataTable GetBlockManagerTable()
         {
-            string query = "select * from CollegianTable where IsBlockManager=" + true;
+            string query = "select * from CollegianTable where IsBlockManager=" + 1;
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();
             adapter.Fill(dataTable);
             return dataTable;
         }
-
         public DataTable GetAvailableBlockManagerTable()
         {
-            string query = $"select * from CollegianTable where IsBlockManager={true} and ManagingBlockID={0}" ;
+            string query = $"select * from CollegianTable where IsBlockManager={1} and ManagingBlockID={0}" ;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+        public DataTable GetAvailableCollegianTable()
+        {
+            string query = $"select * from CollegianTable where IsBlockManager={0} and ManagingBlockID={0}";
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();

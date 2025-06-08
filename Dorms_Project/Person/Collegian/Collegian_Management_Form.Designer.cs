@@ -176,7 +176,7 @@
             this.groupBox2.Size = new System.Drawing.Size(776, 330);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "لیست خوابگاه ها";
+            this.groupBox2.Text = "لیست دانشجو ها";
             // 
             // DG_Collegian
             // 

@@ -152,7 +152,32 @@ namespace Dorms_Project.Person.DormManager
         }
 
 
-        private void Dorm_Submit_btn_Click(object sender, EventArgs e)
+     
+
+        private void AddOrEdit_Dorm_Manager_Load(object sender, EventArgs e)
+        {
+            DormManagerTable = _Dorm_Manager_Repository.GetDormManagerTable();
+            NationalCodeColumn = DormManagerTable.Columns["DormManagerNationalCode"];
+            PhoneColumn = DormManagerTable.Columns["DormManagerPhoneNumber"];
+            dt = _Dorm_Manager_Repository.GetDormManagerRow(SelectedID);
+
+            if (SelectedID == 0)
+            {
+                this.Text = "افزودن مسئول جدید";
+            }
+            else
+            {
+                this.Text = "ویرایش مسئول";
+                textBox1.Text = dt.Rows[0]["DormManagerFirstName"].ToString();
+                textBox2.Text = dt.Rows[0]["DormManagerLastName"].ToString();
+                textBox3.Text = dt.Rows[0]["DormManagerJob"].ToString();
+                textBox4.Text = dt.Rows[0]["DormManagerNationalCode"].ToString();
+                textBox5.Text = dt.Rows[0]["DormManagerPhoneNumber"].ToString();
+                Address_txt.Text = dt.Rows[0]["DormManagerAddress"].ToString();
+            }
+        }
+
+        private void Dorm_Manager_Submit_btn_Click(object sender, EventArgs e)
         {
             if (ValidateInputs())
             {
@@ -182,7 +207,7 @@ namespace Dorms_Project.Person.DormManager
                     }
 
                     bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["ManagingDormID"].ToString()), dt.Rows[0]["ManagingDormName"].ToString());
-                    
+
                     if (DormManagerUpdateSuccess && DormUpdateSuccess)
                     {
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -193,29 +218,6 @@ namespace Dorms_Project.Person.DormManager
                         MessageBox.Show("عملیات با شکست مواجه شد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-            }
-        }
-
-        private void AddOrEdit_Dorm_Manager_Load(object sender, EventArgs e)
-        {
-            DormManagerTable = _Dorm_Manager_Repository.GetDormManagerTable();
-            NationalCodeColumn = DormManagerTable.Columns["DormManagerNationalCode"];
-            PhoneColumn = DormManagerTable.Columns["DormManagerPhoneNumber"];
-            dt = _Dorm_Manager_Repository.GetDormManagerRow(SelectedID);
-
-            if (SelectedID == 0)
-            {
-                this.Text = "افزودن مسئول جدید";
-            }
-            else
-            {
-                this.Text = "ویرایش مسئول";
-                textBox1.Text = dt.Rows[0]["DormManagerFirstName"].ToString();
-                textBox2.Text = dt.Rows[0]["DormManagerLastName"].ToString();
-                textBox3.Text = dt.Rows[0]["DormManagerJob"].ToString();
-                textBox4.Text = dt.Rows[0]["DormManagerNationalCode"].ToString();
-                textBox5.Text = dt.Rows[0]["DormManagerPhoneNumber"].ToString();
-                Address_txt.Text = dt.Rows[0]["DormManagerAddress"].ToString();
             }
         }
     }

@@ -45,7 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Address_txt = new System.Windows.Forms.TextBox();
-            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
+            this.Collegian_Submit_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -220,16 +220,16 @@
             this.Address_txt.Size = new System.Drawing.Size(222, 20);
             this.Address_txt.TabIndex = 7;
             // 
-            // Dorm_Submit_btn
+            // Collegian_Submit_btn
             // 
-            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
-            this.Dorm_Submit_btn.Location = new System.Drawing.Point(40, 440);
-            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
-            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
-            this.Dorm_Submit_btn.TabIndex = 21;
-            this.Dorm_Submit_btn.Text = "ثبت";
-            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
-            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
+            this.Collegian_Submit_btn.ForeColor = System.Drawing.Color.Green;
+            this.Collegian_Submit_btn.Location = new System.Drawing.Point(40, 440);
+            this.Collegian_Submit_btn.Name = "Collegian_Submit_btn";
+            this.Collegian_Submit_btn.Size = new System.Drawing.Size(234, 23);
+            this.Collegian_Submit_btn.TabIndex = 21;
+            this.Collegian_Submit_btn.Text = "ثبت";
+            this.Collegian_Submit_btn.UseVisualStyleBackColor = true;
+            this.Collegian_Submit_btn.Click += new System.EventHandler(this.Collegian_Submit_btn_Click);
             // 
             // groupBox1
             // 
@@ -252,7 +252,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.Dorm_Submit_btn);
+            this.Controls.Add(this.Collegian_Submit_btn);
             this.Controls.Add(this.groupBox1);
             this.Name = "AddOrEdit_Collegian_Form";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -293,7 +293,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox Address_txt;
-        private System.Windows.Forms.Button Dorm_Submit_btn;
+        private System.Windows.Forms.Button Collegian_Submit_btn;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }

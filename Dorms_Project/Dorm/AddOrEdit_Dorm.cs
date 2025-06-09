@@ -10,7 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace Dorms_Project.Dorm
 {
@@ -20,6 +20,7 @@ namespace Dorms_Project.Dorm
         IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
         IF_Dorm_Repository _Dorm_Repository;
         public int SelectedID = 0;
+
         bool Edited = false;
         DataTable dataManagerRow;
         DataTable dt;
@@ -56,7 +57,7 @@ namespace Dorms_Project.Dorm
 
                 dataManagerRow = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(dt.Rows[0]["DormManagerID"].ToString()));
 
-                bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dataManagerRow.Rows[0]["DormManagerID"].ToString()), (dataManagerRow.Rows[0]["DormManagerFirstName"].ToString()), (dataManagerRow.Rows[0]["DormManagerLastName"].ToString()), (dataManagerRow.Rows[0]["DormManagerJob"].ToString()), (dataManagerRow.Rows[0]["DormManagerNationalCode"].ToString()), (dataManagerRow.Rows[0]["DormManagerPhoneNumber"].ToString()), (dataManagerRow.Rows[0]["DormManagerAddress"].ToString()), 0, "");
+                bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dataManagerRow.Rows[0]["DormManagerID"].ToString()), (dataManagerRow.Rows[0]["DormManagerFirstName"].ToString()), (dataManagerRow.Rows[0]["DormManagerLastName"].ToString()), (dataManagerRow.Rows[0]["DormManagerJob"].ToString()), (dataManagerRow.Rows[0]["DormManagerNationalCode"].ToString()), (dataManagerRow.Rows[0]["DormManagerPhoneNumber"].ToString()), (dataManagerRow.Rows[0]["DormManagerAddress"].ToString()));
 
                 if (DormManagerUpdateSuccess)
                 {
@@ -67,7 +68,7 @@ namespace Dorms_Project.Dorm
 
             if (DG_dormManager.CurrentRow == null)
             {
-                label3.Text = "لطفا یک مسئول را انتخاب کنید";
+                label3.Text = "مسئولی برای انتخواب موجود نیست";
             }
             else
             {
@@ -118,17 +119,24 @@ namespace Dorms_Project.Dorm
 
         private void Dorm_Name_txt_TextChanged(object sender, EventArgs e)
         {
-            if (IsUnique(DormNameColumn, Dorm_Name_txt.Text.Trim(' ')))
+            if (Dorm_Name_txt.Text.Trim(' ') != "")
             {
-                label1.Text = "";
-            }
-            else if (SelectedID != 0 && Dorm_Name_txt.Text.Trim(' ') == dt.Rows[0]["DormName"].ToString())
-            {
-                label1.Text = "";
+                if (IsUnique(DormNameColumn, Dorm_Name_txt.Text.Trim(' ')))
+                {
+                    label1.Text = "";
+                }
+                else if (SelectedID != 0 && Dorm_Name_txt.Text.Trim(' ') == dt.Rows[0]["DormName"].ToString())
+                {
+                    label1.Text = "";
+                }
+                else
+                {
+                    label1.Text = "نام خوابگاه تکراری";
+                }
             }
             else
             {
-                label1.Text = "نام خوابگاه تکراری";
+                label1.Text = "نام نمی تواند خالی باشد";
             }
         }
 
@@ -137,7 +145,6 @@ namespace Dorms_Project.Dorm
             if (Dorm_Capacity_num.Value <= 0)
             {
                 label2.Text = "ظرفیت نمی تواند صفر یا کمتر باشد";
-                Dorm_Capacity_num.Value = 6;
             }
             else
             {
@@ -146,17 +153,6 @@ namespace Dorms_Project.Dorm
             }
         }
 
-        private void DG_dormManager_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DG_dormManager.CurrentRow == null)
-            {
-                label3.Text = "لطفا یک مسئول را انتخاب کنید";
-            }
-            else
-            {
-                label3.Text = "";
-            }
-        }
 
         private bool CheckValidation()
         {
@@ -198,7 +194,7 @@ namespace Dorms_Project.Dorm
                     DataTable dataRowtemp = _Dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
                     int ManagingDormID = int.Parse(dataRowtemp.Rows[0]["DormID"].ToString());
                     string ManagingDormName = dataRowtemp.Rows[0]["DormName"].ToString();
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), DG_dormManager.CurrentRow.Cells[1].Value.ToString(), (DG_dormManager.CurrentRow.Cells[2].Value.ToString()), DG_dormManager.CurrentRow.Cells[3].Value.ToString(), DG_dormManager.CurrentRow.Cells[4].Value.ToString(), DG_dormManager.CurrentRow.Cells[5].Value.ToString(), DG_dormManager.CurrentRow.Cells[6].Value.ToString(), ManagingDormID, ManagingDormName);
+                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(DG_dormManager.CurrentRow.Cells["DormManagerID"].Value.ToString()), DG_dormManager.CurrentRow.Cells["DormManagerFirstName"].Value.ToString(), (DG_dormManager.CurrentRow.Cells["DormManagerLastName"].Value.ToString()), DG_dormManager.CurrentRow.Cells["DormManagerJob"].Value.ToString(), DG_dormManager.CurrentRow.Cells["DormManagerNationalCode"].Value.ToString(), DG_dormManager.CurrentRow.Cells["DormManagerPhoneNumber"].Value.ToString(), DG_dormManager.CurrentRow.Cells["DormManagerAddress"].Value.ToString(), ManagingDormID, ManagingDormName);
 
                     if (DormUpdateSuccess && DormManagerUpdateSuccess)
                     {
@@ -206,7 +202,6 @@ namespace Dorms_Project.Dorm
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Edited = true;
                         DialogResult = DialogResult.OK;
-
                     }
                     else
                     {
@@ -226,7 +221,5 @@ namespace Dorms_Project.Dorm
                 }
             }
         }
-
-
     }
 }

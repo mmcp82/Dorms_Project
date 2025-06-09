@@ -22,18 +22,6 @@ namespace Dorms_Project.Person.BlockManager
             _collegian_repository = new Collegian_Repository();
         }
 
-        private void DG_Available_Collegian_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (DG_Available_Collegian.CurrentRow != null)
-            {
-                label1.Text = "";
-            }
-            else
-            {
-                label1.Text = "لطفا یک دانشجو را انتخاب کنید";
-            }
-        
-        }
 
         private void Submit_Block_Manager_Click(object sender, EventArgs e)
         {
@@ -54,6 +42,7 @@ namespace Dorms_Project.Person.BlockManager
         }
         private void Add_Block_Manager_Form_Load(object sender, EventArgs e)
         {
+            DG_Available_Collegian.AutoGenerateColumns = false;
             DG_Available_Collegian.DataSource = _collegian_repository.GetAvailableCollegianTable();
 
             if (DG_Available_Collegian.CurrentRow != null)
@@ -62,7 +51,7 @@ namespace Dorms_Project.Person.BlockManager
             }
             else
             {
-                label1.Text = "لطفا یک دانشجو را انتخاب کنید";
+                label1.Text = "دانشجویی برای انتخاب موجود نیست";
             }
         }
     }

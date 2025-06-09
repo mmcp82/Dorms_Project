@@ -40,6 +40,7 @@ namespace Dorms_Project.Block
                 SelectedDormID = int.Parse(DG_Dorms.CurrentRow.Cells[0].Value.ToString());
                 LinkedDormBlockTable = _block_Repository.GetLinkedDormBlockTable(SelectedDormID);
                 DG_Blocks.DataSource = LinkedDormBlockTable;
+                groupBox2.Text = "لیست بلوک ها" +"ی "+ DG_Dorms.CurrentRow.Cells[1].Value.ToString();
             }
         }
 
@@ -82,12 +83,35 @@ namespace Dorms_Project.Block
 
         private void Add_Block_btn_Click(object sender, EventArgs e)
         {
-
+            if (DG_Dorms.CurrentRow != null)
+            {
+                AddOrEdit_Block addOrEdit_Block = new AddOrEdit_Block();
+                addOrEdit_Block.SelectedDormID = SelectedDormID;
+                addOrEdit_Block.ShowDialog();
+                if (addOrEdit_Block.DialogResult == DialogResult.OK)
+                {
+                    Refresh();
+                }
+            }
         }
 
         private void Edit_Block_btn_Click(object sender, EventArgs e)
         {
 
+            if (DG_Dorms.CurrentRow != null)
+            {
+                if (DG_Blocks.CurrentRow != null)
+                {
+                    AddOrEdit_Block addOrEdit_Block = new AddOrEdit_Block();
+                    addOrEdit_Block.SelectedDormID = SelectedDormID;
+                    addOrEdit_Block.SelectedID = int.Parse(DG_Blocks.CurrentRow.Cells[0].Value.ToString());
+                    addOrEdit_Block.ShowDialog();
+                    if (addOrEdit_Block.DialogResult == DialogResult.OK)
+                    {
+                        Refresh();
+                    }
+                }
+            }
         }
 
         private void Delete_Block_btn_Click(object sender, EventArgs e)
@@ -96,6 +120,16 @@ namespace Dorms_Project.Block
         }
 
         private void Block_Refresh_btn_Click(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void DG_Dorms_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void DG_Dorms_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             Refresh();
         }

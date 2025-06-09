@@ -64,11 +64,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(623, 327);
+            this.label1.Location = new System.Drawing.Point(596, 327);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 17);
+            this.label1.Size = new System.Drawing.Size(174, 17);
             this.label1.TabIndex = 8;
-            this.label1.Text = "لطفا یک دانشجو را انتخاب کنید";
+            this.label1.Text = "دانشجویی برای انتخاب موجود نیست";
             // 
             // DG_Available_Collegian
             // 
@@ -93,7 +93,6 @@
             this.DG_Available_Collegian.ReadOnly = true;
             this.DG_Available_Collegian.Size = new System.Drawing.Size(764, 302);
             this.DG_Available_Collegian.TabIndex = 8;
-            this.DG_Available_Collegian.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_Available_Collegian_CellContentClick);
             // 
             // CollegianID
             // 

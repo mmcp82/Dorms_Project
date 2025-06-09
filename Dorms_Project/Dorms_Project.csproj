@@ -46,18 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block\AddOrEdit_Block.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Block\AddOrEdit_Block.Designer.cs">
+      <DependentUpon>AddOrEdit_Block.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Block\Block.cs" />
     <Compile Include="Block\Block_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Block\Block_Management_Form.Designer.cs">
       <DependentUpon>Block_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Block\Room.cs" />
     <Compile Include="Dorm\AddOrEdit_Dorm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dorm\AddOrEdit_Dorm.Designer.cs">
       <DependentUpon>AddOrEdit_Dorm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dorm\Dorm.cs" />
     <Compile Include="Dorm\Dorm_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +79,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item\Item.cs" />
     <Compile Include="Item\Item_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +92,7 @@
     <Compile Include="Person\BlockManager\Add_Block_Manager_Form.Designer.cs">
       <DependentUpon>Add_Block_Manager_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\BlockManager\BlockManager.cs" />
     <Compile Include="Person\BlockManager\Block_Manager_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +105,7 @@
     <Compile Include="Person\Collegian\AddOrEdit_Collegian_Form.Designer.cs">
       <DependentUpon>AddOrEdit_Collegian_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\Collegian\Collegian.cs" />
     <Compile Include="Person\Collegian\Collegian_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,12 +118,14 @@
     <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.Designer.cs">
       <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\DormManager\DormManager.cs" />
     <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.Designer.cs">
       <DependentUpon>Dorm_Manager_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\Person.cs" />
     <Compile Include="Person\Person_Management_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +148,9 @@
     <Compile Include="Services\Collegian_Repository.cs" />
     <Compile Include="Services\Dorm_Manager_Repository.cs" />
     <Compile Include="Services\Dorm_Repository.cs" />
+    <EmbeddedResource Include="Block\AddOrEdit_Block.resx">
+      <DependentUpon>AddOrEdit_Block.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Block\Block_Management_Form.resx">
       <DependentUpon>Block_Management_Form.cs</DependentUpon>
     </EmbeddedResource>

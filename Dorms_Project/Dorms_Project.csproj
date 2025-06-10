@@ -144,10 +144,12 @@
     <Compile Include="Repository\IF_Collegian_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Manager_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Repository.cs" />
+    <Compile Include="Repository\IF_Room_Repository.cs" />
     <Compile Include="Services\Block_Repository.cs" />
     <Compile Include="Services\Collegian_Repository.cs" />
     <Compile Include="Services\Dorm_Manager_Repository.cs" />
     <Compile Include="Services\Dorm_Repository.cs" />
+    <Compile Include="Services\Room_Repository.cs" />
     <EmbeddedResource Include="Block\AddOrEdit_Block.resx">
       <DependentUpon>AddOrEdit_Block.cs</DependentUpon>
     </EmbeddedResource>

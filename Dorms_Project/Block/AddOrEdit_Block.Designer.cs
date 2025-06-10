@@ -62,7 +62,7 @@
             this.Block_Submit_btn.Location = new System.Drawing.Point(151, 346);
             this.Block_Submit_btn.Name = "Block_Submit_btn";
             this.Block_Submit_btn.Size = new System.Drawing.Size(234, 23);
-            this.Block_Submit_btn.TabIndex = 14;
+            this.Block_Submit_btn.TabIndex = 4;
             this.Block_Submit_btn.Text = "ثبت";
             this.Block_Submit_btn.UseVisualStyleBackColor = true;
             this.Block_Submit_btn.Click += new System.EventHandler(this.Block_Submit_btn_Click);
@@ -98,7 +98,7 @@
             this.DG_blockManager.Name = "DG_blockManager";
             this.DG_blockManager.ReadOnly = true;
             this.DG_blockManager.Size = new System.Drawing.Size(488, 215);
-            this.DG_blockManager.TabIndex = 7;
+            this.DG_blockManager.TabIndex = 3;
             // 
             // CollegianID
             // 
@@ -197,7 +197,7 @@
             0});
             this.Block_Capacity_num.Name = "Block_Capacity_num";
             this.Block_Capacity_num.Size = new System.Drawing.Size(222, 20);
-            this.Block_Capacity_num.TabIndex = 7;
+            this.Block_Capacity_num.TabIndex = 2;
             this.Block_Capacity_num.ValueChanged += new System.EventHandler(this.Block_Capacity_num_ValueChanged);
             // 
             // label2
@@ -226,7 +226,7 @@
             this.Block_Name_txt.Location = new System.Drawing.Point(6, 19);
             this.Block_Name_txt.Name = "Block_Name_txt";
             this.Block_Name_txt.Size = new System.Drawing.Size(222, 20);
-            this.Block_Name_txt.TabIndex = 7;
+            this.Block_Name_txt.TabIndex = 1;
             this.Block_Name_txt.TextChanged += new System.EventHandler(this.Block_Name_txt_TextChanged);
             // 
             // label1

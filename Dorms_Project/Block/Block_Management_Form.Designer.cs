@@ -87,7 +87,7 @@
             this.DG_Blocks.Name = "DG_Blocks";
             this.DG_Blocks.ReadOnly = true;
             this.DG_Blocks.Size = new System.Drawing.Size(764, 240);
-            this.DG_Blocks.TabIndex = 0;
+            this.DG_Blocks.TabIndex = 6;
             // 
             // BlockID
             // 
@@ -171,7 +171,7 @@
             this.Block_Refresh_btn.Location = new System.Drawing.Point(669, 118);
             this.Block_Refresh_btn.Name = "Block_Refresh_btn";
             this.Block_Refresh_btn.Size = new System.Drawing.Size(101, 27);
-            this.Block_Refresh_btn.TabIndex = 4;
+            this.Block_Refresh_btn.TabIndex = 5;
             this.Block_Refresh_btn.Text = "بروز رسانی";
             this.Block_Refresh_btn.UseVisualStyleBackColor = true;
             this.Block_Refresh_btn.Click += new System.EventHandler(this.Block_Refresh_btn_Click);
@@ -193,10 +193,9 @@
             this.DG_Dorms.Name = "DG_Dorms";
             this.DG_Dorms.ReadOnly = true;
             this.DG_Dorms.Size = new System.Drawing.Size(657, 126);
-            this.DG_Dorms.TabIndex = 3;
+            this.DG_Dorms.TabIndex = 1;
             this.DG_Dorms.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_Dorms_CellClick);
             this.DG_Dorms.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_Dorms_CellContentClick);
-            this.DG_Dorms.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_Dorms_CellEnter);
             // 
             // DormID
             // 
@@ -249,7 +248,7 @@
             this.Delete_Block_btn.Location = new System.Drawing.Point(669, 85);
             this.Delete_Block_btn.Name = "Delete_Block_btn";
             this.Delete_Block_btn.Size = new System.Drawing.Size(101, 27);
-            this.Delete_Block_btn.TabIndex = 2;
+            this.Delete_Block_btn.TabIndex = 4;
             this.Delete_Block_btn.Text = "حذف بلوک";
             this.Delete_Block_btn.UseVisualStyleBackColor = true;
             this.Delete_Block_btn.Click += new System.EventHandler(this.Delete_Block_btn_Click);
@@ -261,7 +260,7 @@
             this.Edit_Block_btn.Location = new System.Drawing.Point(669, 52);
             this.Edit_Block_btn.Name = "Edit_Block_btn";
             this.Edit_Block_btn.Size = new System.Drawing.Size(101, 27);
-            this.Edit_Block_btn.TabIndex = 1;
+            this.Edit_Block_btn.TabIndex = 3;
             this.Edit_Block_btn.Text = "ویرایش بلوک";
             this.Edit_Block_btn.UseVisualStyleBackColor = true;
             this.Edit_Block_btn.Click += new System.EventHandler(this.Edit_Block_btn_Click);
@@ -273,7 +272,7 @@
             this.Add_Block_btn.Location = new System.Drawing.Point(669, 19);
             this.Add_Block_btn.Name = "Add_Block_btn";
             this.Add_Block_btn.Size = new System.Drawing.Size(101, 27);
-            this.Add_Block_btn.TabIndex = 0;
+            this.Add_Block_btn.TabIndex = 2;
             this.Add_Block_btn.Text = "افزودن بلوک";
             this.Add_Block_btn.UseVisualStyleBackColor = true;
             this.Add_Block_btn.Click += new System.EventHandler(this.Add_Block_btn_Click);

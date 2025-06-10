@@ -37,9 +37,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DG_dormManager = new System.Windows.Forms.DataGridView();
-            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.Dorm_Address_txt = new System.Windows.Forms.TextBox();
             this.DormManagerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +46,9 @@
             this.ManagingDormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ManagingDormName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DormManagerAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dorm_Submit_btn = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.Dorm_Address_txt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dorm_Capacity_num)).BeginInit();
@@ -73,7 +73,7 @@
             this.Dorm_Name_txt.Location = new System.Drawing.Point(6, 19);
             this.Dorm_Name_txt.Name = "Dorm_Name_txt";
             this.Dorm_Name_txt.Size = new System.Drawing.Size(222, 20);
-            this.Dorm_Name_txt.TabIndex = 7;
+            this.Dorm_Name_txt.TabIndex = 10;
             this.Dorm_Name_txt.TextChanged += new System.EventHandler(this.Dorm_Name_txt_TextChanged);
             // 
             // label1
@@ -93,7 +93,7 @@
             this.groupBox2.Location = new System.Drawing.Point(101, 81);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(234, 63);
-            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ظرفیت خوابگاه";
             // 
@@ -112,7 +112,7 @@
             0});
             this.Dorm_Capacity_num.Name = "Dorm_Capacity_num";
             this.Dorm_Capacity_num.Size = new System.Drawing.Size(222, 20);
-            this.Dorm_Capacity_num.TabIndex = 7;
+            this.Dorm_Capacity_num.TabIndex = 9;
             this.Dorm_Capacity_num.ValueChanged += new System.EventHandler(this.Dorm_Capacity_num_ValueChanged);
             // 
             // label2
@@ -132,7 +132,7 @@
             this.groupBox4.Location = new System.Drawing.Point(12, 150);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(401, 217);
-            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "مسئول خوابگاه";
             // 
@@ -165,35 +165,7 @@
             this.DG_dormManager.Name = "DG_dormManager";
             this.DG_dormManager.ReadOnly = true;
             this.DG_dormManager.Size = new System.Drawing.Size(389, 172);
-            this.DG_dormManager.TabIndex = 7;
-            // 
-            // Dorm_Submit_btn
-            // 
-            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
-            this.Dorm_Submit_btn.Location = new System.Drawing.Point(101, 446);
-            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
-            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
-            this.Dorm_Submit_btn.TabIndex = 9;
-            this.Dorm_Submit_btn.Text = "ثبت";
-            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
-            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.Dorm_Address_txt);
-            this.groupBox5.Location = new System.Drawing.Point(101, 373);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(234, 63);
-            this.groupBox5.TabIndex = 8;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "آدرس خوابگاه";
-            // 
-            // Dorm_Address_txt
-            // 
-            this.Dorm_Address_txt.Location = new System.Drawing.Point(6, 19);
-            this.Dorm_Address_txt.Name = "Dorm_Address_txt";
-            this.Dorm_Address_txt.Size = new System.Drawing.Size(222, 20);
-            this.Dorm_Address_txt.TabIndex = 7;
+            this.DG_dormManager.TabIndex = 8;
             // 
             // DormManagerID
             // 
@@ -260,6 +232,34 @@
             this.DormManagerAddress.HeaderText = "آدرس";
             this.DormManagerAddress.Name = "DormManagerAddress";
             this.DormManagerAddress.ReadOnly = true;
+            // 
+            // Dorm_Submit_btn
+            // 
+            this.Dorm_Submit_btn.ForeColor = System.Drawing.Color.Green;
+            this.Dorm_Submit_btn.Location = new System.Drawing.Point(101, 446);
+            this.Dorm_Submit_btn.Name = "Dorm_Submit_btn";
+            this.Dorm_Submit_btn.Size = new System.Drawing.Size(234, 23);
+            this.Dorm_Submit_btn.TabIndex = 4;
+            this.Dorm_Submit_btn.Text = "ثبت";
+            this.Dorm_Submit_btn.UseVisualStyleBackColor = true;
+            this.Dorm_Submit_btn.Click += new System.EventHandler(this.Dorm_Submit_btn_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.Dorm_Address_txt);
+            this.groupBox5.Location = new System.Drawing.Point(101, 373);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(234, 63);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "آدرس خوابگاه";
+            // 
+            // Dorm_Address_txt
+            // 
+            this.Dorm_Address_txt.Location = new System.Drawing.Point(6, 19);
+            this.Dorm_Address_txt.Name = "Dorm_Address_txt";
+            this.Dorm_Address_txt.Size = new System.Drawing.Size(222, 20);
+            this.Dorm_Address_txt.TabIndex = 7;
             // 
             // AddOrEdit_Dorm
             // 

@@ -73,7 +73,7 @@
             this.Dorm_Details.Location = new System.Drawing.Point(348, 19);
             this.Dorm_Details.Name = "Dorm_Details";
             this.Dorm_Details.Size = new System.Drawing.Size(101, 27);
-            this.Dorm_Details.TabIndex = 5;
+            this.Dorm_Details.TabIndex = 7;
             this.Dorm_Details.Text = "جزئیات خوابگاه";
             this.Dorm_Details.UseVisualStyleBackColor = true;
             this.Dorm_Details.Click += new System.EventHandler(this.Dorm_Details_Click);
@@ -85,7 +85,7 @@
             this.Dorm_Manager_Refresh_btn.Location = new System.Drawing.Point(241, 19);
             this.Dorm_Manager_Refresh_btn.Name = "Dorm_Manager_Refresh_btn";
             this.Dorm_Manager_Refresh_btn.Size = new System.Drawing.Size(101, 27);
-            this.Dorm_Manager_Refresh_btn.TabIndex = 3;
+            this.Dorm_Manager_Refresh_btn.TabIndex = 6;
             this.Dorm_Manager_Refresh_btn.Text = "بروز رسانی";
             this.Dorm_Manager_Refresh_btn.UseVisualStyleBackColor = true;
             this.Dorm_Manager_Refresh_btn.Click += new System.EventHandler(this.Dorm_Manager_Refresh_btn_Click);
@@ -97,7 +97,7 @@
             this.Delete_Dorm_Manager_btn.Location = new System.Drawing.Point(455, 19);
             this.Delete_Dorm_Manager_btn.Name = "Delete_Dorm_Manager_btn";
             this.Delete_Dorm_Manager_btn.Size = new System.Drawing.Size(101, 27);
-            this.Delete_Dorm_Manager_btn.TabIndex = 2;
+            this.Delete_Dorm_Manager_btn.TabIndex = 8;
             this.Delete_Dorm_Manager_btn.Text = "حذف مسئول";
             this.Delete_Dorm_Manager_btn.UseVisualStyleBackColor = true;
             this.Delete_Dorm_Manager_btn.Click += new System.EventHandler(this.Delete_Dorm_Manager_btn_Click);
@@ -109,7 +109,7 @@
             this.Edit_Dorm_Manager_btn.Location = new System.Drawing.Point(562, 19);
             this.Edit_Dorm_Manager_btn.Name = "Edit_Dorm_Manager_btn";
             this.Edit_Dorm_Manager_btn.Size = new System.Drawing.Size(101, 27);
-            this.Edit_Dorm_Manager_btn.TabIndex = 1;
+            this.Edit_Dorm_Manager_btn.TabIndex = 9;
             this.Edit_Dorm_Manager_btn.Text = "ویرایش مسئول";
             this.Edit_Dorm_Manager_btn.UseVisualStyleBackColor = true;
             this.Edit_Dorm_Manager_btn.Click += new System.EventHandler(this.Edit_Dorm_Manager_btn_Click);
@@ -121,7 +121,7 @@
             this.Add_Dorm_Manager_btn.Location = new System.Drawing.Point(669, 19);
             this.Add_Dorm_Manager_btn.Name = "Add_Dorm_Manager_btn";
             this.Add_Dorm_Manager_btn.Size = new System.Drawing.Size(101, 27);
-            this.Add_Dorm_Manager_btn.TabIndex = 0;
+            this.Add_Dorm_Manager_btn.TabIndex = 10;
             this.Add_Dorm_Manager_btn.Text = "افزودن مسئول";
             this.Add_Dorm_Manager_btn.UseVisualStyleBackColor = true;
             this.Add_Dorm_Manager_btn.Click += new System.EventHandler(this.Add_Dorm_Manager_btn_Click);
@@ -158,7 +158,7 @@
             this.DG_dormManager.Name = "DG_dormManager";
             this.DG_dormManager.ReadOnly = true;
             this.DG_dormManager.Size = new System.Drawing.Size(764, 340);
-            this.DG_dormManager.TabIndex = 8;
+            this.DG_dormManager.TabIndex = 5;
             // 
             // DormManagerID
             // 

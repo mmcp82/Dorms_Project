@@ -59,7 +59,17 @@ namespace Dorms_Project.Block
 
                 BlockManagerRow = _Collegian_Repository.GetCollegianRow(int.Parse(dt.Rows[0]["BlockManagerID"].ToString()));
 
-                bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(int.Parse(BlockManagerRow.Rows[0]["CollegianID"].ToString()), (BlockManagerRow.Rows[0]["CollegianFirstName"].ToString()), (BlockManagerRow.Rows[0]["CollegianLastName"].ToString()), (BlockManagerRow.Rows[0]["CollegianCode"].ToString()), (BlockManagerRow.Rows[0]["CollegianNationalCode"].ToString()), (BlockManagerRow.Rows[0]["CollegianPhoneNumber"].ToString()), (BlockManagerRow.Rows[0]["CollegianAddress"].ToString()), int.Parse(BlockManagerRow.Rows[0]["CollegianAssignedRoomID"].ToString()), true);
+                bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(
+                    int.Parse(BlockManagerRow.Rows[0]["CollegianID"].ToString()), 
+                    (BlockManagerRow.Rows[0]["CollegianFirstName"].ToString()), 
+                    (BlockManagerRow.Rows[0]["CollegianLastName"].ToString()), 
+                    (BlockManagerRow.Rows[0]["CollegianCode"].ToString()), 
+                    (BlockManagerRow.Rows[0]["CollegianNationalCode"].ToString()), 
+                    (BlockManagerRow.Rows[0]["CollegianPhoneNumber"].ToString()),
+                    (BlockManagerRow.Rows[0]["CollegianAddress"].ToString()),
+                    int.Parse(BlockManagerRow.Rows[0]["CollegianAssignedRoomID"].ToString()),
+                    true
+                    );
 
                 if (BlockManagerUpdateSuccess)
                 {
@@ -224,13 +234,34 @@ namespace Dorms_Project.Block
                 if (SelectedID == 0)
                 {
 
-                    bool BlockInsertSuccess = _Block_Repository.Insert_Success(Block_Name_txt.Text.Trim(' '), (int)(Block_Capacity_num.Value), FloorAmount, RoomsAmount, int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()), DG_blockManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_blockManager.CurrentRow.Cells[2].Value.ToString(), SelectedDormID);
+                    bool BlockInsertSuccess = _Block_Repository.Insert_Success(
+                        Block_Name_txt.Text.Trim(' '), 
+                        (int)(Block_Capacity_num.Value),
+                        FloorAmount, 
+                        RoomsAmount, 
+                        int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()),
+                        DG_blockManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_blockManager.CurrentRow.Cells[2].Value.ToString(),
+                        SelectedDormID
+                        );
 
                     DataTable dataRowtemp = _Block_Repository.GetBlockRowByManagerID(int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()));
+                    
                     int ManagingBlockID = int.Parse(dataRowtemp.Rows[0]["BlockID"].ToString());
                     string ManagingBlockName = dataRowtemp.Rows[0]["BlockName"].ToString();
 
-                    bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(int.Parse(DG_blockManager.CurrentRow.Cells["CollegianID"].Value.ToString()), DG_blockManager.CurrentRow.Cells["CollegianFirstName"].Value.ToString(), (DG_blockManager.CurrentRow.Cells["CollegianLastName"].Value.ToString()), DG_blockManager.CurrentRow.Cells["CollegianCode"].Value.ToString(), DG_blockManager.CurrentRow.Cells["CollegianNationalCode"].Value.ToString(), DG_blockManager.CurrentRow.Cells["CollegianPhoneNumber"].Value.ToString(), DG_blockManager.CurrentRow.Cells["CollegianAddress"].Value.ToString(), int.Parse(DG_blockManager.CurrentRow.Cells["CollegianAssignedRoomID"].Value.ToString()), true, ManagingBlockID, ManagingBlockName);
+                    bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(
+                        int.Parse(DG_blockManager.CurrentRow.Cells["CollegianID"].Value.ToString()),
+                        DG_blockManager.CurrentRow.Cells["CollegianFirstName"].Value.ToString(),
+                        (DG_blockManager.CurrentRow.Cells["CollegianLastName"].Value.ToString()),
+                        DG_blockManager.CurrentRow.Cells["CollegianCode"].Value.ToString(),
+                        DG_blockManager.CurrentRow.Cells["CollegianNationalCode"].Value.ToString(),
+                        DG_blockManager.CurrentRow.Cells["CollegianPhoneNumber"].Value.ToString(),
+                        DG_blockManager.CurrentRow.Cells["CollegianAddress"].Value.ToString(), 
+                        int.Parse(DG_blockManager.CurrentRow.Cells["CollegianAssignedRoomID"].Value.ToString()),
+                        true,
+                        ManagingBlockID,
+                        ManagingBlockName
+                        );
 
                     if (BlockInsertSuccess && BlockManagerUpdateSuccess)
                     {
@@ -247,13 +278,35 @@ namespace Dorms_Project.Block
                 else
                 {
 
-                    bool BlockUpdatetSuccess = _Block_Repository.Update_Success(SelectedID, Block_Name_txt.Text.Trim(' '), (int)(Block_Capacity_num.Value), FloorAmount, RoomsAmount, int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()), DG_blockManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_blockManager.CurrentRow.Cells[2].Value.ToString(), SelectedDormID);
+                    bool BlockUpdatetSuccess = _Block_Repository.Update_Success(
+                        SelectedID,
+                        Block_Name_txt.Text.Trim(' '), 
+                        (int)(Block_Capacity_num.Value), 
+                        FloorAmount,
+                        RoomsAmount, 
+                        int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()),
+                        DG_blockManager.CurrentRow.Cells[1].Value.ToString() + " " + DG_blockManager.CurrentRow.Cells[2].Value.ToString(), 
+                        SelectedDormID
+                        );
 
                     DataTable dataRowtemp = _Block_Repository.GetBlockRowByManagerID(int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()));
+                    
                     int ManagingBlockID = int.Parse(dataRowtemp.Rows[0]["BlockID"].ToString());
                     string ManagingBlockName = dataRowtemp.Rows[0]["BlockName"].ToString();
 
-                    bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(int.Parse(DG_blockManager.CurrentRow.Cells["CollegianID"].Value.ToString()), DG_blockManager.CurrentRow.Cells["CollegianFirstName"].Value.ToString(), (DG_blockManager.CurrentRow.Cells["CollegianLastName"].Value.ToString()), DG_blockManager.CurrentRow.Cells["CollegianCode"].Value.ToString(), DG_blockManager.CurrentRow.Cells["CollegianNationalCode"].Value.ToString(), DG_blockManager.CurrentRow.Cells["CollegianPhoneNumber"].Value.ToString(), DG_blockManager.CurrentRow.Cells["CollegianAddress"].Value.ToString(), int.Parse(DG_blockManager.CurrentRow.Cells["CollegianAssignedRoomID"].Value.ToString()), true, ManagingBlockID, ManagingBlockName);
+                    bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(
+                        int.Parse(DG_blockManager.CurrentRow.Cells["CollegianID"].Value.ToString()), 
+                        DG_blockManager.CurrentRow.Cells["CollegianFirstName"].Value.ToString(), 
+                        (DG_blockManager.CurrentRow.Cells["CollegianLastName"].Value.ToString()),
+                        DG_blockManager.CurrentRow.Cells["CollegianCode"].Value.ToString(), 
+                        DG_blockManager.CurrentRow.Cells["CollegianNationalCode"].Value.ToString(), 
+                        DG_blockManager.CurrentRow.Cells["CollegianPhoneNumber"].Value.ToString(), 
+                        DG_blockManager.CurrentRow.Cells["CollegianAddress"].Value.ToString(), 
+                        int.Parse(DG_blockManager.CurrentRow.Cells["CollegianAssignedRoomID"].Value.ToString()),
+                        true,
+                        ManagingBlockID,
+                        ManagingBlockName
+                        );
 
                     if (BlockUpdatetSuccess && BlockManagerUpdateSuccess)
                     {
@@ -277,7 +330,19 @@ namespace Dorms_Project.Block
             {
                 if (Edited == false)
                 {
-                    bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(int.Parse(BlockManagerRow.Rows[0]["CollegianID"].ToString()), (BlockManagerRow.Rows[0]["CollegianFirstName"].ToString()), (BlockManagerRow.Rows[0]["CollegianLastName"].ToString()), (BlockManagerRow.Rows[0]["CollegianCode"].ToString()), (BlockManagerRow.Rows[0]["CollegianNationalCode"].ToString()), (BlockManagerRow.Rows[0]["CollegianPhoneNumber"].ToString()), (BlockManagerRow.Rows[0]["CollegianAddress"].ToString()), int.Parse(BlockManagerRow.Rows[0]["CollegianAssignedRoomID"].ToString()), true, int.Parse(BlockManagerRow.Rows[0]["ManagingBlockID"].ToString()), BlockManagerRow.Rows[0]["ManagingBlockName"].ToString());
+                    bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(
+                        int.Parse(BlockManagerRow.Rows[0]["CollegianID"].ToString()), 
+                        (BlockManagerRow.Rows[0]["CollegianFirstName"].ToString()), 
+                        (BlockManagerRow.Rows[0]["CollegianLastName"].ToString()), 
+                        (BlockManagerRow.Rows[0]["CollegianCode"].ToString()), 
+                        (BlockManagerRow.Rows[0]["CollegianNationalCode"].ToString()), 
+                        (BlockManagerRow.Rows[0]["CollegianPhoneNumber"].ToString()),
+                        (BlockManagerRow.Rows[0]["CollegianAddress"].ToString()), 
+                        int.Parse(BlockManagerRow.Rows[0]["CollegianAssignedRoomID"].ToString()), 
+                        true, 
+                        int.Parse(BlockManagerRow.Rows[0]["ManagingBlockID"].ToString()), 
+                        BlockManagerRow.Rows[0]["ManagingBlockName"].ToString()
+                        );
                 }
             }
         }

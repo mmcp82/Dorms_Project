@@ -68,7 +68,7 @@
             this.Dorm_Refresh_btn.Location = new System.Drawing.Point(348, 19);
             this.Dorm_Refresh_btn.Name = "Dorm_Refresh_btn";
             this.Dorm_Refresh_btn.Size = new System.Drawing.Size(101, 27);
-            this.Dorm_Refresh_btn.TabIndex = 3;
+            this.Dorm_Refresh_btn.TabIndex = 7;
             this.Dorm_Refresh_btn.Text = "بروز رسانی";
             this.Dorm_Refresh_btn.UseVisualStyleBackColor = true;
             this.Dorm_Refresh_btn.Click += new System.EventHandler(this.Dorm_Refresh_btn_Click);
@@ -80,7 +80,7 @@
             this.Delete_Dorm_btn.Location = new System.Drawing.Point(455, 19);
             this.Delete_Dorm_btn.Name = "Delete_Dorm_btn";
             this.Delete_Dorm_btn.Size = new System.Drawing.Size(101, 27);
-            this.Delete_Dorm_btn.TabIndex = 2;
+            this.Delete_Dorm_btn.TabIndex = 8;
             this.Delete_Dorm_btn.Text = "حذف خوابگاه";
             this.Delete_Dorm_btn.UseVisualStyleBackColor = true;
             this.Delete_Dorm_btn.Click += new System.EventHandler(this.Delete_Dorm_btn_Click);
@@ -92,7 +92,7 @@
             this.Edit_Dorm_btn.Location = new System.Drawing.Point(562, 19);
             this.Edit_Dorm_btn.Name = "Edit_Dorm_btn";
             this.Edit_Dorm_btn.Size = new System.Drawing.Size(101, 27);
-            this.Edit_Dorm_btn.TabIndex = 1;
+            this.Edit_Dorm_btn.TabIndex = 9;
             this.Edit_Dorm_btn.Text = "ویرایش خوابگاه";
             this.Edit_Dorm_btn.UseVisualStyleBackColor = true;
             this.Edit_Dorm_btn.Click += new System.EventHandler(this.Edit_Dorm_btn_Click);
@@ -104,7 +104,7 @@
             this.Add_Dorm_btn.Location = new System.Drawing.Point(669, 19);
             this.Add_Dorm_btn.Name = "Add_Dorm_btn";
             this.Add_Dorm_btn.Size = new System.Drawing.Size(101, 27);
-            this.Add_Dorm_btn.TabIndex = 0;
+            this.Add_Dorm_btn.TabIndex = 10;
             this.Add_Dorm_btn.Text = "افزودن خوابگاه";
             this.Add_Dorm_btn.UseVisualStyleBackColor = true;
             this.Add_Dorm_btn.Click += new System.EventHandler(this.Add_Dorm_btn_Click);
@@ -138,7 +138,7 @@
             this.DG_Dorms.Name = "DG_Dorms";
             this.DG_Dorms.ReadOnly = true;
             this.DG_Dorms.Size = new System.Drawing.Size(764, 340);
-            this.DG_Dorms.TabIndex = 0;
+            this.DG_Dorms.TabIndex = 6;
             // 
             // DormID
             // 

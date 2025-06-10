@@ -79,7 +79,7 @@
             this.textBox1.Location = new System.Drawing.Point(6, 57);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(456, 23);
-            this.textBox1.TabIndex = 8;
+            this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Collegian_Details_btn
@@ -89,7 +89,7 @@
             this.Collegian_Details_btn.Location = new System.Drawing.Point(154, 19);
             this.Collegian_Details_btn.Name = "Collegian_Details_btn";
             this.Collegian_Details_btn.Size = new System.Drawing.Size(151, 27);
-            this.Collegian_Details_btn.TabIndex = 5;
+            this.Collegian_Details_btn.TabIndex = 7;
             this.Collegian_Details_btn.Text = "اطلاعات دانشجو";
             this.Collegian_Details_btn.UseVisualStyleBackColor = true;
             this.Collegian_Details_btn.Click += new System.EventHandler(this.Collegian_Details_btn_Click);
@@ -101,7 +101,7 @@
             this.Move_btn.Location = new System.Drawing.Point(468, 52);
             this.Move_btn.Name = "Move_btn";
             this.Move_btn.Size = new System.Drawing.Size(151, 27);
-            this.Move_btn.TabIndex = 7;
+            this.Move_btn.TabIndex = 4;
             this.Move_btn.Text = "جابه جایی دانشجو";
             this.Move_btn.UseVisualStyleBackColor = true;
             this.Move_btn.Click += new System.EventHandler(this.Move_btn_Click);
@@ -113,7 +113,7 @@
             this.SignUp_btn.Location = new System.Drawing.Point(625, 52);
             this.SignUp_btn.Name = "SignUp_btn";
             this.SignUp_btn.Size = new System.Drawing.Size(145, 27);
-            this.SignUp_btn.TabIndex = 4;
+            this.SignUp_btn.TabIndex = 5;
             this.SignUp_btn.Text = "ثبت نام دانشجو";
             this.SignUp_btn.UseVisualStyleBackColor = true;
             this.SignUp_btn.Click += new System.EventHandler(this.SignUp_btn_Click);
@@ -125,7 +125,7 @@
             this.Collegian_Refresh_btn.Location = new System.Drawing.Point(6, 19);
             this.Collegian_Refresh_btn.Name = "Collegian_Refresh_btn";
             this.Collegian_Refresh_btn.Size = new System.Drawing.Size(142, 27);
-            this.Collegian_Refresh_btn.TabIndex = 3;
+            this.Collegian_Refresh_btn.TabIndex = 6;
             this.Collegian_Refresh_btn.Text = "بروز رسانی";
             this.Collegian_Refresh_btn.UseVisualStyleBackColor = true;
             this.Collegian_Refresh_btn.Click += new System.EventHandler(this.Collegian_Refresh_btn_Click);
@@ -137,7 +137,7 @@
             this.Delete_Collegian_btn.Location = new System.Drawing.Point(311, 19);
             this.Delete_Collegian_btn.Name = "Delete_Collegian_btn";
             this.Delete_Collegian_btn.Size = new System.Drawing.Size(151, 27);
-            this.Delete_Collegian_btn.TabIndex = 2;
+            this.Delete_Collegian_btn.TabIndex = 8;
             this.Delete_Collegian_btn.Text = "حذف دانشجو";
             this.Delete_Collegian_btn.UseVisualStyleBackColor = true;
             this.Delete_Collegian_btn.Click += new System.EventHandler(this.Delete_Collegian_btn_Click);
@@ -149,7 +149,7 @@
             this.Edit_Collegian_btn.Location = new System.Drawing.Point(468, 19);
             this.Edit_Collegian_btn.Name = "Edit_Collegian_btn";
             this.Edit_Collegian_btn.Size = new System.Drawing.Size(151, 27);
-            this.Edit_Collegian_btn.TabIndex = 1;
+            this.Edit_Collegian_btn.TabIndex = 9;
             this.Edit_Collegian_btn.Text = "ویرایش دانشجو";
             this.Edit_Collegian_btn.UseVisualStyleBackColor = true;
             this.Edit_Collegian_btn.Click += new System.EventHandler(this.Edit_Collegian_btn_Click);
@@ -161,7 +161,7 @@
             this.Add_Collegian_btn.Location = new System.Drawing.Point(625, 19);
             this.Add_Collegian_btn.Name = "Add_Collegian_btn";
             this.Add_Collegian_btn.Size = new System.Drawing.Size(145, 27);
-            this.Add_Collegian_btn.TabIndex = 0;
+            this.Add_Collegian_btn.TabIndex = 10;
             this.Add_Collegian_btn.Text = "افزودن دانشجو";
             this.Add_Collegian_btn.UseVisualStyleBackColor = true;
             this.Add_Collegian_btn.Click += new System.EventHandler(this.Add_Collegian_btn_Click);

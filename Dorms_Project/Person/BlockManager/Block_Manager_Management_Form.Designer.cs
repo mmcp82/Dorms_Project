@@ -75,7 +75,7 @@
             this.Block_Details.Location = new System.Drawing.Point(348, 19);
             this.Block_Details.Name = "Block_Details";
             this.Block_Details.Size = new System.Drawing.Size(101, 27);
-            this.Block_Details.TabIndex = 4;
+            this.Block_Details.TabIndex = 7;
             this.Block_Details.Text = "جزئیات بلوک";
             this.Block_Details.UseVisualStyleBackColor = true;
             this.Block_Details.Click += new System.EventHandler(this.Block_Details_Click);
@@ -87,7 +87,7 @@
             this.Block_Manager_Refresh_btn.Location = new System.Drawing.Point(241, 19);
             this.Block_Manager_Refresh_btn.Name = "Block_Manager_Refresh_btn";
             this.Block_Manager_Refresh_btn.Size = new System.Drawing.Size(101, 27);
-            this.Block_Manager_Refresh_btn.TabIndex = 3;
+            this.Block_Manager_Refresh_btn.TabIndex = 6;
             this.Block_Manager_Refresh_btn.Text = "بروز رسانی";
             this.Block_Manager_Refresh_btn.UseVisualStyleBackColor = true;
             this.Block_Manager_Refresh_btn.Click += new System.EventHandler(this.Block_Manager_Refresh_btn_Click);
@@ -99,7 +99,7 @@
             this.Delete_Block_Manager_btn.Location = new System.Drawing.Point(455, 19);
             this.Delete_Block_Manager_btn.Name = "Delete_Block_Manager_btn";
             this.Delete_Block_Manager_btn.Size = new System.Drawing.Size(101, 27);
-            this.Delete_Block_Manager_btn.TabIndex = 2;
+            this.Delete_Block_Manager_btn.TabIndex = 8;
             this.Delete_Block_Manager_btn.Text = "حذف مسئول";
             this.Delete_Block_Manager_btn.UseVisualStyleBackColor = true;
             this.Delete_Block_Manager_btn.Click += new System.EventHandler(this.Delete_Block_Manager_btn_Click);
@@ -111,7 +111,7 @@
             this.Edit_Block_Manager_btn.Location = new System.Drawing.Point(562, 19);
             this.Edit_Block_Manager_btn.Name = "Edit_Block_Manager_btn";
             this.Edit_Block_Manager_btn.Size = new System.Drawing.Size(101, 27);
-            this.Edit_Block_Manager_btn.TabIndex = 1;
+            this.Edit_Block_Manager_btn.TabIndex = 9;
             this.Edit_Block_Manager_btn.Text = "ویرایش مسئول";
             this.Edit_Block_Manager_btn.UseVisualStyleBackColor = true;
             this.Edit_Block_Manager_btn.Click += new System.EventHandler(this.Edit_Block_Manager_btn_Click);
@@ -123,7 +123,7 @@
             this.Add_Block_Manager_btn.Location = new System.Drawing.Point(669, 19);
             this.Add_Block_Manager_btn.Name = "Add_Block_Manager_btn";
             this.Add_Block_Manager_btn.Size = new System.Drawing.Size(101, 27);
-            this.Add_Block_Manager_btn.TabIndex = 0;
+            this.Add_Block_Manager_btn.TabIndex = 10;
             this.Add_Block_Manager_btn.Text = "افزودن مسئول";
             this.Add_Block_Manager_btn.UseVisualStyleBackColor = true;
             this.Add_Block_Manager_btn.Click += new System.EventHandler(this.Add_Block_Manager_btn_Click);
@@ -162,7 +162,7 @@
             this.DG_Block_Manager.Name = "DG_Block_Manager";
             this.DG_Block_Manager.ReadOnly = true;
             this.DG_Block_Manager.Size = new System.Drawing.Size(764, 340);
-            this.DG_Block_Manager.TabIndex = 9;
+            this.DG_Block_Manager.TabIndex = 5;
             // 
             // CollegianID
             // 

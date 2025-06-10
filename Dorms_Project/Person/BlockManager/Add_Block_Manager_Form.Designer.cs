@@ -182,7 +182,7 @@
             this.Submit_Block_Manager.Location = new System.Drawing.Point(347, 388);
             this.Submit_Block_Manager.Name = "Submit_Block_Manager";
             this.Submit_Block_Manager.Size = new System.Drawing.Size(127, 28);
-            this.Submit_Block_Manager.TabIndex = 7;
+            this.Submit_Block_Manager.TabIndex = 9;
             this.Submit_Block_Manager.Text = "ثبت";
             this.Submit_Block_Manager.UseVisualStyleBackColor = true;
             this.Submit_Block_Manager.Click += new System.EventHandler(this.Submit_Block_Manager_Click);

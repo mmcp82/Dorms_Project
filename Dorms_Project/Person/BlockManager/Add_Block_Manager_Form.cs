@@ -28,7 +28,19 @@ namespace Dorms_Project.Person.BlockManager
             if (label1.Text == "")
             {
                 DataTable dt = _collegian_repository.GetCollegianRow(int.Parse(DG_Available_Collegian.CurrentRow.Cells["CollegianID"].Value.ToString()));
-                bool Block_Manager_InsertSuccess = _collegian_repository.Update_Success(int.Parse(dt.Rows[0]["CollegianID"].ToString()), (dt.Rows[0]["CollegianFirstName"].ToString()), (dt.Rows[0]["CollegianLastName"].ToString()), (dt.Rows[0]["CollegianCode"].ToString()), (dt.Rows[0]["CollegianNationalCode"].ToString()), (dt.Rows[0]["CollegianPhoneNumber"].ToString()), (dt.Rows[0]["CollegianAddress"].ToString()), int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()),true);
+                
+                bool Block_Manager_InsertSuccess = _collegian_repository.Update_Success(
+                    int.Parse(dt.Rows[0]["CollegianID"].ToString()), 
+                    (dt.Rows[0]["CollegianFirstName"].ToString()), 
+                    (dt.Rows[0]["CollegianLastName"].ToString()), 
+                    (dt.Rows[0]["CollegianCode"].ToString()), 
+                    (dt.Rows[0]["CollegianNationalCode"].ToString()), 
+                    (dt.Rows[0]["CollegianPhoneNumber"].ToString()), 
+                    (dt.Rows[0]["CollegianAddress"].ToString()), 
+                    int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()),
+                    true
+                    );
+                
                 if (Block_Manager_InsertSuccess)
                 {
                     MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);

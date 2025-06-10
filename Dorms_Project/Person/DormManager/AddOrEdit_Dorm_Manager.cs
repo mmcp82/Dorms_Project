@@ -183,7 +183,14 @@ namespace Dorms_Project.Person.DormManager
             {
                 if (SelectedID == 0)
                 {
-                    bool DormManagerInsertSuccess = _Dorm_Manager_Repository.Insert_Success(textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '));
+                    bool DormManagerInsertSuccess = _Dorm_Manager_Repository.Insert_Success(
+                        textBox1.Text.Trim(' '), 
+                        textBox2.Text.Trim(' '), 
+                        textBox3.Text.Trim(' '), 
+                        textBox4.Text.Trim(' '), 
+                        textBox5.Text.Trim(' '), 
+                        Address_txt.Text.Trim(' ')
+                        );
 
                     if (DormManagerInsertSuccess)
                     {
@@ -203,10 +210,28 @@ namespace Dorms_Project.Person.DormManager
                     if (int.Parse(dt.Rows[0]["ManagingDormID"].ToString()) != 0)
                     {
                         DataTable Dormdt = _Dorm_Repository.GetDormRow(int.Parse(dt.Rows[0]["ManagingDormID"].ToString()));
-                        DormUpdateSuccess = _Dorm_Repository.Update_Success(int.Parse(Dormdt.Rows[0]["DormID"].ToString()), (Dormdt.Rows[0]["DormName"].ToString()), int.Parse(Dormdt.Rows[0]["DormCapacity"].ToString()), int.Parse(Dormdt.Rows[0]["DormManagerID"].ToString()), textBox1.Text.Trim() + " " + textBox2.Text.Trim(), (Dormdt.Rows[0]["DormAddress"].ToString()));
+                        
+                        DormUpdateSuccess = _Dorm_Repository.Update_Success(
+                            int.Parse(Dormdt.Rows[0]["DormID"].ToString()), 
+                            (Dormdt.Rows[0]["DormName"].ToString()), 
+                            int.Parse(Dormdt.Rows[0]["DormCapacity"].ToString()), 
+                            int.Parse(Dormdt.Rows[0]["DormManagerID"].ToString()), 
+                            textBox1.Text.Trim() + " " + textBox2.Text.Trim(), 
+                            (Dormdt.Rows[0]["DormAddress"].ToString())
+                            );
                     }
 
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["ManagingDormID"].ToString()), dt.Rows[0]["ManagingDormName"].ToString());
+                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(
+                        SelectedID, 
+                        textBox1.Text.Trim(' '), 
+                        textBox2.Text.Trim(' '), 
+                        textBox3.Text.Trim(' '), 
+                        textBox4.Text.Trim(' '), 
+                        textBox5.Text.Trim(' '), 
+                        Address_txt.Text.Trim(' '), 
+                        int.Parse(dt.Rows[0]["ManagingDormID"].ToString()), 
+                        dt.Rows[0]["ManagingDormName"].ToString()
+                        );
 
                     if (DormManagerUpdateSuccess && DormUpdateSuccess)
                     {

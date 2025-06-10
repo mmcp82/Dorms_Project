@@ -61,7 +61,7 @@
             this.Dorm_Manager_Submit_btn.Location = new System.Drawing.Point(36, 450);
             this.Dorm_Manager_Submit_btn.Name = "Dorm_Manager_Submit_btn";
             this.Dorm_Manager_Submit_btn.Size = new System.Drawing.Size(234, 23);
-            this.Dorm_Manager_Submit_btn.TabIndex = 14;
+            this.Dorm_Manager_Submit_btn.TabIndex = 7;
             this.Dorm_Manager_Submit_btn.Text = "ثبت";
             this.Dorm_Manager_Submit_btn.UseVisualStyleBackColor = true;
             this.Dorm_Manager_Submit_btn.Click += new System.EventHandler(this.Dorm_Manager_Submit_btn_Click);
@@ -71,7 +71,7 @@
             this.Address_txt.Location = new System.Drawing.Point(6, 19);
             this.Address_txt.Name = "Address_txt";
             this.Address_txt.Size = new System.Drawing.Size(222, 20);
-            this.Address_txt.TabIndex = 7;
+            this.Address_txt.TabIndex = 6;
             // 
             // groupBox5
             // 
@@ -79,7 +79,7 @@
             this.groupBox5.Location = new System.Drawing.Point(36, 377);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(234, 63);
-            this.groupBox5.TabIndex = 11;
+            this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "آدرس";
             // 
@@ -100,7 +100,7 @@
             this.groupBox2.Location = new System.Drawing.Point(36, 101);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(234, 63);
-            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "نام خانوادگی";
             // 
@@ -109,7 +109,7 @@
             this.textBox2.Location = new System.Drawing.Point(6, 19);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(222, 20);
-            this.textBox2.TabIndex = 8;
+            this.textBox2.TabIndex = 2;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
@@ -117,7 +117,7 @@
             this.textBox1.Location = new System.Drawing.Point(6, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(222, 20);
-            this.textBox1.TabIndex = 7;
+            this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
@@ -137,7 +137,7 @@
             this.groupBox1.Location = new System.Drawing.Point(36, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(234, 63);
-            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "نام";
             // 
@@ -148,7 +148,7 @@
             this.groupBox3.Location = new System.Drawing.Point(36, 170);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(234, 63);
-            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "شغل";
             // 
@@ -157,7 +157,7 @@
             this.textBox3.Location = new System.Drawing.Point(6, 19);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(222, 20);
-            this.textBox3.TabIndex = 8;
+            this.textBox3.TabIndex = 3;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label3
@@ -177,7 +177,7 @@
             this.groupBox4.Location = new System.Drawing.Point(36, 239);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(234, 63);
-            this.groupBox4.TabIndex = 13;
+            this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "کد ملی";
             // 
@@ -187,7 +187,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox4.Size = new System.Drawing.Size(222, 20);
-            this.textBox4.TabIndex = 8;
+            this.textBox4.TabIndex = 4;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label4
@@ -209,7 +209,7 @@
             this.groupBox6.Location = new System.Drawing.Point(36, 308);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(234, 63);
-            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "شماره تلفن";
             // 
@@ -229,7 +229,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox5.Size = new System.Drawing.Size(175, 20);
-            this.textBox5.TabIndex = 8;
+            this.textBox5.TabIndex = 5;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label5

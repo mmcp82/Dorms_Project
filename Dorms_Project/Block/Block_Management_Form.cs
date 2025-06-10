@@ -69,7 +69,7 @@ namespace Dorms_Project.Block
                 {
                     if (int.Parse(DG_Blocks.Rows[i].Cells[0].Value.ToString()) == SelectedBlockID)
                     {
-                        DG_Dorms.CurrentCell = DG_Dorms.Rows[i].Cells[1];
+                        DG_Blocks.CurrentCell = DG_Blocks.Rows[i].Cells[1];
                         break;
                     }
                 }
@@ -125,11 +125,6 @@ namespace Dorms_Project.Block
         }
 
         private void DG_Dorms_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void DG_Dorms_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             Refresh();
         }

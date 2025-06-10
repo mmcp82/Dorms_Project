@@ -94,7 +94,18 @@ namespace Dorms_Project.Dorm
                     DataTable dt = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(DG_Dorms.CurrentRow.Cells[3].Value.ToString()));
 
                     bool DormDeleteSuccess = _Dorm_Repository.Delete_Success(int.Parse(DG_Dorms.CurrentRow.Cells[0].Value.ToString()));
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(int.Parse(dt.Rows[0]["DormManagerID"].ToString()), (dt.Rows[0]["DormManagerFirstName"].ToString()), (dt.Rows[0]["DormManagerLastName"].ToString()), (dt.Rows[0]["DormManagerJob"].ToString()), (dt.Rows[0]["DormManagerNationalCode"].ToString()), (dt.Rows[0]["DormManagerPhoneNumber"].ToString()), (dt.Rows[0]["DormManagerAddress"].ToString()), 0, "");
+                   
+                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(
+                        int.Parse(dt.Rows[0]["DormManagerID"].ToString()), 
+                        (dt.Rows[0]["DormManagerFirstName"].ToString()), 
+                        (dt.Rows[0]["DormManagerLastName"].ToString()),
+                        (dt.Rows[0]["DormManagerJob"].ToString()), 
+                        (dt.Rows[0]["DormManagerNationalCode"].ToString()), 
+                        (dt.Rows[0]["DormManagerPhoneNumber"].ToString()), 
+                        (dt.Rows[0]["DormManagerAddress"].ToString()),
+                        0, 
+                        ""
+                        );
 
                     if (DormDeleteSuccess && DormManagerUpdateSuccess)
                     {

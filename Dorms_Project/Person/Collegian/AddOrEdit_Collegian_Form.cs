@@ -204,7 +204,14 @@ namespace Dorms_Project.Person.Collegian
             {
                 if (SelectedID == 0)
                 {
-                    bool CollegianInserSuccess = _collegian_repository.Insert_Success(textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '));
+                    bool CollegianInserSuccess = _collegian_repository.Insert_Success(
+                        textBox1.Text.Trim(' '), 
+                        textBox2.Text.Trim(' '), 
+                        textBox3.Text.Trim(' '), 
+                        textBox4.Text.Trim(' '), 
+                        textBox5.Text.Trim(' '), 
+                        Address_txt.Text.Trim(' ')
+                        );
 
                     if (CollegianInserSuccess)
                     {
@@ -225,10 +232,32 @@ namespace Dorms_Project.Person.Collegian
                     if (int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()) != 0)
                     {
                         DataTable blockdt = _block_repository.GetBlockRow(int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()));
-                        BlockUpdateSuccess = _block_repository.Update_Success(int.Parse(blockdt.Rows[0]["BlockID"].ToString()), (blockdt.Rows[0]["BlockName"].ToString()), int.Parse(blockdt.Rows[0]["BlockCapacity"].ToString()), int.Parse(blockdt.Rows[0]["BlockFloors"].ToString()), int.Parse(blockdt.Rows[0]["BlockRooms"].ToString()), int.Parse(blockdt.Rows[0]["BlockManagerID"].ToString()), textBox1.Text.Trim() + " " + textBox2.Text.Trim(), int.Parse(blockdt.Rows[0]["LinkedDormID"].ToString()));
+                        
+                        BlockUpdateSuccess = _block_repository.Update_Success(
+                            int.Parse(blockdt.Rows[0]["BlockID"].ToString()), 
+                            (blockdt.Rows[0]["BlockName"].ToString()), 
+                            int.Parse(blockdt.Rows[0]["BlockCapacity"].ToString()), 
+                            int.Parse(blockdt.Rows[0]["BlockFloors"].ToString()), 
+                            int.Parse(blockdt.Rows[0]["BlockRooms"].ToString()), 
+                            int.Parse(blockdt.Rows[0]["BlockManagerID"].ToString()), 
+                            textBox1.Text.Trim() + " " + textBox2.Text.Trim(), 
+                            int.Parse(blockdt.Rows[0]["LinkedDormID"].ToString())
+                            );
                     }
 
-                    bool CollegianupdateSuccess = _collegian_repository.Update_Success(SelectedID, textBox1.Text.Trim(' '), textBox2.Text.Trim(' '), textBox3.Text.Trim(' '), textBox4.Text.Trim(' '), textBox5.Text.Trim(' '), Address_txt.Text.Trim(' '), int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()), bool.Parse(dt.Rows[0]["IsBlockManager"].ToString()), int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()), dt.Rows[0]["ManagingBlockName"].ToString());
+                    bool CollegianupdateSuccess = _collegian_repository.Update_Success(
+                        SelectedID, 
+                        textBox1.Text.Trim(' '), 
+                        textBox2.Text.Trim(' '), 
+                        textBox3.Text.Trim(' '), 
+                        textBox4.Text.Trim(' '), 
+                        textBox5.Text.Trim(' '), 
+                        Address_txt.Text.Trim(' '), 
+                        int.Parse(dt.Rows[0]["CollegianAssignedRoomID"].ToString()), 
+                        bool.Parse(dt.Rows[0]["IsBlockManager"].ToString()), 
+                        int.Parse(dt.Rows[0]["ManagingBlockID"].ToString()), 
+                        dt.Rows[0]["ManagingBlockName"].ToString()
+                        );
 
                     if (CollegianupdateSuccess && BlockUpdateSuccess)
                     {

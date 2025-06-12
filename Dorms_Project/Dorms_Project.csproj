@@ -144,12 +144,15 @@
     <Compile Include="Repository\IF_Collegian_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Manager_Repository.cs" />
     <Compile Include="Repository\IF_Dorm_Repository.cs" />
+    <Compile Include="Repository\IF_Item_Repository.cs" />
     <Compile Include="Repository\IF_Room_Repository.cs" />
     <Compile Include="Services\Block_Repository.cs" />
     <Compile Include="Services\Collegian_Repository.cs" />
     <Compile Include="Services\Dorm_Manager_Repository.cs" />
     <Compile Include="Services\Dorm_Repository.cs" />
+    <Compile Include="Services\Item_Repository.cs" />
     <Compile Include="Services\Room_Repository.cs" />
+    <Compile Include="Services\DatabaseSetup\SQL_Database_Setup.cs" />
     <EmbeddedResource Include="Block\AddOrEdit_Block.resx">
       <DependentUpon>AddOrEdit_Block.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,5 +215,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DatabaseSetup\CreateTables.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

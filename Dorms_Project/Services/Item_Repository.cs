@@ -1,5 +1,4 @@
 ﻿using Dorms_Project.Block;
-using Dorms_Project.Person.BlockManager;
 using Dorms_Project.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Dorms_Project.Services
 {
-    internal class Room_Repository : IF_Room_Repository
+    internal class Item_Repository : IF_Item_Repository
     {
         private readonly string _connection_string = "Data Source=.;Initial Catalog=Dorms_Project_SQL;Integrated Security=true";
 
-        public DataTable GetAvailableLinkedBlockRoomTable(int LinkedBlockID)
+        public DataTable GetItemRow(int ItemID)
         {
-            string query = $"select * from RoomsTable where LinkedBlockID={LinkedBlockID} and RoomCurrentCapacity!={0}";
+            string query = $"select * from ItemsTable where ItemID=" + ItemID;
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();
@@ -25,9 +24,9 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public DataTable GetLinkedBlockRoomTable(int LinkedBlockID)
+        public DataTable GetItemTable()
         {
-            string query = $"select * from RoomsTable where LinkedBlockID=" + LinkedBlockID;
+            string query = $"select * from ItemsTable";
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();
@@ -35,9 +34,9 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public DataTable GetRoomRow(int RoomID)
+        public DataTable GetLinkedCollegianItemTable(int LinkedCollegianID)
         {
-            string query = $"select * from RoomsTable where RoomID=" + RoomID;
+            string query = $"select * from ItemsTable where LinkedCollegianID=" + LinkedCollegianID;
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();
@@ -45,9 +44,9 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public DataTable GetRoomTable()
+        public DataTable GetLinkedRoomItemTable(int LinkedRoomID)
         {
-            string query = $"select * from RoomsTable";
+            string query = $"select * from ItemsTable where LinkedRoomID=" + LinkedRoomID;
             SqlConnection Connection = new SqlConnection(_connection_string);
             SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
             DataTable dataTable = new DataTable();
@@ -55,20 +54,20 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public bool Insert_Success(int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID, string LinkedBlockName)
+        public bool Insert_Success(string ItemType, string ItemPartNumber, string Item8DigitsID, string ItemState, int LinkedRoomID = 0, int LinkedCollegianID = 0)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "insert into RoomsTable (RoomNumber,RoomFloor,RoomCurrentCapacity,RoomCurrentCapacity,LinkedBlockID,LinkedBlockName) " +
-                                              "values(@RoomNumber,@RoomFloor,@RoomCurrentCapacity,@RoomCurrentCapacity,@LinkedBlockID,@LinkedBlockName)";
+                string query = "insert into ItemsTable (ItemType,ItemPartNumber,Item8DigitsID,ItemState,LinkedRoomID,LinkedCollegianID) " +
+                                              "values(@ItemType,@ItemPartNumber,@Item8DigitsID,@ItemState,@LinkedRoomID,@LinkedCollegianID)";
                 SqlCommand cmd = new SqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
-                cmd.Parameters.AddWithValue("@RoomFloor", RoomFloor);
-                cmd.Parameters.AddWithValue("@RoomCurrentCapacity", RoomCurrentCapacity);
-                cmd.Parameters.AddWithValue("@LinkedBlockID", LinkedBlockID);
-                cmd.Parameters.AddWithValue("@LinkedBlockName", LinkedBlockName);
-
+                cmd.Parameters.AddWithValue("@ItemType", ItemType);
+                cmd.Parameters.AddWithValue("@ItemPartNumber", ItemPartNumber);
+                cmd.Parameters.AddWithValue("@Item8DigitsID", Item8DigitsID);
+                cmd.Parameters.AddWithValue("@ItemState", ItemState);
+                cmd.Parameters.AddWithValue("@LinkedRoomID", LinkedRoomID);
+                cmd.Parameters.AddWithValue("@LinkedCollegianID", LinkedCollegianID);
                 Connection.Open();
                 cmd.ExecuteNonQuery();
 
@@ -85,26 +84,28 @@ namespace Dorms_Project.Services
             }
         }
 
-        public bool Update_Success(int RoomID, int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID, string LinkedBlockName)
+        public bool Update_Success(int ItemID, string ItemType, string ItemPartNumber, string Item8DigitsID, string ItemState, int LinkedRoomID = 0, int LinkedCollegianID = 0)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "update RoomsTable set " +
-                    "RoomNumber=@RoomNumber, " +
-                    "RoomFloor=@RoomFloor, " +
-                    "RoomCurrentCapacity=@RoomCurrentCapacity, " +
-                    "LinkedBlockID=@LinkedBlockID, " +
-                    "LinkedBlockName=@LinkedBlockName " +
-                    "where RoomID=@RoomID;";
+                string query = "update ItemsTable set " +
+                    "ItemType=@ItemType, " +
+                    "ItemPartNumber=@ItemPartNumber, " +
+                    "Item8DigitsID=@Item8DigitsID, " +
+                    "ItemState=@ItemState, " +
+                    "LinkedRoomID=@LinkedRoomID, " +
+                    "LinkedCollegianID=@LinkedCollegianID " +
+                    "where ItemID=@ItemID;";
 
                 SqlCommand cmd = new SqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@RoomID", RoomID);
-                cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
-                cmd.Parameters.AddWithValue("@RoomFloor", RoomFloor);
-                cmd.Parameters.AddWithValue("@RoomCurrentCapacity", RoomCurrentCapacity);
-                cmd.Parameters.AddWithValue("@LinkedBlockID", LinkedBlockID);
-                cmd.Parameters.AddWithValue("@LinkedBlockName", LinkedBlockName);
+                cmd.Parameters.AddWithValue("@ItemID", ItemID);
+                cmd.Parameters.AddWithValue("@ItemType", ItemType);
+                cmd.Parameters.AddWithValue("@ItemPartNumber", ItemPartNumber);
+                cmd.Parameters.AddWithValue("@Item8DigitsID", Item8DigitsID);
+                cmd.Parameters.AddWithValue("@ItemState", ItemState);
+                cmd.Parameters.AddWithValue("@LinkedRoomID", LinkedRoomID);
+                cmd.Parameters.AddWithValue("@LinkedCollegianID", LinkedCollegianID);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -121,14 +122,14 @@ namespace Dorms_Project.Services
             }
         }
 
-        public bool Delete_Success(int RoomID)
+        public bool Delete_Success(int ItemID)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "delete from RoomsTable where RoomID=@RoomID;";
+                string query = "delete from ItemsTable where ItemID=@ItemID;";
                 SqlCommand cmd = new SqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                cmd.Parameters.AddWithValue("@ItemID", ItemID);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -144,6 +145,5 @@ namespace Dorms_Project.Services
                 Connection.Close();
             }
         }
-
     }
 }

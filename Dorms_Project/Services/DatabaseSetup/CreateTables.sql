@@ -119,7 +119,6 @@ CREATE TABLE BlocksTable (
 
 
 
-
 -- Switch to the MyAppDB database context
 -- (All subsequent commands will apply to this database)
 USE [Dorms_Project_SQL]

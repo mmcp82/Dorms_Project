@@ -138,8 +138,12 @@ CREATE TABLE RoomsTable (
     RoomNumber INT NOT NULL,
     RoomFloor INT NOT NULL,
     RoomCurrentCapacity INT NOT NULL,
+<<<<<<< HEAD
     LinkedBlockID INT NOT NULL,
     LinkedBlockName NVARCHAR(MAX) NOT NULL
+=======
+    LinkedBlockID INT NOT NULL
+>>>>>>> 6f96013e795b1908c33d8743cc18bdba70a12400
 )
 
 

@@ -55,7 +55,7 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public bool Insert_Success(int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID, string LinkedBlockName)
+        public bool Insert_Success(int RoomNumber, int RoomFloor, int LinkedBlockID, string LinkedBlockName, int RoomCurrentCapacity = 6)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try

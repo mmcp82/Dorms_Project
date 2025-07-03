@@ -78,7 +78,7 @@ namespace Dorms_Project.Person.Collegian
 
                 if (int.Parse(DG_Collegian.CurrentRow.Cells["ManagingBlockID"].Value.ToString()) == 0)
                 {
-                    if (MessageBox.Show($"ایا از حذف {NameTemp}مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show($"ایا از حذف {NameTemp} مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
 
                         bool DormManagerDeleteSuccess = _collegian_repository.Delete_Success(int.Parse(DG_Collegian.CurrentRow.Cells[0].Value.ToString()));

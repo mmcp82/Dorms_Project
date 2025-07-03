@@ -80,7 +80,7 @@ namespace Dorms_Project.Person.DormManager
 
                 if (int.Parse(DG_dormManager.CurrentRow.Cells["ManagingDormID"].Value.ToString()) == 0)
                 {
-                    if (MessageBox.Show($"ایا از حذف {NameTemp}مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show($"ایا از حذف {NameTemp} مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
 
                         bool DormManagerDeleteSuccess = _Dorm_Manager_Repository.Delete_Success(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));

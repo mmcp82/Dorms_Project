@@ -116,7 +116,6 @@
             this.SignUp_btn.TabIndex = 5;
             this.SignUp_btn.Text = "ثبت نام دانشجو";
             this.SignUp_btn.UseVisualStyleBackColor = true;
-            this.SignUp_btn.Visible = false;
             this.SignUp_btn.Click += new System.EventHandler(this.SignUp_btn_Click);
             // 
             // Collegian_Refresh_btn

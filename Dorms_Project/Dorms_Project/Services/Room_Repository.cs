@@ -60,8 +60,8 @@ namespace Dorms_Project.Services
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "insert into RoomsTable (RoomNumber,RoomFloor,RoomCurrentCapacity,RoomCurrentCapacity,LinkedBlockID,LinkedBlockName) " +
-                                              "values(@RoomNumber,@RoomFloor,@RoomCurrentCapacity,@RoomCurrentCapacity,@LinkedBlockID,@LinkedBlockName)";
+                string query = "insert into RoomsTable (RoomNumber,RoomFloor,RoomCurrentCapacity,LinkedBlockID,LinkedBlockName) " +
+                                              "values(@RoomNumber,@RoomFloor,@RoomCurrentCapacity,@LinkedBlockID,@LinkedBlockName)";
                 SqlCommand cmd = new SqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
                 cmd.Parameters.AddWithValue("@RoomFloor", RoomFloor);

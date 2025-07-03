@@ -78,7 +78,7 @@ namespace Dorms_Project.Person.BlockManager
 
                 if (int.Parse(DG_Block_Manager.CurrentRow.Cells["ManagingBlockID"].Value.ToString()) == 0)
                 {
-                    if (MessageBox.Show($"ایا از حذف {NameTemp}مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show($"ایا از حذف {NameTemp} مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
 
                         bool BlockManagerDeleteSuccess = _collegian_repository.Update_Success(

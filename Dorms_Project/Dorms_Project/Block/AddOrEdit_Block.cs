@@ -324,7 +324,7 @@ namespace Dorms_Project.Block
                         BlockName
                         );
 
-                    if (BlockUpdatetSuccess && BlockManagerUpdateSuccess)
+                    if (BlockUpdatetSuccess && BlockManagerUpdateSuccess && EditRoomsSuccess)
                     {
 
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);

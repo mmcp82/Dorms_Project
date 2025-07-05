@@ -198,6 +198,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Dorm_Management_Form";
             this.Text = "Dorm_Management_Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dorm_Management_Form_FormClosing);
             this.Load += new System.EventHandler(this.Dorm_Management_Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

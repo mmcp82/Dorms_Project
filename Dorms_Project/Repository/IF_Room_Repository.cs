@@ -14,8 +14,8 @@ namespace Dorms_Project.Repository
         DataTable GetRoomRow(int RoomID);
         DataTable GetAvailableLinkedBlockRoomTable(int LinkedBlockID);
 
-        bool Insert_Success(int RoomNumber, int RoomFloor, int LinkedBlockID, string LinkedBlockName, int RoomCurrentCapacity = 6);
-        bool Update_Success(int RoomID, int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID , string LinkedBlockName);
+        bool Insert_Success(int RoomNumber, int RoomFloor, int LinkedBlockID, int RoomCurrentCapacity = 6);
+        bool Update_Success(int RoomID, int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID);
         bool Delete_Success(int RoomID);
 
     }

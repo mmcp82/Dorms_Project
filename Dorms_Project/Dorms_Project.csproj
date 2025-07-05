@@ -112,6 +112,12 @@
     <Compile Include="Person\Collegian\Collegian_Management_Form.Designer.cs">
       <DependentUpon>Collegian_Management_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person\Collegian\SignOrMove_Collegian_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Collegian\SignOrMove_Collegian_Form.Designer.cs">
+      <DependentUpon>SignOrMove_Collegian_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Person\Collegian\Collegian_Management_Form.resx">
       <DependentUpon>Collegian_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Collegian\SignOrMove_Collegian_Form.resx">
+      <DependentUpon>SignOrMove_Collegian_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Person\DormManager\AddOrEdit_Dorm_Manager.resx">
       <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>

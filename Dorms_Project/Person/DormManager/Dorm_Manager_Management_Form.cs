@@ -80,7 +80,7 @@ namespace Dorms_Project.Person.DormManager
 
                 if (int.Parse(DG_dormManager.CurrentRow.Cells["ManagingDormID"].Value.ToString()) == 0)
                 {
-                    if (MessageBox.Show($"ایا از حذف {NameTemp}مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show($"ایا از حذف {NameTemp} مطمئن هستید", "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
 
                         bool DormManagerDeleteSuccess = _Dorm_Manager_Repository.Delete_Success(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
@@ -112,6 +112,10 @@ namespace Dorms_Project.Person.DormManager
                 Dorm_Management_Form dorm_Management_Form = new Dorm_Management_Form();
                 dorm_Management_Form.SelectedDormID = int.Parse(dt.Rows[0]["DormID"].ToString());
                 dorm_Management_Form.ShowDialog();
+                if (dorm_Management_Form.DialogResult == DialogResult.OK)
+                {
+                    Refresh();
+                }
             }
         }
     }

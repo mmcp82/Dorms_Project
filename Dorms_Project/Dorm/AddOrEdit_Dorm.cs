@@ -17,8 +17,10 @@ namespace Dorms_Project.Dorm
     public partial class AddOrEdit_Dorm : Form
     {
 
-        IF_Dorm_Manager_Repository _Dorm_Manager_Repository;
-        IF_Dorm_Repository _Dorm_Repository;
+        IF_Dorm_Manager_Repository _dorm_Manager_Repository;
+        IF_Dorm_Repository _dorm_Repository;
+        IF_Block_Repository _block_Repository;
+
         public int SelectedID = 0;
 
         bool Edited = false;
@@ -28,19 +30,22 @@ namespace Dorms_Project.Dorm
         DataTable DormTable;
         DataColumn DormNameColumn;
 
+        DataTable BlockTable;
+        DataColumn BlockCapacityColumn;
+
         public AddOrEdit_Dorm()
         {
             InitializeComponent();
-            _Dorm_Manager_Repository = new Dorm_Manager_Repository();
-            _Dorm_Repository = new Dorm_Repository();
+            _dorm_Manager_Repository = new Dorm_Manager_Repository();
+            _dorm_Repository = new Dorm_Repository();
+            _block_Repository = new Block_Repository();
         }
 
         private void AddOrEdit_Dorm_Load(object sender, EventArgs e)
         {
-
-            DormTable = _Dorm_Repository.GetDormTable();
+            DormTable = _dorm_Repository.GetDormTable();
             DormNameColumn = DormTable.Columns["DormName"];
-            dt = _Dorm_Repository.GetDormRow(SelectedID);
+            dt = _dorm_Repository.GetDormRow(SelectedID);
 
             if (SelectedID == 0)
             {
@@ -49,15 +54,19 @@ namespace Dorms_Project.Dorm
             }
             else
             {
+                BlockTable = _block_Repository.GetLinkedDormBlockTable(SelectedID);
+                BlockCapacityColumn = BlockTable.Columns["BlockCapacity"];
+
+
                 this.Text = "ویرایش خوابگاه";
                 Dorm_Name_txt.Text = dt.Rows[0]["DormName"].ToString();
                 Dorm_Capacity_num.Value = int.Parse(dt.Rows[0]["DormCapacity"].ToString());
                 Dorm_Address_txt.Text = dt.Rows[0]["DormAddress"].ToString();
 
 
-                dataManagerRow = _Dorm_Manager_Repository.GetDormManagerRow(int.Parse(dt.Rows[0]["DormManagerID"].ToString()));
+                dataManagerRow = _dorm_Manager_Repository.GetDormManagerRow(int.Parse(dt.Rows[0]["DormManagerID"].ToString()));
 
-                bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(
+                bool DormManagerUpdateSuccess = _dorm_Manager_Repository.Update_Success(
                     int.Parse(dataManagerRow.Rows[0]["DormManagerID"].ToString()), 
                     (dataManagerRow.Rows[0]["DormManagerFirstName"].ToString()), 
                     (dataManagerRow.Rows[0]["DormManagerLastName"].ToString()), 
@@ -87,7 +96,7 @@ namespace Dorms_Project.Dorm
         private void Refresh()
         {
             DG_dormManager.AutoGenerateColumns = false;
-            DG_dormManager.DataSource = _Dorm_Manager_Repository.GetAvailableDormManagerTable();
+            DG_dormManager.DataSource = _dorm_Manager_Repository.GetAvailableDormManagerTable();
             if (SelectedID != 0)
             {
                 for (int i = 0; i < DG_dormManager.Rows.Count; i++)
@@ -150,15 +159,60 @@ namespace Dorms_Project.Dorm
 
         private void Dorm_Capacity_num_ValueChanged(object sender, EventArgs e)
         {
-            if (Dorm_Capacity_num.Value <= 0)
+            if (SelectedID == 0)
             {
-                label2.Text = "ظرفیت نمی تواند صفر یا کمتر باشد";
+                if (Dorm_Capacity_num.Value <= 0)
+                {
+                    label2.Text = "ظرفیت نمی تواند صفر یا کمتر باشد";
+                }
+                else
+                {
+                    label2.Text = "";
+                    Dorm_Capacity_num.Value = Dorm_Capacity_num.Value - Dorm_Capacity_num.Value % 6;
+                }
             }
             else
             {
-                label2.Text = "";
-                Dorm_Capacity_num.Value = Dorm_Capacity_num.Value - Dorm_Capacity_num.Value % 6;
+                if (SumColumnAsInt(BlockCapacityColumn)>Dorm_Capacity_num.Value)
+                {
+                    Dorm_Capacity_num.Value = SumColumnAsInt(BlockCapacityColumn);
+                }
+                else if (Dorm_Capacity_num.Value <= 0)
+                {
+                    label2.Text = "ظرفیت نمی تواند صفر یا کمتر باشد";
+                }
+                else
+                {
+                    label2.Text = "";
+                    Dorm_Capacity_num.Value = Dorm_Capacity_num.Value - Dorm_Capacity_num.Value % 6;
+                }
             }
+        }
+        private int SumColumnAsInt(DataColumn column)
+        {
+            if (column == null)
+                throw new ArgumentNullException(nameof(column));
+
+            int sum = 0;
+
+            foreach (DataRow row in column.Table.Rows)
+            {
+                if (row[column] != DBNull.Value)
+                {
+                    if (int.TryParse(row[column].ToString(), out int value))
+                    {
+                        sum += value;
+                    }
+                    else
+                    {
+                        // Handle non-integer values (optional)
+                        // You could throw an exception or round decimal values:
+                        // sum += (int)Math.Round(Convert.ToDecimal(row[column]));
+                    }
+                }
+            }
+
+            return sum;
         }
 
 
@@ -175,7 +229,7 @@ namespace Dorms_Project.Dorm
                 if (SelectedID == 0)
                 {
 
-                    bool DormInsertSuccess = _Dorm_Repository.Insert_Success(
+                    bool DormInsertSuccess = _dorm_Repository.Insert_Success(
                         Dorm_Name_txt.Text.Trim(' '), 
                         (int)(Dorm_Capacity_num.Value), 
                         int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), 
@@ -183,12 +237,12 @@ namespace Dorms_Project.Dorm
                         Dorm_Address_txt.Text.Trim(' ')
                         );
 
-                    DataTable dataRowtemp = _Dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
+                    DataTable dataRowtemp = _dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
                     
                     int ManagingDormID = int.Parse(dataRowtemp.Rows[0]["DormID"].ToString());
                     string ManagingDormName = dataRowtemp.Rows[0]["DormName"].ToString();
                     
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(
+                    bool DormManagerUpdateSuccess = _dorm_Manager_Repository.Update_Success(
                         int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()),
                         DG_dormManager.CurrentRow.Cells[1].Value.ToString(), 
                         (DG_dormManager.CurrentRow.Cells[2].Value.ToString()), 
@@ -215,7 +269,7 @@ namespace Dorms_Project.Dorm
                 else
                 {
 
-                    bool DormUpdateSuccess = _Dorm_Repository.Update_Success(
+                    bool DormUpdateSuccess = _dorm_Repository.Update_Success(
                         SelectedID, Dorm_Name_txt.Text.Trim(' '), 
                         (int)(Dorm_Capacity_num.Value), 
                         int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()), 
@@ -223,12 +277,12 @@ namespace Dorms_Project.Dorm
                         Dorm_Address_txt.Text.Trim(' ')
                         );
 
-                    DataTable dataRowtemp = _Dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
+                    DataTable dataRowtemp = _dorm_Repository.GetDormRowByManagerID(int.Parse(DG_dormManager.CurrentRow.Cells[0].Value.ToString()));
                     
                     int ManagingDormID = int.Parse(dataRowtemp.Rows[0]["DormID"].ToString());
                     string ManagingDormName = dataRowtemp.Rows[0]["DormName"].ToString();
                     
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(
+                    bool DormManagerUpdateSuccess = _dorm_Manager_Repository.Update_Success(
                         int.Parse(DG_dormManager.CurrentRow.Cells["DormManagerID"].Value.ToString()), 
                         DG_dormManager.CurrentRow.Cells["DormManagerFirstName"].Value.ToString(), 
                         (DG_dormManager.CurrentRow.Cells["DormManagerLastName"].Value.ToString()), 
@@ -261,7 +315,7 @@ namespace Dorms_Project.Dorm
             {
                 if (Edited == false)
                 {
-                    bool DormManagerUpdateSuccess = _Dorm_Manager_Repository.Update_Success(
+                    bool DormManagerUpdateSuccess = _dorm_Manager_Repository.Update_Success(
                         int.Parse(dataManagerRow.Rows[0]["DormManagerID"].ToString()), 
                         (dataManagerRow.Rows[0]["DormManagerFirstName"].ToString()), 
                         (dataManagerRow.Rows[0]["DormManagerLastName"].ToString()), 

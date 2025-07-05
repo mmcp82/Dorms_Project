@@ -116,7 +116,6 @@
             this.SignUp_btn.TabIndex = 5;
             this.SignUp_btn.Text = "ثبت نام دانشجو";
             this.SignUp_btn.UseVisualStyleBackColor = true;
-            this.SignUp_btn.Visible = false;
             this.SignUp_btn.Click += new System.EventHandler(this.SignUp_btn_Click);
             // 
             // Collegian_Refresh_btn
@@ -202,6 +201,7 @@
             this.DG_Collegian.ReadOnly = true;
             this.DG_Collegian.Size = new System.Drawing.Size(764, 302);
             this.DG_Collegian.TabIndex = 8;
+            this.DG_Collegian.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DG_Collegian_CellEnter);
             // 
             // CollegianID
             // 

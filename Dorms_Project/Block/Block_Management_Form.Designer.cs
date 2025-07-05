@@ -286,6 +286,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Block_Management_Form";
             this.Text = "Block_Management_Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Block_Management_Form_FormClosing);
             this.Load += new System.EventHandler(this.Block_Management_Form_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DG_Blocks)).EndInit();

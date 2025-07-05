@@ -18,6 +18,8 @@ namespace Dorms_Project.Block
         IF_Block_Repository _Block_Repository;
         IF_Collegian_Repository _Collegian_Repository;
         IF_Dorm_Repository _Dorm_Repository;
+        IF_Room_Repository _Room_Repository;
+        IF_Item_Repository _Item_Repository;
 
         public int SelectedID = 0;
         public int SelectedDormID;
@@ -35,6 +37,8 @@ namespace Dorms_Project.Block
             _Block_Repository = new Block_Repository();
             _Collegian_Repository = new Collegian_Repository();
             _Dorm_Repository = new Dorm_Repository();
+            _Room_Repository = new Room_Repository();
+            _Item_Repository = new Item_Repository();
         }
 
         private void AddOrEdit_Block_Load(object sender, EventArgs e)
@@ -246,8 +250,9 @@ namespace Dorms_Project.Block
 
                     DataTable dataRowtemp = _Block_Repository.GetBlockRowByManagerID(int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()));
                     
-                    int ManagingBlockID = int.Parse(dataRowtemp.Rows[0]["BlockID"].ToString());
-                    string ManagingBlockName = dataRowtemp.Rows[0]["BlockName"].ToString();
+                    int BlockID = int.Parse(dataRowtemp.Rows[0]["BlockID"].ToString());
+                    string BlockName = dataRowtemp.Rows[0]["BlockName"].ToString();
+
 
                     bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(
                         int.Parse(DG_blockManager.CurrentRow.Cells["CollegianID"].Value.ToString()),
@@ -259,11 +264,14 @@ namespace Dorms_Project.Block
                         DG_blockManager.CurrentRow.Cells["CollegianAddress"].Value.ToString(), 
                         int.Parse(DG_blockManager.CurrentRow.Cells["CollegianAssignedRoomID"].Value.ToString()),
                         true,
-                        ManagingBlockID,
-                        ManagingBlockName
+                        BlockID,
+                        BlockName
                         );
 
-                    if (BlockInsertSuccess && BlockManagerUpdateSuccess)
+                    bool CreatRoomsSuccess = Create_OR_Delete_Rooms(BlockID, BlockName, 0, (int)(Block_Capacity_num.Value));
+
+
+                    if (BlockInsertSuccess && BlockManagerUpdateSuccess && CreatRoomsSuccess)
                     {
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = DialogResult.OK;
@@ -277,6 +285,8 @@ namespace Dorms_Project.Block
                 }
                 else
                 {
+                    DataTable dataRowtemp = _Block_Repository.GetBlockRow(SelectedID);
+
 
                     bool BlockUpdatetSuccess = _Block_Repository.Update_Success(
                         SelectedID,
@@ -289,10 +299,16 @@ namespace Dorms_Project.Block
                         SelectedDormID
                         );
 
-                    DataTable dataRowtemp = _Block_Repository.GetBlockRowByManagerID(int.Parse(DG_blockManager.CurrentRow.Cells[0].Value.ToString()));
-                    
-                    int ManagingBlockID = int.Parse(dataRowtemp.Rows[0]["BlockID"].ToString());
-                    string ManagingBlockName = dataRowtemp.Rows[0]["BlockName"].ToString();
+                    bool EditRoomsSuccess = Create_OR_Delete_Rooms(
+                        SelectedID,
+                        Block_Name_txt.Text.Trim(' '),
+                        int.Parse(dataRowtemp.Rows[0]["BlockCapacity"].ToString()),
+                        (int)(Block_Capacity_num.Value)
+                        );
+
+
+                    int BlockID = SelectedID;
+                    string BlockName = Block_Name_txt.Text.Trim(' ');
 
                     bool BlockManagerUpdateSuccess = _Collegian_Repository.Update_Success(
                         int.Parse(DG_blockManager.CurrentRow.Cells["CollegianID"].Value.ToString()), 
@@ -304,11 +320,11 @@ namespace Dorms_Project.Block
                         DG_blockManager.CurrentRow.Cells["CollegianAddress"].Value.ToString(), 
                         int.Parse(DG_blockManager.CurrentRow.Cells["CollegianAssignedRoomID"].Value.ToString()),
                         true,
-                        ManagingBlockID,
-                        ManagingBlockName
+                        BlockID,
+                        BlockName
                         );
 
-                    if (BlockUpdatetSuccess && BlockManagerUpdateSuccess)
+                    if (BlockUpdatetSuccess && BlockManagerUpdateSuccess && EditRoomsSuccess)
                     {
 
                         MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -346,5 +362,88 @@ namespace Dorms_Project.Block
                 }
             }
         }
+
+        private bool Create_OR_Delete_Rooms(int LinkedBlockID ,string LinkedBlockName ,int BlockCapacityBefore ,int BlockCapacityNow)
+        {
+            bool success = true;
+            if (BlockCapacityBefore < BlockCapacityNow)
+            {
+                for (int i = (BlockCapacityBefore / 6); i < (BlockCapacityNow / 6); i++)
+                {
+                    bool CreatRoomSuccess = _Room_Repository.Insert_Success(i + 1, i / 5, LinkedBlockID);
+                    success = success && CreatRoomSuccess;
+                }
+                return success;
+            }
+            else if (BlockCapacityBefore > BlockCapacityNow)
+            {
+                DataTable RoomTable = _Room_Repository.GetLinkedBlockRoomTable(LinkedBlockID);
+                for (int i = (BlockCapacityBefore / 6);i > (BlockCapacityNow / 6); i--)
+                {
+                    string filterExpression = $"RoomNumber = {i}";
+                    DataRow[] dr = RoomTable.Select(filterExpression);
+                    bool ClearRoomSuccess = Clear_Room(int.Parse(dr[0]["RoomID"].ToString()));
+                    bool DeleteRoomSuccess = _Room_Repository.Delete_Success(int.Parse(dr[0]["RoomID"].ToString()));
+                    success = success && DeleteRoomSuccess && ClearRoomSuccess;
+                }
+                return success;
+            }
+            else
+            {
+                return success;
+            }
+        }
+
+        private bool Clear_Room(int RoomID)
+        {
+            DataTable Collegiantable = _Collegian_Repository.GetCollegianTable();
+            DataRow[] dataRows = GetRowsByRoomID(Collegiantable, RoomID);
+            bool success = true;
+            foreach (DataRow dataRow in dataRows)
+            {
+                bool ClearRoomSuccess = _Collegian_Repository.Update_Success(
+                    int.Parse(dataRow["CollegianID"].ToString()),
+                    dataRow["CollegianFirstName"].ToString(),
+                    dataRow["CollegianLastName"].ToString(),
+                    dataRow["CollegianCode"].ToString(),
+                    dataRow["CollegianNationalCode"].ToString(),
+                    dataRow["CollegianPhoneNumber"].ToString(),
+                    dataRow["CollegianAddress"].ToString(),
+                    0,
+                    bool.Parse(dataRow["IsBlockManager"].ToString()),
+                    int.Parse(dataRow["ManagingBlockID"].ToString()),
+                    dataRow["ManagingBlockName"].ToString()
+                    );
+                success = success && ClearRoomSuccess;
+            }
+            DataTable LinkedRoomItemtable = _Item_Repository.GetLinkedRoomItemTable(RoomID);
+            foreach (DataRow dataRow in LinkedRoomItemtable.Rows)
+            {
+                bool ClearRoomSuccess = _Item_Repository.Update_Success(
+                    int.Parse(dataRow["ItemID"].ToString()),
+                    dataRow["ItemType"].ToString(),
+                    dataRow["ItemPartNumber"].ToString(),
+                    dataRow["Item8DigitsID"].ToString(),
+                    dataRow["ItemState"].ToString(),
+                    0,
+                    int.Parse(dataRow["LinkedCollegianID"].ToString())
+                    );
+                success = success && ClearRoomSuccess;
+            }
+            return success;
+        }
+
+        public DataRow[] GetRowsByRoomID(DataTable dataTable, int roomID)
+        {
+            // Create a filter expression
+            string filterExpression = $"CollegianAssignedRoomID = {roomID}";
+
+            // Select the matching rows
+            DataRow[] matchingRows = dataTable.Select(filterExpression);
+
+            return matchingRows;
+        }
+
+
     }
 }

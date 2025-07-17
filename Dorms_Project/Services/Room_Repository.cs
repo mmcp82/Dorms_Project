@@ -55,19 +55,18 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public bool Insert_Success(int RoomNumber, int RoomFloor, int LinkedBlockID, string LinkedBlockName, int RoomCurrentCapacity = 6)
+        public bool Insert_Success(int RoomNumber, int RoomFloor, int LinkedBlockID, int RoomCurrentCapacity = 6)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
             {
-                string query = "insert into RoomsTable (RoomNumber,RoomFloor,RoomCurrentCapacity,RoomCurrentCapacity,LinkedBlockID,LinkedBlockName) " +
-                                              "values(@RoomNumber,@RoomFloor,@RoomCurrentCapacity,@RoomCurrentCapacity,@LinkedBlockID,@LinkedBlockName)";
+                string query = "insert into RoomsTable (RoomNumber,RoomFloor,RoomCurrentCapacity,LinkedBlockID) " +
+                                              "values(@RoomNumber,@RoomFloor,@RoomCurrentCapacity,@LinkedBlockID)";
                 SqlCommand cmd = new SqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
                 cmd.Parameters.AddWithValue("@RoomFloor", RoomFloor);
                 cmd.Parameters.AddWithValue("@RoomCurrentCapacity", RoomCurrentCapacity);
                 cmd.Parameters.AddWithValue("@LinkedBlockID", LinkedBlockID);
-                cmd.Parameters.AddWithValue("@LinkedBlockName", LinkedBlockName);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -85,7 +84,7 @@ namespace Dorms_Project.Services
             }
         }
 
-        public bool Update_Success(int RoomID, int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID, string LinkedBlockName)
+        public bool Update_Success(int RoomID, int RoomNumber, int RoomFloor, int RoomCurrentCapacity, int LinkedBlockID)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
@@ -94,8 +93,7 @@ namespace Dorms_Project.Services
                     "RoomNumber=@RoomNumber, " +
                     "RoomFloor=@RoomFloor, " +
                     "RoomCurrentCapacity=@RoomCurrentCapacity, " +
-                    "LinkedBlockID=@LinkedBlockID, " +
-                    "LinkedBlockName=@LinkedBlockName " +
+                    "LinkedBlockID=@LinkedBlockID " +
                     "where RoomID=@RoomID;";
 
                 SqlCommand cmd = new SqlCommand(query, Connection);
@@ -104,7 +102,6 @@ namespace Dorms_Project.Services
                 cmd.Parameters.AddWithValue("@RoomFloor", RoomFloor);
                 cmd.Parameters.AddWithValue("@RoomCurrentCapacity", RoomCurrentCapacity);
                 cmd.Parameters.AddWithValue("@LinkedBlockID", LinkedBlockID);
-                cmd.Parameters.AddWithValue("@LinkedBlockName", LinkedBlockName);
 
                 Connection.Open();
                 cmd.ExecuteNonQuery();

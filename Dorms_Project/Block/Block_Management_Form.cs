@@ -41,6 +41,7 @@ namespace Dorms_Project.Block
         {
             if (DG_Dorms.CurrentRow != null)
             {
+                DG_Blocks.AutoGenerateColumns = false;
                 SelectedDormID = int.Parse(DG_Dorms.CurrentRow.Cells[0].Value.ToString());
                 LinkedDormBlockTable = _block_Repository.GetLinkedDormBlockTable(SelectedDormID);
                 DG_Blocks.DataSource = LinkedDormBlockTable;

@@ -76,6 +76,9 @@ namespace Dorms_Project.Person.Collegian
         private void SignOrMove_Collegian_Form_Load(object sender, EventArgs e)
         {
             dataGridView1.AutoGenerateColumns = false;
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView3.AutoGenerateColumns = false;
+
             DataTable DormTable = _dorm_Repository.GetDormTable();
             dataGridView1.DataSource = DormTable;
             if (SelectedDormID != 0)

@@ -53,7 +53,7 @@ namespace Dorms_Project.Person.Collegian
                 dataGridView3.DataSource = LinkedBlockRoomTable;
                 groupBox3.Text = "لیست اتاق ها" + "ی " + dataGridView2.CurrentRow.Cells[1].Value.ToString();
             }
-            if (dataGridView3.CurrentRow == null)
+            if (dataGridView3.CurrentRow == null || dataGridView2.CurrentRow == null)
             {
                 button1.Visible = false;
                 label1.Visible = true;

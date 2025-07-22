@@ -34,6 +34,16 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
+        public DataTable GetItemTypeTable(int ItemPartNumber)
+        {
+            string query = $"select * from ItemsTable where ItemPartNumber=" + ItemPartNumber;
+            SqlConnection Connection = new SqlConnection(_connection_string);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, Connection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            return dataTable;
+        }
+
         public DataTable GetLinkedCollegianItemTable(int LinkedCollegianID)
         {
             string query = $"select * from ItemsTable where LinkedCollegianID=" + LinkedCollegianID;
@@ -54,7 +64,7 @@ namespace Dorms_Project.Services
             return dataTable;
         }
 
-        public bool Insert_Success(string ItemType, string ItemPartNumber, string Item8DigitsID, string ItemState, int LinkedRoomID = 0, int LinkedCollegianID = 0)
+        public bool Insert_Success(string ItemType, int ItemPartNumber, string Item8DigitsID, string ItemState, int LinkedRoomID = 0, int LinkedCollegianID = 0)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try
@@ -84,7 +94,7 @@ namespace Dorms_Project.Services
             }
         }
 
-        public bool Update_Success(int ItemID, string ItemType, string ItemPartNumber, string Item8DigitsID, string ItemState, int LinkedRoomID = 0, int LinkedCollegianID = 0)
+        public bool Update_Success(int ItemID, string ItemType, int ItemPartNumber, string Item8DigitsID, string ItemState, int LinkedRoomID = 0, int LinkedCollegianID = 0)
         {
             SqlConnection Connection = new SqlConnection(_connection_string);
             try

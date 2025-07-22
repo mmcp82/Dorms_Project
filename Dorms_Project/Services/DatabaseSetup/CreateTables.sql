@@ -162,10 +162,33 @@ CREATE TABLE ItemsTable (
     -- PRIMARY KEY enforces uniqueness and creates a clustered index by default
     ItemID INT PRIMARY KEY IDENTITY(1,1),
     ItemType NVARCHAR(MAX) NOT NULL,
-    ItemPartNumber NCHAR(3) NOT NULL,
+    ItemPartNumber INT NOT NULL,
     Item8DigitsID NCHAR (8) NOT NULL,
     ItemState NVARCHAR(MAX) NOT NULL,
     LinkedRoomID INT NOT NULL,
     LinkedCollegianID INT NOT NULL
 )
 
+
+
+
+
+
+-- Switch to the MyAppDB database context
+-- (All subsequent commands will apply to this database)
+USE [Dorms_Project_SQL]
+
+/*
+ * Check if a table named 'Users' already exists in the database
+ * This prevents errors if we try to create a table that already exists
+ * sys.tables is a system view that contains all tables in the current database
+ */
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ItemTypeTable')
+-- If the table doesn't exist, create it with the following structure:
+CREATE TABLE ItemTypeTable (
+    -- Identity column that auto-increments (1,1 means starts at 1, increments by 1)
+    -- PRIMARY KEY enforces uniqueness and creates a clustered index by default
+    TypeID INT PRIMARY KEY IDENTITY(1,1),
+    ItemType NVARCHAR(MAX) NOT NULL,
+    ItemLimitPerRoom INT NOT NULL
+)

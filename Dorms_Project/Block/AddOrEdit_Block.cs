@@ -422,7 +422,7 @@ namespace Dorms_Project.Block
                 bool ClearRoomSuccess = _Item_Repository.Update_Success(
                     int.Parse(dataRow["ItemID"].ToString()),
                     dataRow["ItemType"].ToString(),
-                    dataRow["ItemPartNumber"].ToString(),
+                    int.Parse(dataRow["ItemPartNumber"].ToString()),
                     dataRow["Item8DigitsID"].ToString(),
                     dataRow["ItemState"].ToString(),
                     0,

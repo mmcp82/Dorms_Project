@@ -1,4 +1,5 @@
-﻿using Dorms_Project.Repository;
+﻿using Dorms_Project.Block;
+using Dorms_Project.Repository;
 using Dorms_Project.Services;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace Dorms_Project.Item
         IF_Item_Repository _item_Repository;
 
         public int SelectedID = 0;
+        public int SelectedRoomID = 0;
         public int SelectedBlockID = 0;
         public int SelectedDormID = 0;
-        public bool Detail = false;
 
         public Assign_Item_Form()
         {
@@ -45,57 +46,41 @@ namespace Dorms_Project.Item
             }
         }
 
-        private List<int> GetRoomIDsReachingLimit(DataTable dtItem, int ItemLimitPerRoom)
+        private (List<int> ReachedLimitRooms, List<(int RoomID, int RemainingCapacity)> RoomsWithCapacity) GetRoomCapacityInfo(DataTable dtItem, int ItemLimitPerRoom)
         {
-            // Create a list to store the results
-            List<int> roomIDsReachingLimit = new List<int>();
+            // Create lists to store the results
+            List<int> reachedLimitRooms = new List<int>();
+            List<(int RoomID, int RemainingCapacity)> roomsWithCapacity = new List<(int, int)>();
 
             // Check if the DataTable and required column exist
             if (dtItem == null || !dtItem.Columns.Contains("LinkedRoomID"))
             {
-                return roomIDsReachingLimit;
+                return (reachedLimitRooms, roomsWithCapacity);
             }
 
             // Group items by LinkedRoomID and count items in each room
             var roomItemCounts = dtItem.AsEnumerable()
                 .GroupBy(row => row.Field<int>("LinkedRoomID"))
-                .Select(group => new {
+                .Select(group => new
+                {
                     RoomID = group.Key,
                     ItemCount = group.Count()
                 });
 
-            // Find rooms that have reached or exceeded the limit
+            // Process each room
             foreach (var room in roomItemCounts)
             {
-                if (room.ItemCount >= ItemLimitPerRoom)
+                if (room.ItemCount == ItemLimitPerRoom)
                 {
-                    roomIDsReachingLimit.Add(room.RoomID);
+                    reachedLimitRooms.Add(room.RoomID);
+                }
+                else
+                {
+                    roomsWithCapacity.Add((room.RoomID, ItemLimitPerRoom - room.ItemCount));
                 }
             }
 
-            return roomIDsReachingLimit;
-        }
-        private void RemoveRoomsReachingLimit(DataTable dtItem, DataTable RoomsTable, int ItemLimitPerRoom)
-        {
-            // Get rooms that have reached the limit
-            List<int> roomsToRemove = GetRoomIDsReachingLimit(dtItem, ItemLimitPerRoom);
-
-            // Validate tables and columns
-            if (RoomsTable == null) throw new ArgumentNullException(nameof(RoomsTable));
-            if (!RoomsTable.Columns.Contains("RoomID"))
-                throw new ArgumentException("RoomsTable does not contain a RoomID column");
-
-            // Find and remove existing rooms (backward iteration for safe removal)
-            for (int i = RoomsTable.Rows.Count - 1; i >= 0; i--)
-            {
-                DataRow row = RoomsTable.Rows[i];
-                int roomID = Convert.ToInt32(row["RoomID"]);
-
-                if (roomsToRemove.Contains(roomID))
-                {
-                    RoomsTable.Rows.Remove(row);
-                }
-            }
+            return (reachedLimitRooms, roomsWithCapacity);
         }
       
         private void Refresh_Room()
@@ -103,16 +88,61 @@ namespace Dorms_Project.Item
             if (dataGridView2.CurrentRow != null)
             {
                 SelectedBlockID = int.Parse(dataGridView2.CurrentRow.Cells[0].Value.ToString());
+                
                 DataTable LinkedBlockRoomTable = _room_Repository.GetLinkedBlockRoomTable(SelectedBlockID);
+                
                 DataRow drItem = _item_Repository.GetItemRow(SelectedID).Rows[0];
+                
                 DataRow drType = _itemType_Repository.GetTypeRow(int.Parse(drItem["ItemPartNumber"].ToString())).Rows[0];
+                
                 DataTable dtItem = _item_Repository.GetItemTypeTable(int.Parse(drItem["ItemPartNumber"].ToString()));
-                RemoveRoomsReachingLimit(dtItem, LinkedBlockRoomTable, int.Parse(drType["ItemLimitPerRoom"].ToString()));
+                
+                LinkedBlockRoomTable.Columns.Remove("RoomCurrentCapacity");
+
+
+                List<int> ReachedLimitRooms;
+                List<(int RoomID, int RemainingCapacity)> RoomsWithCapacity;
+
+                // Get capacity info
+                (ReachedLimitRooms, RoomsWithCapacity) = GetRoomCapacityInfo(dtItem, int.Parse(drType["ItemLimitPerRoom"].ToString()));
+
+                // Add the capacity column if it doesn't exist
+                if (!LinkedBlockRoomTable.Columns.Contains("RoomItemCapacity"))
+                {
+                    LinkedBlockRoomTable.Columns.Add("RoomItemCapacity", typeof(int));
+                }
+
+                // Create dictionaries for faster lookup
+                var capacityDict = RoomsWithCapacity.ToDictionary(x => x.RoomID, x => x.RemainingCapacity);
+                var limitReachedDict = ReachedLimitRooms.ToDictionary(x => x);
+
+                // Update each row in the table
+                foreach (DataRow row in LinkedBlockRoomTable.Rows)
+                {
+                    int roomId = Convert.ToInt32(row["RoomID"]);
+
+                    // If room has reached its limit, set capacity to 0
+                    if (limitReachedDict.ContainsKey(roomId))
+                    {
+                        row["RoomItemCapacity"] = 0;
+                    }
+                    // Otherwise use the calculated capacity
+                    else if (capacityDict.TryGetValue(roomId, out int capacity))
+                    {
+                        row["RoomItemCapacity"] = capacity;
+                    }
+                    // For rooms not found in either list, use the default limit
+                    else
+                    {
+                        row["RoomItemCapacity"] = int.Parse(drType["ItemLimitPerRoom"].ToString());
+                    }
+                }
+
 
                 dataGridView3.DataSource = LinkedBlockRoomTable;
                 groupBox3.Text = "لیست اتاق ها" + "ی " + dataGridView2.CurrentRow.Cells[1].Value.ToString();
             }
-            if (dataGridView3.CurrentRow == null)
+            if (dataGridView3.CurrentRow == null || dataGridView2.CurrentRow == null)
             {
                 button1.Visible = false;
                 label1.Visible = true;
@@ -123,12 +153,6 @@ namespace Dorms_Project.Item
                 button1.Visible = true;
                 label1.Visible = false;
                 label1.Text = "";
-            }
-            if (Detail)
-            {
-                button1.Visible = false;
-                label1.Visible = false;
-                label1.Text = "اتاق خالی موجود نیست";
             }
         }
         private void Assign_Item_Form_Load(object sender, EventArgs e)
@@ -166,6 +190,22 @@ namespace Dorms_Project.Item
             }
 
             Refresh_Room();
+
+            if (SelectedRoomID != 0)
+            {
+                for (int i = 0; i < dataGridView3.Rows.Count; i++)
+                {
+                    if (int.Parse(dataGridView3.Rows[i].Cells[0].Value.ToString()) == SelectedRoomID)
+                    {
+                        dataGridView3.CurrentCell = dataGridView3.Rows[i].Cells[1];
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                label2.Visible = true;
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -179,9 +219,42 @@ namespace Dorms_Project.Item
             Refresh_Room();
         }
 
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            label2.Visible = false;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            if (label1.Text == "" && int.Parse(dataGridView3.CurrentRow.Cells["RoomItemCapacity"].Value.ToString()) > 0)
+            {
+                DataTable dt = _item_Repository.GetItemRow(SelectedID);
 
+                if (SelectedRoomID != int.Parse(dataGridView3.CurrentRow.Cells["RoomID"].Value.ToString()))
+                {
+
+                    bool SignUpSuccess = _item_Repository.Update_Success(
+                        int.Parse(dt.Rows[0]["ItemID"].ToString()),
+                        (dt.Rows[0]["ItemType"].ToString()),
+                        int.Parse(dt.Rows[0]["ItemPartNumber"].ToString()),
+                        (dt.Rows[0]["Item8DigitsID"].ToString()),
+                        (dt.Rows[0]["ItemState"].ToString()),
+                        int.Parse(dataGridView3.CurrentRow.Cells["RoomID"].Value.ToString()),
+                        int.Parse(dt.Rows[0]["LinkedCollegianID"].ToString())
+                        );
+
+                    if (SignUpSuccess)
+                    {
+                        MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("عملیات با شکست مواجه شد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
+
     }
 }

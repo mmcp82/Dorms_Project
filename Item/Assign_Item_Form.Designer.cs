@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.LinkedBlockID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomCurrentCapacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomFloor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.LinkedDormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +50,12 @@
             this.DormID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.RoomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomFloor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomItemCapacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LinkedBlockID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -75,43 +76,6 @@
             this.label1.Text = "اتاق خالی موجود نیست";
             this.label1.Visible = false;
             // 
-            // LinkedBlockID
-            // 
-            this.LinkedBlockID.DataPropertyName = "LinkedBlockID";
-            this.LinkedBlockID.HeaderText = "LinkedBlockID";
-            this.LinkedBlockID.Name = "LinkedBlockID";
-            this.LinkedBlockID.ReadOnly = true;
-            this.LinkedBlockID.Visible = false;
-            // 
-            // RoomCurrentCapacity
-            // 
-            this.RoomCurrentCapacity.DataPropertyName = "RoomCurrentCapacity";
-            this.RoomCurrentCapacity.HeaderText = "ظرفیت";
-            this.RoomCurrentCapacity.Name = "RoomCurrentCapacity";
-            this.RoomCurrentCapacity.ReadOnly = true;
-            // 
-            // RoomFloor
-            // 
-            this.RoomFloor.DataPropertyName = "RoomFloor";
-            this.RoomFloor.HeaderText = "طبقه";
-            this.RoomFloor.Name = "RoomFloor";
-            this.RoomFloor.ReadOnly = true;
-            // 
-            // RoomNumber
-            // 
-            this.RoomNumber.DataPropertyName = "RoomNumber";
-            this.RoomNumber.HeaderText = "شماره اتاق";
-            this.RoomNumber.Name = "RoomNumber";
-            this.RoomNumber.ReadOnly = true;
-            // 
-            // RoomID
-            // 
-            this.RoomID.DataPropertyName = "RoomID";
-            this.RoomID.HeaderText = "RoomID";
-            this.RoomID.Name = "RoomID";
-            this.RoomID.ReadOnly = true;
-            this.RoomID.Visible = false;
-            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -122,13 +86,14 @@
             this.RoomID,
             this.RoomNumber,
             this.RoomFloor,
-            this.RoomCurrentCapacity,
+            this.RoomItemCapacity,
             this.LinkedBlockID});
             this.dataGridView3.Location = new System.Drawing.Point(6, 19);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(925, 194);
             this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
             // 
             // groupBox3
             // 
@@ -315,11 +280,61 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "خوابگاه ها";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(335, 643);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(306, 31);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "وسیله انتخاب شده در اتاقی نیست";
+            this.label2.Visible = false;
+            // 
+            // RoomID
+            // 
+            this.RoomID.DataPropertyName = "RoomID";
+            this.RoomID.HeaderText = "RoomID";
+            this.RoomID.Name = "RoomID";
+            this.RoomID.ReadOnly = true;
+            this.RoomID.Visible = false;
+            // 
+            // RoomNumber
+            // 
+            this.RoomNumber.DataPropertyName = "RoomNumber";
+            this.RoomNumber.HeaderText = "شماره اتاق";
+            this.RoomNumber.Name = "RoomNumber";
+            this.RoomNumber.ReadOnly = true;
+            // 
+            // RoomFloor
+            // 
+            this.RoomFloor.DataPropertyName = "RoomFloor";
+            this.RoomFloor.HeaderText = "طبقه";
+            this.RoomFloor.Name = "RoomFloor";
+            this.RoomFloor.ReadOnly = true;
+            // 
+            // RoomItemCapacity
+            // 
+            this.RoomItemCapacity.DataPropertyName = "RoomItemCapacity";
+            this.RoomItemCapacity.HeaderText = "ظرفیت";
+            this.RoomItemCapacity.Name = "RoomItemCapacity";
+            this.RoomItemCapacity.ReadOnly = true;
+            // 
+            // LinkedBlockID
+            // 
+            this.LinkedBlockID.DataPropertyName = "LinkedBlockID";
+            this.LinkedBlockID.HeaderText = "LinkedBlockID";
+            this.LinkedBlockID.Name = "LinkedBlockID";
+            this.LinkedBlockID.ReadOnly = true;
+            this.LinkedBlockID.Visible = false;
+            // 
             // Assign_Item_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 682);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button1);
@@ -343,11 +358,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LinkedBlockID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomCurrentCapacity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomFloor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomID;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn LinkedDormID;
@@ -369,5 +379,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DormID;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RoomID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RoomNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RoomFloor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RoomItemCapacity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LinkedBlockID;
     }
 }

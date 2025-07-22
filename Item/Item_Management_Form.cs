@@ -1,5 +1,4 @@
-﻿using Dorms_Project.Person.BlockManager;
-using Dorms_Project.Person.Collegian;
+﻿using Dorms_Project.Person.Collegian;
 using Dorms_Project.Repository;
 using Dorms_Project.Services;
 using System;
@@ -220,72 +219,6 @@ namespace Dorms_Project.Item
                     if (UpdateItemSuccess)
                     {
                         Refresh();
-                    }
-                }
-
-            }
-        }
-
-        private void Assign_Item_toCollegian_btn_Click(object sender, EventArgs e)
-        {
-            Assign_toCollegian_Form assign_ToCollegian_Form = new Assign_toCollegian_Form();
-            assign_ToCollegian_Form.SelectedID = int.Parse(dataGridView1.CurrentRow.Cells["ItemID"].Value.ToString());
-            assign_ToCollegian_Form.SelectedCollegianID = int.Parse(dataGridView1.CurrentRow.Cells["LinkedCollegianID"].Value.ToString());
-            assign_ToCollegian_Form.ShowDialog();
-            if (assign_ToCollegian_Form.DialogResult == DialogResult.OK)
-            {
-                Refresh();
-            }
-        }
-
-        private void Take_Back_btn_Click(object sender, EventArgs e)
-        {
-
-            List<string> options = new List<string> { "از دانشجو", "از اتاق" };
-
-            var (result, selectedValue) = ComboMessageBox.Show(
-                "لطفا یک گزینه را انتخاب کنید",
-                "انتخاب",
-                options,
-                false
-            );
-
-            if (result == DialogResult.OK)
-            {
-
-                if (true)
-                {
-                    if (selectedValue == "از دانشجو")
-                    {
-                        bool UpdateItemSuccess = _Item_Repository.Update_Success(
-                            int.Parse(dataGridView1.CurrentRow.Cells["ItemID"].Value.ToString()),
-                            dataGridView1.CurrentRow.Cells["ItemType"].Value.ToString(),
-                            int.Parse(dataGridView1.CurrentRow.Cells["ItemPartNumber"].Value.ToString()),
-                            dataGridView1.CurrentRow.Cells["Item8DigitsID"].Value.ToString(),
-                            dataGridView1.CurrentRow.Cells["ItemState"].Value.ToString(),
-                            int.Parse(dataGridView1.CurrentRow.Cells["LinkedRoomID"].Value.ToString()),
-                            0
-                            );
-                        if (UpdateItemSuccess)
-                        {
-                            Refresh();
-                        }
-                    }
-                    else if (selectedValue == "از اتاق")
-                    {
-                        bool UpdateItemSuccess = _Item_Repository.Update_Success(
-                            int.Parse(dataGridView1.CurrentRow.Cells["ItemID"].Value.ToString()),
-                            dataGridView1.CurrentRow.Cells["ItemType"].Value.ToString(),
-                            int.Parse(dataGridView1.CurrentRow.Cells["ItemPartNumber"].Value.ToString()),
-                            dataGridView1.CurrentRow.Cells["Item8DigitsID"].Value.ToString(),
-                            dataGridView1.CurrentRow.Cells["ItemState"].Value.ToString(),
-                            0,
-                            int.Parse(dataGridView1.CurrentRow.Cells["LinkedCollegianID"].Value.ToString())
-                            );
-                        if (UpdateItemSuccess)
-                        {
-                            Refresh();
-                        }
                     }
                 }
 

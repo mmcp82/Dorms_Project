@@ -48,4 +48,3 @@ C:\Users\MMCP\Documents\Visual Studio 2022\projects\temp\Dorms_Project\Dorms_Pro
 C:\Users\MMCP\Documents\Visual Studio 2022\projects\temp\Dorms_Project\Dorms_Project\obj\Debug\Dorms_Project.csproj.CoreCompileInputs.cache
 C:\Users\MMCP\Documents\Visual Studio 2022\projects\temp\Dorms_Project\Dorms_Project\obj\Debug\Dorms_Project.exe
 C:\Users\MMCP\Documents\Visual Studio 2022\projects\temp\Dorms_Project\Dorms_Project\obj\Debug\Dorms_Project.pdb
-C:\Users\MMCP\Documents\Visual Studio 2022\projects\temp\Dorms_Project\Dorms_Project\obj\Debug\Dorms_Project.Item.Assign_toCollegian_Form.resources

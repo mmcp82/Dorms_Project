@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,13 +41,11 @@
             this.LinkedRoomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LinkedCollegianID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.change_state_btn = new System.Windows.Forms.Button();
             this.add_type_btn = new System.Windows.Forms.Button();
             this.Delete_Item_btn = new System.Windows.Forms.Button();
             this.Add_Item_btn = new System.Windows.Forms.Button();
             this.Assign_Item_toRoom_btn = new System.Windows.Forms.Button();
-            this.Assign_Item_toCollegian_btn = new System.Windows.Forms.Button();
-            this.Take_Back_btn = new System.Windows.Forms.Button();
+            this.change_state_btn = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -70,14 +68,14 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemID,
@@ -87,25 +85,25 @@
             this.ItemState,
             this.LinkedRoomID,
             this.LinkedCollegianID});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Size = new System.Drawing.Size(764, 343);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -163,8 +161,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.Take_Back_btn);
-            this.groupBox1.Controls.Add(this.Assign_Item_toCollegian_btn);
             this.groupBox1.Controls.Add(this.change_state_btn);
             this.groupBox1.Controls.Add(this.add_type_btn);
             this.groupBox1.Controls.Add(this.Delete_Item_btn);
@@ -177,17 +173,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات";
-            // 
-            // change_state_btn
-            // 
-            this.change_state_btn.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.change_state_btn.Location = new System.Drawing.Point(241, 19);
-            this.change_state_btn.Name = "change_state_btn";
-            this.change_state_btn.Size = new System.Drawing.Size(101, 27);
-            this.change_state_btn.TabIndex = 4;
-            this.change_state_btn.Text = "تغییر وضعیت";
-            this.change_state_btn.UseVisualStyleBackColor = true;
-            this.change_state_btn.Click += new System.EventHandler(this.change_state_btn_Click);
             // 
             // add_type_btn
             // 
@@ -232,27 +217,16 @@
             this.Assign_Item_toRoom_btn.UseVisualStyleBackColor = true;
             this.Assign_Item_toRoom_btn.Click += new System.EventHandler(this.Assign_Item_toRoom_btn_Click);
             // 
-            // Assign_Item_toCollegian_btn
+            // change_state_btn
             // 
-            this.Assign_Item_toCollegian_btn.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.Assign_Item_toCollegian_btn.Location = new System.Drawing.Point(134, 19);
-            this.Assign_Item_toCollegian_btn.Name = "Assign_Item_toCollegian_btn";
-            this.Assign_Item_toCollegian_btn.Size = new System.Drawing.Size(101, 27);
-            this.Assign_Item_toCollegian_btn.TabIndex = 5;
-            this.Assign_Item_toCollegian_btn.Text = "اختصاص دانشجو";
-            this.Assign_Item_toCollegian_btn.UseVisualStyleBackColor = true;
-            this.Assign_Item_toCollegian_btn.Click += new System.EventHandler(this.Assign_Item_toCollegian_btn_Click);
-            // 
-            // Take_Back_btn
-            // 
-            this.Take_Back_btn.ForeColor = System.Drawing.Color.Goldenrod;
-            this.Take_Back_btn.Location = new System.Drawing.Point(27, 19);
-            this.Take_Back_btn.Name = "Take_Back_btn";
-            this.Take_Back_btn.Size = new System.Drawing.Size(101, 27);
-            this.Take_Back_btn.TabIndex = 6;
-            this.Take_Back_btn.Text = "پس گیری از";
-            this.Take_Back_btn.UseVisualStyleBackColor = true;
-            this.Take_Back_btn.Click += new System.EventHandler(this.Take_Back_btn_Click);
+            this.change_state_btn.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.change_state_btn.Location = new System.Drawing.Point(241, 19);
+            this.change_state_btn.Name = "change_state_btn";
+            this.change_state_btn.Size = new System.Drawing.Size(101, 27);
+            this.change_state_btn.TabIndex = 4;
+            this.change_state_btn.Text = "تغییر وضعیت";
+            this.change_state_btn.UseVisualStyleBackColor = true;
+            this.change_state_btn.Click += new System.EventHandler(this.change_state_btn_Click);
             // 
             // Item_Management_Form
             // 
@@ -288,7 +262,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LinkedCollegianID;
         private System.Windows.Forms.Button add_type_btn;
         private System.Windows.Forms.Button change_state_btn;
-        private System.Windows.Forms.Button Take_Back_btn;
-        private System.Windows.Forms.Button Assign_Item_toCollegian_btn;
     }
 }

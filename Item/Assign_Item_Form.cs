@@ -70,7 +70,7 @@ namespace Dorms_Project.Item
             // Process each room
             foreach (var room in roomItemCounts)
             {
-                if (room.ItemCount == ItemLimitPerRoom)
+                if (room.ItemCount >= ItemLimitPerRoom)
                 {
                     reachedLimitRooms.Add(room.RoomID);
                 }
@@ -226,32 +226,29 @@ namespace Dorms_Project.Item
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (label1.Text == "" && int.Parse(dataGridView3.CurrentRow.Cells["RoomItemCapacity"].Value.ToString()) > 0)
+            if (label1.Text == "" && int.Parse(dataGridView3.CurrentRow.Cells["RoomItemCapacity"].Value.ToString()) != 0)
             {
                 DataTable dt = _item_Repository.GetItemRow(SelectedID);
 
-                if (SelectedRoomID != int.Parse(dataGridView3.CurrentRow.Cells["RoomID"].Value.ToString()))
+
+                bool SignUpSuccess = _item_Repository.Update_Success(
+                    int.Parse(dt.Rows[0]["ItemID"].ToString()),
+                    (dt.Rows[0]["ItemType"].ToString()),
+                    int.Parse(dt.Rows[0]["ItemPartNumber"].ToString()),
+                    (dt.Rows[0]["Item8DigitsID"].ToString()),
+                    (dt.Rows[0]["ItemState"].ToString()),
+                    int.Parse(dataGridView3.CurrentRow.Cells["RoomID"].Value.ToString()),
+                    int.Parse(dt.Rows[0]["LinkedCollegianID"].ToString())
+                    );
+
+                if (SignUpSuccess)
                 {
-
-                    bool SignUpSuccess = _item_Repository.Update_Success(
-                        int.Parse(dt.Rows[0]["ItemID"].ToString()),
-                        (dt.Rows[0]["ItemType"].ToString()),
-                        int.Parse(dt.Rows[0]["ItemPartNumber"].ToString()),
-                        (dt.Rows[0]["Item8DigitsID"].ToString()),
-                        (dt.Rows[0]["ItemState"].ToString()),
-                        int.Parse(dataGridView3.CurrentRow.Cells["RoomID"].Value.ToString()),
-                        int.Parse(dt.Rows[0]["LinkedCollegianID"].ToString())
-                        );
-
-                    if (SignUpSuccess)
-                    {
-                        MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        MessageBox.Show("عملیات با شکست مواجه شد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("عملیات با موفقیت انجام شد", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("عملیات با شکست مواجه شد", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

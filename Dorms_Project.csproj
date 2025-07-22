@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16DB6504-F88F-4817-96C5-3FA72D239820}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Dorms_Project</RootNamespace>
+    <AssemblyName>Dorms_Project</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Block\AddOrEdit_Block.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Block\AddOrEdit_Block.Designer.cs">
+      <DependentUpon>AddOrEdit_Block.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Block\Block.cs" />
+    <Compile Include="Block\Block_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Block\Block_Management_Form.Designer.cs">
+      <DependentUpon>Block_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Block\Room.cs" />
+    <Compile Include="Dorm\AddOrEdit_Dorm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dorm\AddOrEdit_Dorm.Designer.cs">
+      <DependentUpon>AddOrEdit_Dorm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dorm\Dorm.cs" />
+    <Compile Include="Dorm\Dorm_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dorm\Dorm_Management_Form.Designer.cs">
+      <DependentUpon>Dorm_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\Assign_Item_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\Assign_Item_Form.Designer.cs">
+      <DependentUpon>Assign_Item_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\ComboMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\ComboMessageBox.Designer.cs">
+      <DependentUpon>ComboMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Item\Item.cs" />
+    <Compile Include="Item\Item_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Item\Item_Management_Form.Designer.cs">
+      <DependentUpon>Item_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\BlockManager\Add_Block_Manager_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\BlockManager\Add_Block_Manager_Form.Designer.cs">
+      <DependentUpon>Add_Block_Manager_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\BlockManager\BlockManager.cs" />
+    <Compile Include="Person\BlockManager\Block_Manager_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\BlockManager\Block_Manager_Management_Form.Designer.cs">
+      <DependentUpon>Block_Manager_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\Collegian\AddOrEdit_Collegian_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Collegian\AddOrEdit_Collegian_Form.Designer.cs">
+      <DependentUpon>AddOrEdit_Collegian_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\Collegian\Collegian.cs" />
+    <Compile Include="Person\Collegian\Collegian_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Collegian\Collegian_Management_Form.Designer.cs">
+      <DependentUpon>Collegian_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\Collegian\SignOrMove_Collegian_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Collegian\SignOrMove_Collegian_Form.Designer.cs">
+      <DependentUpon>SignOrMove_Collegian_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\DormManager\AddOrEdit_Dorm_Manager.Designer.cs">
+      <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\DormManager\DormManager.cs" />
+    <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\DormManager\Dorm_Manager_Management_Form.Designer.cs">
+      <DependentUpon>Dorm_Manager_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Person\Person.cs" />
+    <Compile Include="Person\Person_Management_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Person\Person_Management_Form.Designer.cs">
+      <DependentUpon>Person_Management_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\Report_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Report_Form.Designer.cs">
+      <DependentUpon>Report_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\IF_Block_Repository.cs" />
+    <Compile Include="Repository\IF_Collegian_Repository.cs" />
+    <Compile Include="Repository\IF_Dorm_Manager_Repository.cs" />
+    <Compile Include="Repository\IF_Dorm_Repository.cs" />
+    <Compile Include="Repository\IF_ItemType_Repository.cs" />
+    <Compile Include="Repository\IF_Item_Repository.cs" />
+    <Compile Include="Repository\IF_Room_Repository.cs" />
+    <Compile Include="Services\Block_Repository.cs" />
+    <Compile Include="Services\Collegian_Repository.cs" />
+    <Compile Include="Services\Dorm_Manager_Repository.cs" />
+    <Compile Include="Services\Dorm_Repository.cs" />
+    <Compile Include="Services\ItemType_Repository.cs" />
+    <Compile Include="Services\Item_Repository.cs" />
+    <Compile Include="Services\Room_Repository.cs" />
+    <Compile Include="Services\DatabaseSetup\SQL_Database_Setup.cs" />
+    <EmbeddedResource Include="Block\AddOrEdit_Block.resx">
+      <DependentUpon>AddOrEdit_Block.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Block\Block_Management_Form.resx">
+      <DependentUpon>Block_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dorm\AddOrEdit_Dorm.resx">
+      <DependentUpon>AddOrEdit_Dorm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dorm\Dorm_Management_Form.resx">
+      <DependentUpon>Dorm_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\Assign_Item_Form.resx">
+      <DependentUpon>Assign_Item_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\ComboMessageBox.resx">
+      <DependentUpon>ComboMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Item\Item_Management_Form.resx">
+      <DependentUpon>Item_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\BlockManager\Add_Block_Manager_Form.resx">
+      <DependentUpon>Add_Block_Manager_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\BlockManager\Block_Manager_Management_Form.resx">
+      <DependentUpon>Block_Manager_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Collegian\AddOrEdit_Collegian_Form.resx">
+      <DependentUpon>AddOrEdit_Collegian_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Collegian\Collegian_Management_Form.resx">
+      <DependentUpon>Collegian_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Collegian\SignOrMove_Collegian_Form.resx">
+      <DependentUpon>SignOrMove_Collegian_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\DormManager\AddOrEdit_Dorm_Manager.resx">
+      <DependentUpon>AddOrEdit_Dorm_Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\DormManager\Dorm_Manager_Management_Form.resx">
+      <DependentUpon>Dorm_Manager_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Person\Person_Management_Form.resx">
+      <DependentUpon>Person_Management_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DatabaseSetup\CreateTables.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
